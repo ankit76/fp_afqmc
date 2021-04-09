@@ -1,0 +1,25 @@
+{
+  "system":
+  {
+    "integrals": "FCIDUMP_chol"
+  },
+  "wavefunction":
+  {
+    "right": "ccsd",
+    "left": "multislater",
+    "determinants": "dets.bin",
+    "ciThreshold": 0.001
+  },
+  "sampling":
+  {
+    "seed": 456334,
+    "dt": 0.04,
+    "nsteps": 60,
+    "eneSteps": [ 40, 50, 60 ],
+    "errorTargets": [ 0.7e-3, 0.7e-3, 0.7e-3 ],
+    "choleskyThreshold": 3.0e-3,
+    "orthoSteps": 5,
+    "ene0Guess": -542.1158640836493,
+    "stochasticIter": 100000
+  }
+}

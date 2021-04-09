@@ -1,0 +1,4515 @@
+User:
+anma2640
+Hostname:
+shas0649
+CPU info:
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                24
+On-line CPU(s) list:   0-23
+Thread(s) per core:    1
+Core(s) per socket:    12
+Socket(s):             2
+NUMA node(s):          2
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 63
+Model name:            Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz
+Stepping:              2
+CPU MHz:               2494.407
+Computation started at:
+Tue Mar 23 01:53:34 MDT 2021
+git commit: da7effdfe17193b9a24c8968e589599819443449, branch: dqmc, compiled at: Sat Mar 20 19:16:37 MDT 2021
+
+nproc used: 144 (NB: stochasticIter below is per proc)
+
+**************************************************************
+Input file  :
+**************************************************************
+{
+    "system": {
+        "integrals": "FCIDUMP_chol"
+    },
+    "wavefunction": {
+        "right": "ccsd",
+        "left": "multislater",
+        "determinants": "dets.bin",
+        "ndets": "10000",
+        "ciThreshold": "0.001"
+    },
+    "sampling": {
+        "seed": "983422",
+        "dt": "0.02",
+        "nsteps": "120",
+        "eneSteps": [
+            "120"
+        ],
+        "errorTargets": [
+            "1.0e-3"
+        ],
+        "choleskyThreshold": "5.0e-3",
+        "orthoSteps": "5",
+        "ene0Guess": "-3456.7301843365362",
+        "stochasticIter": "100000"
+    }
+}
+
+Number of orbitals:  158, nalpha:  16, nbeta:  16
+Rankwise number of excitations    1  102 7011  782 2038   40   26    0    0    0
+Number of determinants 10000
+
+
+Preparing CC HS operators
+Finished preparing CC HS operators
+
+Initial state energy:  (-3456.2124,-0)
+Ground state energy guess:  (-3456.7302,0)
+
+Number of Cholesky vectors: 1139
+Using truncated Cholesky with 797 vectors
+Initial state energy with truncated Cholesky:  (-3456.2093,-0)
+
+Using ROHF RDM for background subtraction
+
+Starting sampling sweeps
+
+Sweep steps: 100
+Total walltime: 485.088 s
+Propagation time:  235.225 s
+Energy evaluation time:  248.127 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.68775732,     0.02014155)   (2.14e-02   (4.40e-03))   (-0.813, 0.003) 
+
+Sweep steps: 200
+Total walltime: 1005.5 s
+Propagation time:  470.878 s
+Energy evaluation time:  495.337 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.70300660,     0.02438379)   (1.52e-02   (2.96e-03))   (-0.781, 0.011) 
+
+Sweep steps: 300
+Total walltime: 1524.98 s
+Propagation time:  706.944 s
+Energy evaluation time:  743.141 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.70693171,     0.02949736)   (1.40e-02   (2.60e-03))   (-0.783, -0.000) 
+
+Sweep steps: 400
+Total walltime: 2045.85 s
+Propagation time:  941.861 s
+Energy evaluation time:  992.161 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.71524460,     0.02201913)   (1.22e-02   (2.57e-03))   (-0.793, -0.016) 
+
+Sweep steps: 500
+Total walltime: 2566.32 s
+Propagation time:  1174.67 s
+Energy evaluation time:  1240.91 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.71880261,     0.02122543)   (1.12e-02   (2.15e-03))   (-0.789, -0.016) 
+
+Sweep steps: 600
+Total walltime: 3091.14 s
+Propagation time:  1412.5 s
+Energy evaluation time:  1491.39 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.70198406,     0.02136968)   (7.37e-03   (1.22e-03))   (-0.793, -0.028) 
+
+Sweep steps: 700
+Total walltime: 3609.74 s
+Propagation time:  1644.62 s
+Energy evaluation time:  1745.16 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.70184892,     0.01608636)   (6.88e-03   (9.46e-04))   (-0.777, -0.008) 
+
+Sweep steps: 800
+Total walltime: 4126.76 s
+Propagation time:  1879.03 s
+Energy evaluation time:  1994.23 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.70485366,     0.01322336)   (6.74e-03   (9.22e-04))   (-0.780, -0.001) 
+
+Sweep steps: 900
+Total walltime: 4646.25 s
+Propagation time:  2115.15 s
+Energy evaluation time:  2242.14 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.70539185,     0.01022508)   (6.27e-03   (7.79e-04))   (-0.780, -0.005) 
+
+Sweep steps: 1000
+Total walltime: 5174.78 s
+Propagation time:  2353.03 s
+Energy evaluation time:  2494.37 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.71050824,     0.00836711)   (6.10e-03   (8.25e-04))   (-0.779, 0.000) 
+
+Sweep steps: 1100
+Total walltime: 5691.06 s
+Propagation time:  2590 s
+Energy evaluation time:  2744.95 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.71094109,     0.00495869)   (6.06e-03   (8.23e-04))   (-0.778, 0.007) 
+
+Sweep steps: 1200
+Total walltime: 6214.41 s
+Propagation time:  2826.54 s
+Energy evaluation time:  2997.96 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.71459192,     0.00305474)   (5.83e-03   (7.76e-04))   (-0.776, 0.006) 
+
+Sweep steps: 1300
+Total walltime: 6731.92 s
+Propagation time:  3063.45 s
+Energy evaluation time:  3247.52 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.71383221,     0.00215152)   (5.70e-03   (7.49e-04))   (-0.781, 0.008) 
+
+Sweep steps: 1400
+Total walltime: 7252.16 s
+Propagation time:  3299.86 s
+Energy evaluation time:  3496.54 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.71650715,     0.00278637)   (5.56e-03   (7.06e-04))   (-0.779, 0.011) 
+
+Sweep steps: 1500
+Total walltime: 7773.22 s
+Propagation time:  3536.13 s
+Energy evaluation time:  3747.33 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.71586585,     0.00182955)   (5.40e-03   (6.53e-04))   (-0.781, 0.011) 
+
+Sweep steps: 1600
+Total walltime: 8296.8 s
+Propagation time:  3771.57 s
+Energy evaluation time:  4001.91 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.71719668,     0.00034901)   (5.37e-03   (7.03e-04))   (-0.777, 0.018) 
+
+Sweep steps: 1700
+Total walltime: 8811.28 s
+Propagation time:  4006.33 s
+Energy evaluation time:  4250.03 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.71687140,     0.00103346)   (5.22e-03   (6.76e-04))   (-0.778, 0.013) 
+
+Sweep steps: 1800
+Total walltime: 9329.92 s
+Propagation time:  4240.33 s
+Energy evaluation time:  4498.92 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.71995041,     0.00213597)   (5.10e-03   (5.90e-04))   (-0.779, 0.011) 
+
+Sweep steps: 1900
+Total walltime: 9848.08 s
+Propagation time:  4473.02 s
+Energy evaluation time:  4747.55 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72431960,     0.00252881)   (5.03e-03   (6.22e-04))   (-0.779, 0.009) 
+
+Sweep steps: 2000
+Total walltime: 10366.7 s
+Propagation time:  4704.7 s
+Energy evaluation time:  4996.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72661995,     0.00061330)   (4.94e-03   (5.56e-04))   (-0.779, 0.011) 
+
+Sweep steps: 2100
+Total walltime: 10886.4 s
+Propagation time:  4936.71 s
+Energy evaluation time:  5245.37 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72765009,     0.00087675)   (5.00e-03   (6.22e-04))   (-0.781, 0.009) 
+
+Sweep steps: 2200
+Total walltime: 11413.9 s
+Propagation time:  5172.09 s
+Energy evaluation time:  5497.88 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72585284,     0.00203036)   (4.87e-03   (5.89e-04))   (-0.782, 0.005) 
+
+Sweep steps: 2300
+Total walltime: 11929.5 s
+Propagation time:  5406.26 s
+Energy evaluation time:  5748.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72807936,     0.00194041)   (4.76e-03   (5.70e-04))   (-0.781, 0.002) 
+
+Sweep steps: 2400
+Total walltime: 12448.1 s
+Propagation time:  5641.07 s
+Energy evaluation time:  6000.64 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72826064,     0.00093602)   (4.71e-03   (5.47e-04))   (-0.781, 0.007) 
+
+Sweep steps: 2500
+Total walltime: 12964.1 s
+Propagation time:  5876 s
+Energy evaluation time:  6250.76 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72832228,     0.00023562)   (4.63e-03   (5.75e-04))   (-0.782, 0.008) 
+
+Sweep steps: 2600
+Total walltime: 13483.5 s
+Propagation time:  6112.76 s
+Energy evaluation time:  6502.01 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72836516,     0.00032862)   (4.55e-03   (5.41e-04))   (-0.782, 0.008) 
+
+Sweep steps: 2700
+Total walltime: 13999.5 s
+Propagation time:  6347.79 s
+Energy evaluation time:  6753.42 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72737550,    -0.00114273)   (4.49e-03   (5.02e-04))   (-0.783, 0.008) 
+
+Sweep steps: 2800
+Total walltime: 14515.4 s
+Propagation time:  6582.51 s
+Energy evaluation time:  7003.52 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72851217,    -0.00054687)   (4.47e-03   (5.49e-04))   (-0.782, 0.005) 
+
+Sweep steps: 2900
+Total walltime: 15039.8 s
+Propagation time:  6823.27 s
+Energy evaluation time:  7255.35 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72911560,    -0.00029886)   (4.39e-03   (5.03e-04))   (-0.782, 0.004) 
+
+Sweep steps: 3000
+Total walltime: 15547 s
+Propagation time:  7056.39 s
+Energy evaluation time:  7504.35 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72903863,    -0.00084054)   (4.30e-03   (4.99e-04))   (-0.783, 0.004) 
+
+Sweep steps: 3100
+Total walltime: 16072.9 s
+Propagation time:  7292.52 s
+Energy evaluation time:  7757.13 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72837348,    -0.00011742)   (4.36e-03   (5.74e-04))   (-0.784, 0.003) 
+
+Sweep steps: 3200
+Total walltime: 16587.7 s
+Propagation time:  7527.48 s
+Energy evaluation time:  8008.04 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72903503,    -0.00020078)   (4.28e-03   (4.96e-04))   (-0.785, 0.005) 
+
+Sweep steps: 3300
+Total walltime: 17113 s
+Propagation time:  7770.8 s
+Energy evaluation time:  8259.68 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72951853,     0.00040072)   (4.24e-03   (4.59e-04))   (-0.784, 0.002) 
+
+Sweep steps: 3400
+Total walltime: 17619.3 s
+Propagation time:  8006.22 s
+Energy evaluation time:  8508.73 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73149029,     0.00013181)   (4.26e-03   (5.94e-04))   (-0.784, 0.004) 
+
+Sweep steps: 3500
+Total walltime: 18138.2 s
+Propagation time:  8241.73 s
+Energy evaluation time:  8760.29 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73233471,     0.00052505)   (4.16e-03   (5.20e-04))   (-0.785, 0.003) 
+
+Sweep steps: 3600
+Total walltime: 18655.3 s
+Propagation time:  8476.7 s
+Energy evaluation time:  9011.48 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73141165,    -0.00130342)   (4.17e-03   (5.27e-04))   (-0.784, 0.006) 
+
+Sweep steps: 3700
+Total walltime: 19173.1 s
+Propagation time:  8712.42 s
+Energy evaluation time:  9263.19 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73186710,    -0.00112408)   (4.16e-03   (5.06e-04))   (-0.784, 0.006) 
+
+Sweep steps: 3800
+Total walltime: 19688.5 s
+Propagation time:  8946.95 s
+Energy evaluation time:  9515.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73193688,    -0.00181220)   (4.06e-03   (5.06e-04))   (-0.784, 0.008) 
+
+Sweep steps: 3900
+Total walltime: 20205 s
+Propagation time:  9181.53 s
+Energy evaluation time:  9768.07 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73242218,    -0.00194893)   (4.03e-03   (4.71e-04))   (-0.785, 0.008) 
+
+Sweep steps: 4000
+Total walltime: 20722.9 s
+Propagation time:  9417.08 s
+Energy evaluation time:  10021.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73235831,    -0.00283585)   (3.95e-03   (4.66e-04))   (-0.786, 0.010) 
+
+Sweep steps: 4100
+Total walltime: 21244.4 s
+Propagation time:  9659.16 s
+Energy evaluation time:  10272.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73115395,    -0.00522867)   (4.04e-03   (6.17e-04))   (-0.786, 0.016) 
+
+Sweep steps: 4200
+Total walltime: 21754.8 s
+Propagation time:  9895.45 s
+Energy evaluation time:  10524.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73194886,    -0.00563622)   (3.98e-03   (5.24e-04))   (-0.787, 0.013) 
+
+Sweep steps: 4300
+Total walltime: 22280.4 s
+Propagation time:  10138.3 s
+Energy evaluation time:  10776 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73177191,    -0.00589720)   (3.97e-03   (5.39e-04))   (-0.787, 0.012) 
+
+Sweep steps: 4400
+Total walltime: 22790 s
+Propagation time:  10373.9 s
+Energy evaluation time:  11026.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73174221,    -0.00576086)   (3.89e-03   (4.66e-04))   (-0.787, 0.013) 
+
+Sweep steps: 4500
+Total walltime: 23304.7 s
+Propagation time:  10608 s
+Energy evaluation time:  11276.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73177068,    -0.00503219)   (3.87e-03   (4.93e-04))   (-0.787, 0.013) 
+
+Sweep steps: 4600
+Total walltime: 23819.9 s
+Propagation time:  10841.9 s
+Energy evaluation time:  11525.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73014238,    -0.00619067)   (3.85e-03   (4.64e-04))   (-0.788, 0.016) 
+
+Sweep steps: 4700
+Total walltime: 24339.7 s
+Propagation time:  11075.4 s
+Energy evaluation time:  11775.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72966610,    -0.00643947)   (3.75e-03   (4.40e-04))   (-0.788, 0.016) 
+
+Sweep steps: 4800
+Total walltime: 24857 s
+Propagation time:  11309.7 s
+Energy evaluation time:  12026.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.72967650,    -0.00548681)   (3.77e-03   (4.42e-04))   (-0.788, 0.013) 
+
+Sweep steps: 4900
+Total walltime: 25372.4 s
+Propagation time:  11544.9 s
+Energy evaluation time:  12275.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73020079,    -0.00545872)   (3.76e-03   (4.24e-04))   (-0.787, 0.014) 
+
+Sweep steps: 5000
+Total walltime: 25889.1 s
+Propagation time:  11780.3 s
+Energy evaluation time:  12526.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73117037,    -0.00572455)   (3.70e-03   (4.15e-04))   (-0.787, 0.014) 
+
+Sweep steps: 5100
+Total walltime: 26405.5 s
+Propagation time:  12014.9 s
+Energy evaluation time:  12777.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73007154,    -0.00609782)   (3.74e-03   (5.21e-04))   (-0.787, 0.015) 
+
+Sweep steps: 5200
+Total walltime: 26924 s
+Propagation time:  12252.4 s
+Energy evaluation time:  13028.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73041949,    -0.00523845)   (3.75e-03   (4.74e-04))   (-0.787, 0.013) 
+
+Sweep steps: 5300
+Total walltime: 27455.5 s
+Propagation time:  12501.8 s
+Energy evaluation time:  13281.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73035440,    -0.00476797)   (3.69e-03   (4.54e-04))   (-0.787, 0.011) 
+
+Sweep steps: 5400
+Total walltime: 27961.7 s
+Propagation time:  12736.5 s
+Energy evaluation time:  13537.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73154322,    -0.00431217)   (3.63e-03   (4.29e-04))   (-0.786, 0.011) 
+
+Sweep steps: 5500
+Total walltime: 28485.6 s
+Propagation time:  12979.1 s
+Energy evaluation time:  13790 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73156379,    -0.00452877)   (3.65e-03   (4.44e-04))   (-0.787, 0.010) 
+
+Sweep steps: 5600
+Total walltime: 29001.5 s
+Propagation time:  13215.5 s
+Energy evaluation time:  14043.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73159178,    -0.00473204)   (3.62e-03   (4.45e-04))   (-0.787, 0.010) 
+
+Sweep steps: 5700
+Total walltime: 29536.9 s
+Propagation time:  13463.9 s
+Energy evaluation time:  14295.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73224861,    -0.00475847)   (3.57e-03   (4.08e-04))   (-0.787, 0.010) 
+
+Sweep steps: 5800
+Total walltime: 30059.7 s
+Propagation time:  13711.2 s
+Energy evaluation time:  14549.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73289786,    -0.00475654)   (3.52e-03   (3.90e-04))   (-0.787, 0.009) 
+
+Sweep steps: 5900
+Total walltime: 30585.4 s
+Propagation time:  13961.8 s
+Energy evaluation time:  14803.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73250265,    -0.00476057)   (3.47e-03   (3.80e-04))   (-0.787, 0.010) 
+
+Sweep steps: 6000
+Total walltime: 31115.2 s
+Propagation time:  14219 s
+Energy evaluation time:  15059.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73170957,    -0.00543924)   (3.47e-03   (3.91e-04))   (-0.787, 0.011) 
+
+Sweep steps: 6100
+Total walltime: 31624.8 s
+Propagation time:  14462.8 s
+Energy evaluation time:  15313.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73217917,    -0.00521254)   (3.44e-03   (4.04e-04))   (-0.787, 0.011) 
+
+Sweep steps: 6200
+Total walltime: 32138.7 s
+Propagation time:  14700.5 s
+Energy evaluation time:  15566.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73314246,    -0.00449485)   (3.47e-03   (4.30e-04))   (-0.787, 0.011) 
+
+Sweep steps: 6300
+Total walltime: 32660.9 s
+Propagation time:  14939 s
+Energy evaluation time:  15819.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73368365,    -0.00451139)   (3.44e-03   (4.03e-04))   (-0.787, 0.011) 
+
+Sweep steps: 6400
+Total walltime: 33178.6 s
+Propagation time:  15176.9 s
+Energy evaluation time:  16072.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73450507,    -0.00440064)   (3.42e-03   (4.08e-04))   (-0.787, 0.011) 
+
+Sweep steps: 6500
+Total walltime: 33708.2 s
+Propagation time:  15421.4 s
+Energy evaluation time:  16325.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73454482,    -0.00408985)   (3.39e-03   (3.94e-04))   (-0.787, 0.010) 
+
+Sweep steps: 6600
+Total walltime: 34222.2 s
+Propagation time:  15658.4 s
+Energy evaluation time:  16578.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73235082,    -0.00552229)   (3.42e-03   (3.83e-04))   (-0.787, 0.011) 
+
+Sweep steps: 6700
+Total walltime: 34740.7 s
+Propagation time:  15894.8 s
+Energy evaluation time:  16828.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73218567,    -0.00521367)   (3.40e-03   (3.72e-04))   (-0.787, 0.011) 
+
+Sweep steps: 6800
+Total walltime: 35261.3 s
+Propagation time:  16130.8 s
+Energy evaluation time:  17079.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73231286,    -0.00542332)   (3.36e-03   (3.80e-04))   (-0.787, 0.011) 
+
+Sweep steps: 6900
+Total walltime: 35783.7 s
+Propagation time:  16366.8 s
+Energy evaluation time:  17330.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73243846,    -0.00528257)   (3.30e-03   (3.64e-04))   (-0.787, 0.011) 
+
+Sweep steps: 7000
+Total walltime: 36305.4 s
+Propagation time:  16602.8 s
+Energy evaluation time:  17580.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73286880,    -0.00541419)   (3.29e-03   (3.97e-04))   (-0.787, 0.011) 
+
+Sweep steps: 7100
+Total walltime: 36826.9 s
+Propagation time:  16839.3 s
+Energy evaluation time:  17829.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73340817,    -0.00533769)   (3.31e-03   (4.20e-04))   (-0.787, 0.011) 
+
+Sweep steps: 7200
+Total walltime: 37350.4 s
+Propagation time:  17074.7 s
+Energy evaluation time:  18082 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73295665,    -0.00539117)   (3.30e-03   (4.12e-04))   (-0.787, 0.011) 
+
+Sweep steps: 7300
+Total walltime: 37873 s
+Propagation time:  17310.7 s
+Energy evaluation time:  18334.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73384914,    -0.00595904)   (3.33e-03   (4.10e-04))   (-0.788, 0.008) 
+
+Sweep steps: 7400
+Total walltime: 38394.7 s
+Propagation time:  17547.2 s
+Energy evaluation time:  18586.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73420908,    -0.00629830)   (3.32e-03   (4.31e-04))   (-0.788, 0.008) 
+
+Sweep steps: 7500
+Total walltime: 38916.7 s
+Propagation time:  17784.4 s
+Energy evaluation time:  18839.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73327542,    -0.00579346)   (3.32e-03   (4.36e-04))   (-0.788, 0.008) 
+
+Sweep steps: 7600
+Total walltime: 39439.4 s
+Propagation time:  18022.3 s
+Energy evaluation time:  19093.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73326662,    -0.00558264)   (3.32e-03   (4.39e-04))   (-0.788, 0.008) 
+
+Sweep steps: 7700
+Total walltime: 39961.2 s
+Propagation time:  18259.8 s
+Energy evaluation time:  19347.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73304896,    -0.00570006)   (3.30e-03   (4.37e-04))   (-0.789, 0.007) 
+
+Sweep steps: 7800
+Total walltime: 40483.5 s
+Propagation time:  18497.4 s
+Energy evaluation time:  19601.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73280174,    -0.00609049)   (3.24e-03   (4.20e-04))   (-0.789, 0.007) 
+
+Sweep steps: 7900
+Total walltime: 41005.4 s
+Propagation time:  18734.3 s
+Energy evaluation time:  19858.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73261630,    -0.00602775)   (3.21e-03   (4.23e-04))   (-0.789, 0.007) 
+
+Sweep steps: 8000
+Total walltime: 41525.2 s
+Propagation time:  18971.7 s
+Energy evaluation time:  20112.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73295928,    -0.00558553)   (3.17e-03   (4.16e-04))   (-0.788, 0.005) 
+
+Sweep steps: 8100
+Total walltime: 42044.3 s
+Propagation time:  19209 s
+Energy evaluation time:  20365.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73270554,    -0.00564345)   (3.16e-03   (3.99e-04))   (-0.788, 0.005) 
+
+Sweep steps: 8200
+Total walltime: 42564.7 s
+Propagation time:  19445.7 s
+Energy evaluation time:  20619.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73303991,    -0.00561547)   (3.15e-03   (4.11e-04))   (-0.788, 0.005) 
+
+Sweep steps: 8300
+Total walltime: 43085.2 s
+Propagation time:  19682.4 s
+Energy evaluation time:  20873 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73321828,    -0.00561616)   (3.17e-03   (3.95e-04))   (-0.788, 0.006) 
+
+Sweep steps: 8400
+Total walltime: 43606.3 s
+Propagation time:  19918.6 s
+Energy evaluation time:  21128 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73341151,    -0.00553073)   (3.17e-03   (3.98e-04))   (-0.788, 0.006) 
+
+Sweep steps: 8500
+Total walltime: 44126.9 s
+Propagation time:  20156.5 s
+Energy evaluation time:  21381.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73348315,    -0.00551222)   (3.15e-03   (3.96e-04))   (-0.789, 0.007) 
+
+Sweep steps: 8600
+Total walltime: 44651.4 s
+Propagation time:  20395.1 s
+Energy evaluation time:  21639.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73391280,    -0.00526810)   (3.11e-03   (3.98e-04))   (-0.789, 0.006) 
+
+Sweep steps: 8700
+Total walltime: 45169.6 s
+Propagation time:  20633.7 s
+Energy evaluation time:  21894.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73439838,    -0.00516856)   (3.09e-03   (4.03e-04))   (-0.789, 0.006) 
+
+Sweep steps: 8800
+Total walltime: 45697.7 s
+Propagation time:  20871.5 s
+Energy evaluation time:  22148.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73410647,    -0.00492499)   (3.08e-03   (3.99e-04))   (-0.789, 0.005) 
+
+Sweep steps: 8900
+Total walltime: 46214 s
+Propagation time:  21108.7 s
+Energy evaluation time:  22400.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73384467,    -0.00470137)   (3.05e-03   (3.85e-04))   (-0.789, 0.006) 
+
+Sweep steps: 9000
+Total walltime: 46728.8 s
+Propagation time:  21344.7 s
+Energy evaluation time:  22650.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73417375,    -0.00488709)   (3.07e-03   (3.79e-04))   (-0.789, 0.006) 
+
+Sweep steps: 9100
+Total walltime: 47249.2 s
+Propagation time:  21581.1 s
+Energy evaluation time:  22901.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73415949,    -0.00485365)   (3.07e-03   (3.67e-04))   (-0.789, 0.006) 
+
+Sweep steps: 9200
+Total walltime: 47769.3 s
+Propagation time:  21817.9 s
+Energy evaluation time:  23154.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73477199,    -0.00462757)   (3.08e-03   (3.84e-04))   (-0.789, 0.006) 
+
+Sweep steps: 9300
+Total walltime: 48305.5 s
+Propagation time:  22069.5 s
+Energy evaluation time:  23407 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73436330,    -0.00471963)   (3.07e-03   (3.84e-04))   (-0.789, 0.007) 
+
+Sweep steps: 9400
+Total walltime: 48805.8 s
+Propagation time:  22305.4 s
+Energy evaluation time:  23658 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73451921,    -0.00508254)   (3.06e-03   (3.80e-04))   (-0.789, 0.008) 
+
+Sweep steps: 9500
+Total walltime: 49325.7 s
+Propagation time:  22541.3 s
+Energy evaluation time:  23911.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73396861,    -0.00546639)   (3.05e-03   (3.82e-04))   (-0.789, 0.010) 
+
+Sweep steps: 9600
+Total walltime: 49840.1 s
+Propagation time:  22776.9 s
+Energy evaluation time:  24162.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73406454,    -0.00555275)   (3.03e-03   (3.84e-04))   (-0.789, 0.010) 
+
+Sweep steps: 9700
+Total walltime: 50360.8 s
+Propagation time:  23012.6 s
+Energy evaluation time:  24414.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73421791,    -0.00564686)   (3.03e-03   (3.91e-04))   (-0.789, 0.010) 
+
+Sweep steps: 9800
+Total walltime: 50879.9 s
+Propagation time:  23248.7 s
+Energy evaluation time:  24668 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73511109,    -0.00533735)   (3.02e-03   (3.91e-04))   (-0.789, 0.009) 
+
+Sweep steps: 9900
+Total walltime: 51423.3 s
+Propagation time:  23505.6 s
+Energy evaluation time:  24922.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73537117,    -0.00552944)   (3.02e-03   (3.82e-04))   (-0.789, 0.009) 
+
+Sweep steps: 10000
+Total walltime: 51943.7 s
+Propagation time:  23742.5 s
+Energy evaluation time:  25177.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73529802,    -0.00540253)   (2.98e-03   (3.71e-04))   (-0.789, 0.009) 
+
+Sweep steps: 10100
+Total walltime: 52465.4 s
+Propagation time:  23979.3 s
+Energy evaluation time:  25430.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73533394,    -0.00532047)   (2.96e-03   (3.78e-04))   (-0.790, 0.008) 
+
+Sweep steps: 10200
+Total walltime: 52980.6 s
+Propagation time:  24214.5 s
+Energy evaluation time:  25682.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73552106,    -0.00516370)   (2.93e-03   (3.73e-04))   (-0.790, 0.008) 
+
+Sweep steps: 10300
+Total walltime: 53499.2 s
+Propagation time:  24450.1 s
+Energy evaluation time:  25934.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73541713,    -0.00512379)   (2.95e-03   (4.00e-04))   (-0.790, 0.008) 
+
+Sweep steps: 10400
+Total walltime: 54018.2 s
+Propagation time:  24686.4 s
+Energy evaluation time:  26186.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73575689,    -0.00504012)   (2.92e-03   (3.64e-04))   (-0.790, 0.008) 
+
+Sweep steps: 10500
+Total walltime: 54535.7 s
+Propagation time:  24922.6 s
+Energy evaluation time:  26438.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73609830,    -0.00474311)   (2.92e-03   (3.74e-04))   (-0.790, 0.008) 
+
+Sweep steps: 10600
+Total walltime: 55051.5 s
+Propagation time:  25157.6 s
+Energy evaluation time:  26690.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73628639,    -0.00474790)   (2.91e-03   (3.76e-04))   (-0.790, 0.008) 
+
+Sweep steps: 10700
+Total walltime: 55571.8 s
+Propagation time:  25393.3 s
+Energy evaluation time:  26942.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73643434,    -0.00432842)   (2.90e-03   (3.82e-04))   (-0.790, 0.008) 
+
+Sweep steps: 10800
+Total walltime: 56089.5 s
+Propagation time:  25628.6 s
+Energy evaluation time:  27195.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73595716,    -0.00441655)   (2.88e-03   (3.87e-04))   (-0.790, 0.008) 
+
+Sweep steps: 10900
+Total walltime: 56608.5 s
+Propagation time:  25864.4 s
+Energy evaluation time:  27446.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73685510,    -0.00412470)   (2.87e-03   (3.66e-04))   (-0.790, 0.008) 
+
+Sweep steps: 11000
+Total walltime: 57125.9 s
+Propagation time:  26100.5 s
+Energy evaluation time:  27696.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73651687,    -0.00388387)   (2.87e-03   (3.60e-04))   (-0.791, 0.008) 
+
+Sweep steps: 11100
+Total walltime: 57643.1 s
+Propagation time:  26335.8 s
+Energy evaluation time:  27946.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73706435,    -0.00403726)   (2.89e-03   (3.63e-04))   (-0.791, 0.008) 
+
+Sweep steps: 11200
+Total walltime: 58163.9 s
+Propagation time:  26571.5 s
+Energy evaluation time:  28200.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73715786,    -0.00419067)   (2.92e-03   (4.05e-04))   (-0.791, 0.007) 
+
+Sweep steps: 11300
+Total walltime: 58691.1 s
+Propagation time:  26816 s
+Energy evaluation time:  28453.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73678696,    -0.00418389)   (2.90e-03   (3.70e-04))   (-0.791, 0.007) 
+
+Sweep steps: 11400
+Total walltime: 59202.4 s
+Propagation time:  27052.9 s
+Energy evaluation time:  28706.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73651449,    -0.00382006)   (2.87e-03   (3.55e-04))   (-0.791, 0.007) 
+
+Sweep steps: 11500
+Total walltime: 59734.8 s
+Propagation time:  27303 s
+Energy evaluation time:  28959.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73673057,    -0.00387432)   (2.86e-03   (3.50e-04))   (-0.791, 0.007) 
+
+Sweep steps: 11600
+Total walltime: 60238.4 s
+Propagation time:  27539.8 s
+Energy evaluation time:  29212.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73704673,    -0.00385728)   (2.84e-03   (3.58e-04))   (-0.791, 0.008) 
+
+Sweep steps: 11700
+Total walltime: 60755.7 s
+Propagation time:  27774.8 s
+Energy evaluation time:  29464.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73719064,    -0.00384335)   (2.82e-03   (3.64e-04))   (-0.792, 0.009) 
+
+Sweep steps: 11800
+Total walltime: 61272.6 s
+Propagation time:  28011.6 s
+Energy evaluation time:  29714.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73707664,    -0.00373393)   (2.81e-03   (3.69e-04))   (-0.791, 0.009) 
+
+Sweep steps: 11900
+Total walltime: 61791.4 s
+Propagation time:  28247.4 s
+Energy evaluation time:  29964.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73737061,    -0.00375374)   (2.78e-03   (3.69e-04))   (-0.791, 0.009) 
+
+Sweep steps: 12000
+Total walltime: 62313.2 s
+Propagation time:  28484 s
+Energy evaluation time:  30215.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73761845,    -0.00405038)   (2.77e-03   (3.75e-04))   (-0.791, 0.009) 
+
+Sweep steps: 12100
+Total walltime: 62832.4 s
+Propagation time:  28719.6 s
+Energy evaluation time:  30468.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73774129,    -0.00407026)   (2.76e-03   (3.56e-04))   (-0.791, 0.008) 
+
+Sweep steps: 12200
+Total walltime: 63352.3 s
+Propagation time:  28955.6 s
+Energy evaluation time:  30721.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73790309,    -0.00407761)   (2.75e-03   (3.50e-04))   (-0.791, 0.009) 
+
+Sweep steps: 12300
+Total walltime: 63870.6 s
+Propagation time:  29190.7 s
+Energy evaluation time:  30973.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73775607,    -0.00416231)   (2.74e-03   (3.33e-04))   (-0.790, 0.009) 
+
+Sweep steps: 12400
+Total walltime: 64390.5 s
+Propagation time:  29427.6 s
+Energy evaluation time:  31225.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73782972,    -0.00424886)   (2.76e-03   (3.46e-04))   (-0.791, 0.009) 
+
+Sweep steps: 12500
+Total walltime: 64910.6 s
+Propagation time:  29662.6 s
+Energy evaluation time:  31478.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73798442,    -0.00400604)   (2.73e-03   (3.44e-04))   (-0.790, 0.009) 
+
+Sweep steps: 12600
+Total walltime: 65428.3 s
+Propagation time:  29897.2 s
+Energy evaluation time:  31731.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73791699,    -0.00402119)   (2.73e-03   (3.48e-04))   (-0.790, 0.008) 
+
+Sweep steps: 12700
+Total walltime: 65949 s
+Propagation time:  30133.4 s
+Energy evaluation time:  31984.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73770686,    -0.00409104)   (2.75e-03   (3.93e-04))   (-0.791, 0.008) 
+
+Sweep steps: 12800
+Total walltime: 66467.4 s
+Propagation time:  30370.2 s
+Energy evaluation time:  32236.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73814405,    -0.00407981)   (2.72e-03   (3.61e-04))   (-0.790, 0.008) 
+
+Sweep steps: 12900
+Total walltime: 66988 s
+Propagation time:  30606.4 s
+Energy evaluation time:  32490.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73824846,    -0.00402380)   (2.70e-03   (3.65e-04))   (-0.790, 0.008) 
+
+Sweep steps: 13000
+Total walltime: 67504.4 s
+Propagation time:  30841.6 s
+Energy evaluation time:  32744.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73819903,    -0.00383507)   (2.72e-03   (3.65e-04))   (-0.790, 0.007) 
+
+Sweep steps: 13100
+Total walltime: 68023.8 s
+Propagation time:  31077 s
+Energy evaluation time:  32997 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73835366,    -0.00371574)   (2.70e-03   (3.55e-04))   (-0.790, 0.008) 
+
+Sweep steps: 13200
+Total walltime: 68544.5 s
+Propagation time:  31312.7 s
+Energy evaluation time:  33249.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73819852,    -0.00378500)   (2.70e-03   (3.49e-04))   (-0.790, 0.007) 
+
+Sweep steps: 13300
+Total walltime: 69063 s
+Propagation time:  31548.7 s
+Energy evaluation time:  33502.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73897510,    -0.00379972)   (2.70e-03   (3.59e-04))   (-0.790, 0.007) 
+
+Sweep steps: 13400
+Total walltime: 69580.9 s
+Propagation time:  31785.1 s
+Energy evaluation time:  33755 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73921197,    -0.00379439)   (2.69e-03   (3.53e-04))   (-0.790, 0.007) 
+
+Sweep steps: 13500
+Total walltime: 70097.4 s
+Propagation time:  32020.2 s
+Energy evaluation time:  34008.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73935278,    -0.00360591)   (2.68e-03   (3.52e-04))   (-0.790, 0.008) 
+
+Sweep steps: 13600
+Total walltime: 70614.7 s
+Propagation time:  32255 s
+Energy evaluation time:  34260.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73918947,    -0.00359965)   (2.68e-03   (3.53e-04))   (-0.790, 0.007) 
+
+Sweep steps: 13700
+Total walltime: 71133.9 s
+Propagation time:  32490.8 s
+Energy evaluation time:  34514.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73809340,    -0.00356546)   (2.67e-03   (3.58e-04))   (-0.791, 0.007) 
+
+Sweep steps: 13800
+Total walltime: 71666.3 s
+Propagation time:  32741.7 s
+Energy evaluation time:  34766.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73823230,    -0.00372520)   (2.67e-03   (3.60e-04))   (-0.790, 0.007) 
+
+Sweep steps: 13900
+Total walltime: 72170.2 s
+Propagation time:  32977.1 s
+Energy evaluation time:  35019.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73828271,    -0.00352184)   (2.64e-03   (3.58e-04))   (-0.791, 0.007) 
+
+Sweep steps: 14000
+Total walltime: 72699.7 s
+Propagation time:  33224.8 s
+Energy evaluation time:  35271.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73813100,    -0.00351692)   (2.64e-03   (3.62e-04))   (-0.791, 0.007) 
+
+Sweep steps: 14100
+Total walltime: 73207 s
+Propagation time:  33460.2 s
+Energy evaluation time:  35524 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73794178,    -0.00366929)   (2.64e-03   (3.39e-04))   (-0.791, 0.008) 
+
+Sweep steps: 14200
+Total walltime: 73726.3 s
+Propagation time:  33696.9 s
+Energy evaluation time:  35777.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73824013,    -0.00372081)   (2.62e-03   (3.40e-04))   (-0.791, 0.008) 
+
+Sweep steps: 14300
+Total walltime: 74243.3 s
+Propagation time:  33933.4 s
+Energy evaluation time:  36031 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73850477,    -0.00368285)   (2.61e-03   (3.42e-04))   (-0.791, 0.008) 
+
+Sweep steps: 14400
+Total walltime: 74763.5 s
+Propagation time:  34169.9 s
+Energy evaluation time:  36284.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73830802,    -0.00375038)   (2.62e-03   (3.45e-04))   (-0.791, 0.008) 
+
+Sweep steps: 14500
+Total walltime: 75294.5 s
+Propagation time:  34405.6 s
+Energy evaluation time:  36537.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73841971,    -0.00346018)   (2.61e-03   (3.23e-04))   (-0.791, 0.007) 
+
+Sweep steps: 14600
+Total walltime: 75813 s
+Propagation time:  34641.3 s
+Energy evaluation time:  36790 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73840156,    -0.00369863)   (2.61e-03   (3.22e-04))   (-0.791, 0.008) 
+
+Sweep steps: 14700
+Total walltime: 76331.8 s
+Propagation time:  34877 s
+Energy evaluation time:  37043 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73856510,    -0.00369456)   (2.63e-03   (3.29e-04))   (-0.791, 0.007) 
+
+Sweep steps: 14800
+Total walltime: 76848.5 s
+Propagation time:  35112.9 s
+Energy evaluation time:  37294.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73839062,    -0.00364284)   (2.60e-03   (3.15e-04))   (-0.791, 0.007) 
+
+Sweep steps: 14900
+Total walltime: 77371 s
+Propagation time:  35349.5 s
+Energy evaluation time:  37548.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73870684,    -0.00365444)   (2.59e-03   (3.18e-04))   (-0.791, 0.007) 
+
+Sweep steps: 15000
+Total walltime: 77886.7 s
+Propagation time:  35585.1 s
+Energy evaluation time:  37801.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73853397,    -0.00367010)   (2.58e-03   (3.17e-04))   (-0.791, 0.007) 
+
+Sweep steps: 15100
+Total walltime: 78406.9 s
+Propagation time:  35820.9 s
+Energy evaluation time:  38054.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73855308,    -0.00367539)   (2.57e-03   (3.20e-04))   (-0.791, 0.007) 
+
+Sweep steps: 15200
+Total walltime: 78923.7 s
+Propagation time:  36056.9 s
+Energy evaluation time:  38307.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73854741,    -0.00356088)   (2.55e-03   (3.21e-04))   (-0.791, 0.007) 
+
+Sweep steps: 15300
+Total walltime: 79445 s
+Propagation time:  36292 s
+Energy evaluation time:  38561 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73860009,    -0.00342626)   (2.56e-03   (3.22e-04))   (-0.791, 0.007) 
+
+Sweep steps: 15400
+Total walltime: 79964.4 s
+Propagation time:  36528.6 s
+Energy evaluation time:  38811.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73862371,    -0.00350373)   (2.56e-03   (3.24e-04))   (-0.791, 0.007) 
+
+Sweep steps: 15500
+Total walltime: 80482.2 s
+Propagation time:  36764.4 s
+Energy evaluation time:  39063.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73882917,    -0.00346041)   (2.57e-03   (3.42e-04))   (-0.790, 0.007) 
+
+Sweep steps: 15600
+Total walltime: 81007.1 s
+Propagation time:  37006.3 s
+Energy evaluation time:  39315.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73911684,    -0.00356290)   (2.54e-03   (3.40e-04))   (-0.790, 0.007) 
+
+Sweep steps: 15700
+Total walltime: 81549.6 s
+Propagation time:  37270.4 s
+Energy evaluation time:  39567.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73888376,    -0.00341035)   (2.53e-03   (3.42e-04))   (-0.790, 0.007) 
+
+Sweep steps: 15800
+Total walltime: 82048.7 s
+Propagation time:  37513.7 s
+Energy evaluation time:  39821 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73930687,    -0.00331588)   (2.53e-03   (3.41e-04))   (-0.790, 0.007) 
+
+Sweep steps: 15900
+Total walltime: 82557.7 s
+Propagation time:  37749.6 s
+Energy evaluation time:  40073.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73940877,    -0.00326201)   (2.53e-03   (3.39e-04))   (-0.790, 0.007) 
+
+Sweep steps: 16000
+Total walltime: 83080.1 s
+Propagation time:  37985.4 s
+Energy evaluation time:  40330.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73969554,    -0.00329506)   (2.53e-03   (3.50e-04))   (-0.790, 0.007) 
+
+Sweep steps: 16100
+Total walltime: 83596.2 s
+Propagation time:  38221.3 s
+Energy evaluation time:  40582.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73989235,    -0.00313925)   (2.52e-03   (3.45e-04))   (-0.790, 0.006) 
+
+Sweep steps: 16200
+Total walltime: 84126.1 s
+Propagation time:  38466 s
+Energy evaluation time:  40835.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73990010,    -0.00317171)   (2.52e-03   (3.51e-04))   (-0.790, 0.007) 
+
+Sweep steps: 16300
+Total walltime: 84638.5 s
+Propagation time:  38702.9 s
+Energy evaluation time:  41088.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73977090,    -0.00335517)   (2.51e-03   (3.28e-04))   (-0.790, 0.008) 
+
+Sweep steps: 16400
+Total walltime: 85155.1 s
+Propagation time:  38937.9 s
+Energy evaluation time:  41342.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73951994,    -0.00328765)   (2.50e-03   (3.34e-04))   (-0.790, 0.008) 
+
+Sweep steps: 16500
+Total walltime: 85677.7 s
+Propagation time:  39175.2 s
+Energy evaluation time:  41597.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73920388,    -0.00349355)   (2.52e-03   (3.36e-04))   (-0.789, 0.008) 
+
+Sweep steps: 16600
+Total walltime: 86203 s
+Propagation time:  39411.8 s
+Energy evaluation time:  41851.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73944398,    -0.00352219)   (2.50e-03   (3.25e-04))   (-0.789, 0.008) 
+
+Sweep steps: 16700
+Total walltime: 86723.5 s
+Propagation time:  39652.6 s
+Energy evaluation time:  42106.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73960085,    -0.00339340)   (2.50e-03   (3.28e-04))   (-0.789, 0.008) 
+
+Sweep steps: 16800
+Total walltime: 87257.4 s
+Propagation time:  39911.4 s
+Energy evaluation time:  42357.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73994760,    -0.00346481)   (2.50e-03   (3.27e-04))   (-0.789, 0.008) 
+
+Sweep steps: 16900
+Total walltime: 87755.3 s
+Propagation time:  40148.7 s
+Energy evaluation time:  42610.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73987402,    -0.00335819)   (2.49e-03   (3.27e-04))   (-0.789, 0.008) 
+
+Sweep steps: 17000
+Total walltime: 88294.9 s
+Propagation time:  40405.5 s
+Energy evaluation time:  42862.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73991790,    -0.00320003)   (2.50e-03   (3.29e-04))   (-0.789, 0.007) 
+
+Sweep steps: 17100
+Total walltime: 88819.1 s
+Propagation time:  40669.3 s
+Energy evaluation time:  43112.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74000991,    -0.00307818)   (2.49e-03   (3.32e-04))   (-0.789, 0.008) 
+
+Sweep steps: 17200
+Total walltime: 89324.5 s
+Propagation time:  40919.5 s
+Energy evaluation time:  43363.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73988969,    -0.00303030)   (2.49e-03   (3.28e-04))   (-0.789, 0.007) 
+
+Sweep steps: 17300
+Total walltime: 89841.3 s
+Propagation time:  41167.1 s
+Energy evaluation time:  43616.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74006727,    -0.00279493)   (2.48e-03   (3.22e-04))   (-0.789, 0.007) 
+
+Sweep steps: 17400
+Total walltime: 90346.6 s
+Propagation time:  41402.8 s
+Energy evaluation time:  43867.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74020461,    -0.00285433)   (2.46e-03   (3.13e-04))   (-0.789, 0.007) 
+
+Sweep steps: 17500
+Total walltime: 90865 s
+Propagation time:  41638.6 s
+Energy evaluation time:  44119.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74034210,    -0.00274075)   (2.47e-03   (3.14e-04))   (-0.789, 0.007) 
+
+Sweep steps: 17600
+Total walltime: 91382.5 s
+Propagation time:  41871.9 s
+Energy evaluation time:  44372.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74031075,    -0.00275323)   (2.45e-03   (3.07e-04))   (-0.789, 0.007) 
+
+Sweep steps: 17700
+Total walltime: 91904 s
+Propagation time:  42107.6 s
+Energy evaluation time:  44624.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74044378,    -0.00275853)   (2.45e-03   (3.11e-04))   (-0.788, 0.007) 
+
+Sweep steps: 17800
+Total walltime: 92421.4 s
+Propagation time:  42343.4 s
+Energy evaluation time:  44876.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74075629,    -0.00271079)   (2.44e-03   (3.14e-04))   (-0.788, 0.007) 
+
+Sweep steps: 17900
+Total walltime: 92936.3 s
+Propagation time:  42578.3 s
+Energy evaluation time:  45126.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74046008,    -0.00292749)   (2.44e-03   (3.15e-04))   (-0.789, 0.007) 
+
+Sweep steps: 18000
+Total walltime: 93454.2 s
+Propagation time:  42812.8 s
+Energy evaluation time:  45377.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74040837,    -0.00300242)   (2.43e-03   (3.16e-04))   (-0.789, 0.007) 
+
+Sweep steps: 18100
+Total walltime: 93975.1 s
+Propagation time:  43048.4 s
+Energy evaluation time:  45630.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73991557,    -0.00272650)   (2.41e-03   (2.93e-04))   (-0.789, 0.006) 
+
+Sweep steps: 18200
+Total walltime: 94496.2 s
+Propagation time:  43284.1 s
+Energy evaluation time:  45882 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73961832,    -0.00274954)   (2.41e-03   (2.93e-04))   (-0.789, 0.006) 
+
+Sweep steps: 18300
+Total walltime: 95016.3 s
+Propagation time:  43519.3 s
+Energy evaluation time:  46135.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73977194,    -0.00272978)   (2.40e-03   (2.93e-04))   (-0.789, 0.006) 
+
+Sweep steps: 18400
+Total walltime: 95537.5 s
+Propagation time:  43756.3 s
+Energy evaluation time:  46390.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73987499,    -0.00250136)   (2.41e-03   (2.98e-04))   (-0.789, 0.006) 
+
+Sweep steps: 18500
+Total walltime: 96056.1 s
+Propagation time:  43991.5 s
+Energy evaluation time:  46644.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73977314,    -0.00255253)   (2.41e-03   (2.97e-04))   (-0.789, 0.006) 
+
+Sweep steps: 18600
+Total walltime: 96574.7 s
+Propagation time:  44227.2 s
+Energy evaluation time:  46897.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73944123,    -0.00233817)   (2.42e-03   (3.11e-04))   (-0.789, 0.006) 
+
+Sweep steps: 18700
+Total walltime: 97094.7 s
+Propagation time:  44466.5 s
+Energy evaluation time:  47149.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73948564,    -0.00238084)   (2.41e-03   (3.17e-04))   (-0.789, 0.006) 
+
+Sweep steps: 18800
+Total walltime: 97625.4 s
+Propagation time:  44717 s
+Energy evaluation time:  47401.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73957136,    -0.00233544)   (2.41e-03   (3.17e-04))   (-0.789, 0.006) 
+
+Sweep steps: 18900
+Total walltime: 98127.4 s
+Propagation time:  44952.5 s
+Energy evaluation time:  47654.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73970744,    -0.00236189)   (2.40e-03   (3.22e-04))   (-0.789, 0.006) 
+
+Sweep steps: 19000
+Total walltime: 98657.2 s
+Propagation time:  45196.2 s
+Energy evaluation time:  47908.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73918304,    -0.00242895)   (2.39e-03   (3.12e-04))   (-0.789, 0.006) 
+
+Sweep steps: 19100
+Total walltime: 99164.2 s
+Propagation time:  45431.4 s
+Energy evaluation time:  48159.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73836241,    -0.00241154)   (2.38e-03   (3.11e-04))   (-0.790, 0.005) 
+
+Sweep steps: 19200
+Total walltime: 99685.4 s
+Propagation time:  45667.5 s
+Energy evaluation time:  48411.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73808434,    -0.00244288)   (2.39e-03   (3.08e-04))   (-0.790, 0.005) 
+
+Sweep steps: 19300
+Total walltime: 100204 s
+Propagation time:  45902.8 s
+Energy evaluation time:  48664.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73819235,    -0.00245139)   (2.38e-03   (3.06e-04))   (-0.790, 0.005) 
+
+Sweep steps: 19400
+Total walltime: 100725 s
+Propagation time:  46137.4 s
+Energy evaluation time:  48918.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73818642,    -0.00236090)   (2.38e-03   (3.11e-04))   (-0.790, 0.004) 
+
+Sweep steps: 19500
+Total walltime: 101242 s
+Propagation time:  46372.9 s
+Energy evaluation time:  49172.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73808251,    -0.00234017)   (2.38e-03   (3.12e-04))   (-0.790, 0.005) 
+
+Sweep steps: 19600
+Total walltime: 101760 s
+Propagation time:  46609 s
+Energy evaluation time:  49426.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73822396,    -0.00228333)   (2.36e-03   (3.00e-04))   (-0.790, 0.005) 
+
+Sweep steps: 19700
+Total walltime: 102276 s
+Propagation time:  46845.5 s
+Energy evaluation time:  49678 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73798842,    -0.00234573)   (2.37e-03   (3.01e-04))   (-0.790, 0.004) 
+
+Sweep steps: 19800
+Total walltime: 102795 s
+Propagation time:  47082.1 s
+Energy evaluation time:  49929 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73800966,    -0.00219106)   (2.36e-03   (2.95e-04))   (-0.790, 0.004) 
+
+Sweep steps: 19900
+Total walltime: 103315 s
+Propagation time:  47318.8 s
+Energy evaluation time:  50181.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73806594,    -0.00212383)   (2.36e-03   (2.94e-04))   (-0.790, 0.004) 
+
+Sweep steps: 20000
+Total walltime: 103831 s
+Propagation time:  47553.9 s
+Energy evaluation time:  50433.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73776555,    -0.00221713)   (2.35e-03   (2.95e-04))   (-0.790, 0.004) 
+
+Sweep steps: 20100
+Total walltime: 104349 s
+Propagation time:  47787.7 s
+Energy evaluation time:  50686.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73789727,    -0.00227093)   (2.33e-03   (2.91e-04))   (-0.790, 0.004) 
+
+Sweep steps: 20200
+Total walltime: 104878 s
+Propagation time:  48029.6 s
+Energy evaluation time:  50938.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73800038,    -0.00242119)   (2.33e-03   (2.91e-04))   (-0.790, 0.004) 
+
+Sweep steps: 20300
+Total walltime: 105401 s
+Propagation time:  48274.1 s
+Energy evaluation time:  51192.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73823216,    -0.00254153)   (2.33e-03   (2.89e-04))   (-0.790, 0.005) 
+
+Sweep steps: 20400
+Total walltime: 105909 s
+Propagation time:  48509.5 s
+Energy evaluation time:  51445.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73782467,    -0.00235543)   (2.33e-03   (2.91e-04))   (-0.790, 0.004) 
+
+Sweep steps: 20500
+Total walltime: 106429 s
+Propagation time:  48746.3 s
+Energy evaluation time:  51696.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73796256,    -0.00223325)   (2.34e-03   (2.95e-04))   (-0.790, 0.004) 
+
+Sweep steps: 20600
+Total walltime: 106950 s
+Propagation time:  48983.8 s
+Energy evaluation time:  51948.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73779990,    -0.00231212)   (2.34e-03   (2.99e-04))   (-0.790, 0.004) 
+
+Sweep steps: 20700
+Total walltime: 107469 s
+Propagation time:  49221.2 s
+Energy evaluation time:  52201.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73762666,    -0.00215679)   (2.34e-03   (3.01e-04))   (-0.790, 0.004) 
+
+Sweep steps: 20800
+Total walltime: 107988 s
+Propagation time:  49458.6 s
+Energy evaluation time:  52452.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73769778,    -0.00229952)   (2.34e-03   (3.01e-04))   (-0.790, 0.004) 
+
+Sweep steps: 20900
+Total walltime: 108505 s
+Propagation time:  49694.4 s
+Energy evaluation time:  52705.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73762548,    -0.00231472)   (2.34e-03   (3.00e-04))   (-0.790, 0.004) 
+
+Sweep steps: 21000
+Total walltime: 109025 s
+Propagation time:  49930.5 s
+Energy evaluation time:  52956.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73758611,    -0.00207766)   (2.33e-03   (3.01e-04))   (-0.790, 0.004) 
+
+Sweep steps: 21100
+Total walltime: 109543 s
+Propagation time:  50166.3 s
+Energy evaluation time:  53208.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73810471,    -0.00215279)   (2.33e-03   (3.05e-04))   (-0.790, 0.004) 
+
+Sweep steps: 21200
+Total walltime: 110074 s
+Propagation time:  50410.7 s
+Energy evaluation time:  53460.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73830619,    -0.00220914)   (2.34e-03   (3.07e-04))   (-0.790, 0.004) 
+
+Sweep steps: 21300
+Total walltime: 110590 s
+Propagation time:  50653.8 s
+Energy evaluation time:  53714.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73876685,    -0.00236632)   (2.34e-03   (3.12e-04))   (-0.790, 0.004) 
+
+Sweep steps: 21400
+Total walltime: 111096 s
+Propagation time:  50889.1 s
+Energy evaluation time:  53964.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73893544,    -0.00230543)   (2.33e-03   (3.10e-04))   (-0.790, 0.004) 
+
+Sweep steps: 21500
+Total walltime: 111618 s
+Propagation time:  51124.5 s
+Energy evaluation time:  54214.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73888154,    -0.00206028)   (2.33e-03   (3.07e-04))   (-0.790, 0.003) 
+
+Sweep steps: 21600
+Total walltime: 112133 s
+Propagation time:  51358.1 s
+Energy evaluation time:  54464.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73888074,    -0.00200701)   (2.33e-03   (3.09e-04))   (-0.790, 0.003) 
+
+Sweep steps: 21700
+Total walltime: 112677 s
+Propagation time:  51614.8 s
+Energy evaluation time:  54716.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73892097,    -0.00195552)   (2.31e-03   (3.04e-04))   (-0.790, 0.003) 
+
+Sweep steps: 21800
+Total walltime: 113197 s
+Propagation time:  51875.1 s
+Energy evaluation time:  54967.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73883450,    -0.00200206)   (2.31e-03   (3.07e-04))   (-0.790, 0.004) 
+
+Sweep steps: 21900
+Total walltime: 113707 s
+Propagation time:  52126.5 s
+Energy evaluation time:  55219.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73885859,    -0.00202195)   (2.32e-03   (3.06e-04))   (-0.790, 0.004) 
+
+Sweep steps: 22000
+Total walltime: 114225 s
+Propagation time:  52378.2 s
+Energy evaluation time:  55472.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73898956,    -0.00187269)   (2.31e-03   (2.99e-04))   (-0.790, 0.003) 
+
+Sweep steps: 22100
+Total walltime: 114743 s
+Propagation time:  52630.3 s
+Energy evaluation time:  55725.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73910152,    -0.00199388)   (2.30e-03   (2.98e-04))   (-0.790, 0.004) 
+
+Sweep steps: 22200
+Total walltime: 115254 s
+Propagation time:  52875.8 s
+Energy evaluation time:  55979.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73911361,    -0.00205739)   (2.28e-03   (2.95e-04))   (-0.790, 0.004) 
+
+Sweep steps: 22300
+Total walltime: 115761 s
+Propagation time:  53111.5 s
+Energy evaluation time:  56232.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73909548,    -0.00205582)   (2.26e-03   (2.96e-04))   (-0.790, 0.004) 
+
+Sweep steps: 22400
+Total walltime: 116281 s
+Propagation time:  53347 s
+Energy evaluation time:  56484.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73901332,    -0.00207379)   (2.26e-03   (2.97e-04))   (-0.790, 0.004) 
+
+Sweep steps: 22500
+Total walltime: 116799 s
+Propagation time:  53583.6 s
+Energy evaluation time:  56737.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73898105,    -0.00220293)   (2.25e-03   (2.95e-04))   (-0.790, 0.005) 
+
+Sweep steps: 22600
+Total walltime: 117314 s
+Propagation time:  53819.6 s
+Energy evaluation time:  56988.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73916231,    -0.00224549)   (2.24e-03   (2.89e-04))   (-0.790, 0.005) 
+
+Sweep steps: 22700
+Total walltime: 117836 s
+Propagation time:  54055.1 s
+Energy evaluation time:  57242.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73914094,    -0.00220406)   (2.23e-03   (2.90e-04))   (-0.790, 0.005) 
+
+Sweep steps: 22800
+Total walltime: 118353 s
+Propagation time:  54290.7 s
+Energy evaluation time:  57494.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73917194,    -0.00210329)   (2.22e-03   (2.91e-04))   (-0.790, 0.004) 
+
+Sweep steps: 22900
+Total walltime: 118872 s
+Propagation time:  54526.6 s
+Energy evaluation time:  57749.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73915693,    -0.00213111)   (2.22e-03   (2.91e-04))   (-0.790, 0.004) 
+
+Sweep steps: 23000
+Total walltime: 119386 s
+Propagation time:  54761 s
+Energy evaluation time:  58002.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73904632,    -0.00188129)   (2.22e-03   (2.88e-04))   (-0.790, 0.004) 
+
+Sweep steps: 23100
+Total walltime: 119907 s
+Propagation time:  54995.9 s
+Energy evaluation time:  58256.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73947568,    -0.00188193)   (2.23e-03   (2.87e-04))   (-0.789, 0.005) 
+
+Sweep steps: 23200
+Total walltime: 120445 s
+Propagation time:  55231.4 s
+Energy evaluation time:  58508.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73956027,    -0.00191371)   (2.23e-03   (2.92e-04))   (-0.789, 0.005) 
+
+Sweep steps: 23300
+Total walltime: 120965 s
+Propagation time:  55467 s
+Energy evaluation time:  58761.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73954498,    -0.00198553)   (2.24e-03   (2.94e-04))   (-0.789, 0.005) 
+
+Sweep steps: 23400
+Total walltime: 121483 s
+Propagation time:  55704 s
+Energy evaluation time:  59014.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73963969,    -0.00197990)   (2.23e-03   (2.98e-04))   (-0.789, 0.005) 
+
+Sweep steps: 23500
+Total walltime: 122001 s
+Propagation time:  55939.2 s
+Energy evaluation time:  59267.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73984129,    -0.00195717)   (2.22e-03   (2.96e-04))   (-0.789, 0.005) 
+
+Sweep steps: 23600
+Total walltime: 122518 s
+Propagation time:  56174.7 s
+Energy evaluation time:  59520.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73997252,    -0.00201334)   (2.21e-03   (3.00e-04))   (-0.789, 0.005) 
+
+Sweep steps: 23700
+Total walltime: 123038 s
+Propagation time:  56412.1 s
+Energy evaluation time:  59773.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74012613,    -0.00196338)   (2.20e-03   (3.01e-04))   (-0.789, 0.005) 
+
+Sweep steps: 23800
+Total walltime: 123561 s
+Propagation time:  56654.8 s
+Energy evaluation time:  60026.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74003557,    -0.00187086)   (2.21e-03   (2.98e-04))   (-0.789, 0.005) 
+
+Sweep steps: 23900
+Total walltime: 124074 s
+Propagation time:  56891.6 s
+Energy evaluation time:  60278.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74021710,    -0.00182606)   (2.22e-03   (2.94e-04))   (-0.789, 0.005) 
+
+Sweep steps: 24000
+Total walltime: 124593 s
+Propagation time:  57128.1 s
+Energy evaluation time:  60531.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74026633,    -0.00190591)   (2.20e-03   (2.96e-04))   (-0.789, 0.005) 
+
+Sweep steps: 24100
+Total walltime: 125123 s
+Propagation time:  57376.4 s
+Energy evaluation time:  60783.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74033316,    -0.00189008)   (2.18e-03   (2.74e-04))   (-0.789, 0.005) 
+
+Sweep steps: 24200
+Total walltime: 125638 s
+Propagation time:  57620.7 s
+Energy evaluation time:  61037.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74038221,    -0.00192147)   (2.18e-03   (2.71e-04))   (-0.789, 0.005) 
+
+Sweep steps: 24300
+Total walltime: 126147 s
+Propagation time:  57857.6 s
+Energy evaluation time:  61289 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74031264,    -0.00190242)   (2.19e-03   (2.73e-04))   (-0.789, 0.005) 
+
+Sweep steps: 24400
+Total walltime: 126661 s
+Propagation time:  58093.3 s
+Energy evaluation time:  61540.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74029918,    -0.00189556)   (2.19e-03   (2.71e-04))   (-0.789, 0.005) 
+
+Sweep steps: 24500
+Total walltime: 127180 s
+Propagation time:  58329 s
+Energy evaluation time:  61793.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74023952,    -0.00199263)   (2.17e-03   (2.66e-04))   (-0.789, 0.005) 
+
+Sweep steps: 24600
+Total walltime: 127700 s
+Propagation time:  58565.4 s
+Energy evaluation time:  62046.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74018553,    -0.00189408)   (2.17e-03   (2.69e-04))   (-0.789, 0.005) 
+
+Sweep steps: 24700
+Total walltime: 128217 s
+Propagation time:  58801.2 s
+Energy evaluation time:  62299.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74021341,    -0.00190801)   (2.17e-03   (2.69e-04))   (-0.789, 0.005) 
+
+Sweep steps: 24800
+Total walltime: 128733 s
+Propagation time:  59037.1 s
+Energy evaluation time:  62550.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74021123,    -0.00203987)   (2.18e-03   (2.70e-04))   (-0.789, 0.005) 
+
+Sweep steps: 24900
+Total walltime: 129250 s
+Propagation time:  59272.7 s
+Energy evaluation time:  62800.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74020920,    -0.00212322)   (2.18e-03   (2.74e-04))   (-0.789, 0.005) 
+
+Sweep steps: 25000
+Total walltime: 129778 s
+Propagation time:  59516.2 s
+Energy evaluation time:  63053.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73993122,    -0.00215498)   (2.18e-03   (2.74e-04))   (-0.789, 0.006) 
+
+Sweep steps: 25100
+Total walltime: 130301 s
+Propagation time:  59766.5 s
+Energy evaluation time:  63305.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73999459,    -0.00215717)   (2.17e-03   (2.73e-04))   (-0.789, 0.006) 
+
+Sweep steps: 25200
+Total walltime: 130800 s
+Propagation time:  60000.7 s
+Energy evaluation time:  63556.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74011536,    -0.00224810)   (2.18e-03   (2.73e-04))   (-0.789, 0.006) 
+
+Sweep steps: 25300
+Total walltime: 131316 s
+Propagation time:  60236 s
+Energy evaluation time:  63808 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74003548,    -0.00218396)   (2.17e-03   (2.75e-04))   (-0.789, 0.006) 
+
+Sweep steps: 25400
+Total walltime: 131844 s
+Propagation time:  60484.8 s
+Energy evaluation time:  64057.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74009240,    -0.00219126)   (2.16e-03   (2.75e-04))   (-0.789, 0.006) 
+
+Sweep steps: 25500
+Total walltime: 132356 s
+Propagation time:  60725.7 s
+Energy evaluation time:  64312 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74005418,    -0.00219246)   (2.14e-03   (2.72e-04))   (-0.789, 0.006) 
+
+Sweep steps: 25600
+Total walltime: 132888 s
+Propagation time:  60961.8 s
+Energy evaluation time:  64564.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74016053,    -0.00220422)   (2.14e-03   (2.69e-04))   (-0.789, 0.006) 
+
+Sweep steps: 25700
+Total walltime: 133415 s
+Propagation time:  61198.1 s
+Energy evaluation time:  64816.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74037101,    -0.00232741)   (2.13e-03   (2.68e-04))   (-0.789, 0.006) 
+
+Sweep steps: 25800
+Total walltime: 133930 s
+Propagation time:  61433.9 s
+Energy evaluation time:  65068.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74036823,    -0.00234775)   (2.14e-03   (2.70e-04))   (-0.789, 0.006) 
+
+Sweep steps: 25900
+Total walltime: 134450 s
+Propagation time:  61669.3 s
+Energy evaluation time:  65321.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74048735,    -0.00226182)   (2.13e-03   (2.71e-04))   (-0.789, 0.006) 
+
+Sweep steps: 26000
+Total walltime: 134964 s
+Propagation time:  61903.9 s
+Energy evaluation time:  65573.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74047458,    -0.00227546)   (2.12e-03   (2.70e-04))   (-0.789, 0.006) 
+
+Sweep steps: 26100
+Total walltime: 135490 s
+Propagation time:  62148.5 s
+Energy evaluation time:  65824.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74034155,    -0.00243743)   (2.12e-03   (2.72e-04))   (-0.789, 0.006) 
+
+Sweep steps: 26200
+Total walltime: 135995 s
+Propagation time:  62383.5 s
+Energy evaluation time:  66074.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74055669,    -0.00228608)   (2.12e-03   (2.74e-04))   (-0.789, 0.007) 
+
+Sweep steps: 26300
+Total walltime: 136513 s
+Propagation time:  62617.9 s
+Energy evaluation time:  66326.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74026278,    -0.00310597)   (2.13e-03   (2.75e-04))   (-0.789, 0.008) 
+
+Sweep steps: 26400
+Total walltime: 137027 s
+Propagation time:  62852.7 s
+Energy evaluation time:  66577 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74032797,    -0.00318657)   (2.12e-03   (2.76e-04))   (-0.789, 0.008) 
+
+Sweep steps: 26500
+Total walltime: 137542 s
+Propagation time:  63087.3 s
+Energy evaluation time:  66826.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74041745,    -0.00311720)   (2.10e-03   (2.67e-04))   (-0.789, 0.008) 
+
+Sweep steps: 26600
+Total walltime: 138061 s
+Propagation time:  63323.2 s
+Energy evaluation time:  67077.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74056247,    -0.00294475)   (2.11e-03   (2.68e-04))   (-0.789, 0.008) 
+
+Sweep steps: 26700
+Total walltime: 138575 s
+Propagation time:  63558.5 s
+Energy evaluation time:  67326.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74039154,    -0.00303530)   (2.10e-03   (2.68e-04))   (-0.789, 0.008) 
+
+Sweep steps: 26800
+Total walltime: 139093 s
+Propagation time:  63794.4 s
+Energy evaluation time:  67577.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74044762,    -0.00302946)   (2.10e-03   (2.67e-04))   (-0.789, 0.008) 
+
+Sweep steps: 26900
+Total walltime: 139608 s
+Propagation time:  64029.2 s
+Energy evaluation time:  67829.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74031544,    -0.00298432)   (2.09e-03   (2.66e-04))   (-0.789, 0.008) 
+
+Sweep steps: 27000
+Total walltime: 140138 s
+Propagation time:  64279.6 s
+Energy evaluation time:  68081 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74028511,    -0.00295938)   (2.10e-03   (2.67e-04))   (-0.789, 0.008) 
+
+Sweep steps: 27100
+Total walltime: 140645 s
+Propagation time:  64518.6 s
+Energy evaluation time:  68334.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74035981,    -0.00296388)   (2.10e-03   (2.68e-04))   (-0.789, 0.008) 
+
+Sweep steps: 27200
+Total walltime: 141154 s
+Propagation time:  64754.6 s
+Energy evaluation time:  68585.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74020305,    -0.00285200)   (2.10e-03   (2.67e-04))   (-0.789, 0.008) 
+
+Sweep steps: 27300
+Total walltime: 141678 s
+Propagation time:  64996.4 s
+Energy evaluation time:  68836.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74009560,    -0.00264501)   (2.10e-03   (2.70e-04))   (-0.789, 0.007) 
+
+Sweep steps: 27400
+Total walltime: 142185 s
+Propagation time:  65230.5 s
+Energy evaluation time:  69087 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74006926,    -0.00269748)   (2.10e-03   (2.73e-04))   (-0.789, 0.007) 
+
+Sweep steps: 27500
+Total walltime: 142699 s
+Propagation time:  65464.5 s
+Energy evaluation time:  69336.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74004803,    -0.00263901)   (2.11e-03   (2.74e-04))   (-0.789, 0.007) 
+
+Sweep steps: 27600
+Total walltime: 143216 s
+Propagation time:  65700.7 s
+Energy evaluation time:  69585.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74031647,    -0.00258137)   (2.11e-03   (2.75e-04))   (-0.789, 0.007) 
+
+Sweep steps: 27700
+Total walltime: 143733 s
+Propagation time:  65935.9 s
+Energy evaluation time:  69836.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74049397,    -0.00253651)   (2.11e-03   (2.80e-04))   (-0.789, 0.007) 
+
+Sweep steps: 27800
+Total walltime: 144245 s
+Propagation time:  66170.1 s
+Energy evaluation time:  70087.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74052114,    -0.00262116)   (2.11e-03   (2.82e-04))   (-0.789, 0.007) 
+
+Sweep steps: 27900
+Total walltime: 144761 s
+Propagation time:  66404.7 s
+Energy evaluation time:  70339.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74049308,    -0.00275675)   (2.12e-03   (2.86e-04))   (-0.789, 0.007) 
+
+Sweep steps: 28000
+Total walltime: 145276 s
+Propagation time:  66640.8 s
+Energy evaluation time:  70589.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74050977,    -0.00272589)   (2.12e-03   (2.85e-04))   (-0.789, 0.007) 
+
+Sweep steps: 28100
+Total walltime: 145792 s
+Propagation time:  66877 s
+Energy evaluation time:  70839.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74054296,    -0.00265408)   (2.13e-03   (2.91e-04))   (-0.789, 0.007) 
+
+Sweep steps: 28200
+Total walltime: 146309 s
+Propagation time:  67113.5 s
+Energy evaluation time:  71091 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74072063,    -0.00262710)   (2.12e-03   (2.88e-04))   (-0.789, 0.007) 
+
+Sweep steps: 28300
+Total walltime: 146828 s
+Propagation time:  67349.9 s
+Energy evaluation time:  71343 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74063435,    -0.00256228)   (2.11e-03   (2.87e-04))   (-0.789, 0.007) 
+
+Sweep steps: 28400
+Total walltime: 147349 s
+Propagation time:  67586.6 s
+Energy evaluation time:  71596.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74064148,    -0.00245236)   (2.11e-03   (2.86e-04))   (-0.789, 0.006) 
+
+Sweep steps: 28500
+Total walltime: 147876 s
+Propagation time:  67829.4 s
+Energy evaluation time:  71849.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74077989,    -0.00242545)   (2.11e-03   (2.85e-04))   (-0.789, 0.006) 
+
+Sweep steps: 28600
+Total walltime: 148411 s
+Propagation time:  68088.3 s
+Energy evaluation time:  72100.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74083379,    -0.00235240)   (2.11e-03   (2.86e-04))   (-0.789, 0.006) 
+
+Sweep steps: 28700
+Total walltime: 148927 s
+Propagation time:  68342.2 s
+Energy evaluation time:  72354.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74071346,    -0.00241389)   (2.11e-03   (2.83e-04))   (-0.789, 0.006) 
+
+Sweep steps: 28800
+Total walltime: 149432 s
+Propagation time:  68579.6 s
+Energy evaluation time:  72607.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74064915,    -0.00244731)   (2.11e-03   (2.82e-04))   (-0.789, 0.006) 
+
+Sweep steps: 28900
+Total walltime: 149951 s
+Propagation time:  68816.4 s
+Energy evaluation time:  72860.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74057670,    -0.00248680)   (2.10e-03   (2.79e-04))   (-0.789, 0.006) 
+
+Sweep steps: 29000
+Total walltime: 150468 s
+Propagation time:  69051.8 s
+Energy evaluation time:  73114.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74022508,    -0.00252723)   (2.11e-03   (2.84e-04))   (-0.789, 0.006) 
+
+Sweep steps: 29100
+Total walltime: 150986 s
+Propagation time:  69288.2 s
+Energy evaluation time:  73366.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74029149,    -0.00251736)   (2.10e-03   (2.78e-04))   (-0.789, 0.007) 
+
+Sweep steps: 29200
+Total walltime: 151505 s
+Propagation time:  69524.2 s
+Energy evaluation time:  73619.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74026025,    -0.00254464)   (2.10e-03   (2.78e-04))   (-0.789, 0.006) 
+
+Sweep steps: 29300
+Total walltime: 152023 s
+Propagation time:  69760.7 s
+Energy evaluation time:  73871.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74036400,    -0.00241835)   (2.10e-03   (2.76e-04))   (-0.789, 0.006) 
+
+Sweep steps: 29400
+Total walltime: 152572 s
+Propagation time:  70028.1 s
+Energy evaluation time:  74123.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74053110,    -0.00237595)   (2.10e-03   (2.73e-04))   (-0.789, 0.006) 
+
+Sweep steps: 29500
+Total walltime: 153107 s
+Propagation time:  70306.3 s
+Energy evaluation time:  74373.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74051762,    -0.00235452)   (2.09e-03   (2.76e-04))   (-0.789, 0.006) 
+
+Sweep steps: 29600
+Total walltime: 153606 s
+Propagation time:  70549.4 s
+Energy evaluation time:  74628.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74069615,    -0.00243106)   (2.09e-03   (2.77e-04))   (-0.789, 0.006) 
+
+Sweep steps: 29700
+Total walltime: 154120 s
+Propagation time:  70785.4 s
+Energy evaluation time:  74882.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74088515,    -0.00249286)   (2.08e-03   (2.77e-04))   (-0.789, 0.006) 
+
+Sweep steps: 29800
+Total walltime: 154639 s
+Propagation time:  71022.2 s
+Energy evaluation time:  75134.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74088415,    -0.00244101)   (2.06e-03   (2.71e-04))   (-0.789, 0.005) 
+
+Sweep steps: 29900
+Total walltime: 155172 s
+Propagation time:  71274.1 s
+Energy evaluation time:  75386.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74087760,    -0.00253419)   (2.06e-03   (2.70e-04))   (-0.789, 0.005) 
+
+Sweep steps: 30000
+Total walltime: 155677 s
+Propagation time:  71511 s
+Energy evaluation time:  75638.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74099645,    -0.00252978)   (2.05e-03   (2.70e-04))   (-0.789, 0.005) 
+
+Sweep steps: 30100
+Total walltime: 156195 s
+Propagation time:  71747.8 s
+Energy evaluation time:  75890.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74118337,    -0.00260479)   (2.04e-03   (2.67e-04))   (-0.789, 0.006) 
+
+Sweep steps: 30200
+Total walltime: 156715 s
+Propagation time:  71984.6 s
+Energy evaluation time:  76144.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74126825,    -0.00266015)   (2.03e-03   (2.65e-04))   (-0.789, 0.006) 
+
+Sweep steps: 30300
+Total walltime: 157235 s
+Propagation time:  72223.3 s
+Energy evaluation time:  76396.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74133128,    -0.00265720)   (2.02e-03   (2.65e-04))   (-0.789, 0.006) 
+
+Sweep steps: 30400
+Total walltime: 157751 s
+Propagation time:  72459.6 s
+Energy evaluation time:  76648.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74118681,    -0.00263878)   (2.03e-03   (2.66e-04))   (-0.789, 0.006) 
+
+Sweep steps: 30500
+Total walltime: 158267 s
+Propagation time:  72695.6 s
+Energy evaluation time:  76898.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74124737,    -0.00262456)   (2.03e-03   (2.66e-04))   (-0.789, 0.006) 
+
+Sweep steps: 30600
+Total walltime: 158796 s
+Propagation time:  72934.6 s
+Energy evaluation time:  77155.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74111823,    -0.00248449)   (2.03e-03   (2.68e-04))   (-0.789, 0.006) 
+
+Sweep steps: 30700
+Total walltime: 159313 s
+Propagation time:  73170.1 s
+Energy evaluation time:  77413.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74068762,    -0.00263210)   (2.02e-03   (2.67e-04))   (-0.789, 0.006) 
+
+Sweep steps: 30800
+Total walltime: 159845 s
+Propagation time:  73421 s
+Energy evaluation time:  77665.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74068831,    -0.00268536)   (2.03e-03   (2.73e-04))   (-0.789, 0.006) 
+
+Sweep steps: 30900
+Total walltime: 160358 s
+Propagation time:  73670.2 s
+Energy evaluation time:  77915.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74045056,    -0.00270186)   (2.02e-03   (2.76e-04))   (-0.789, 0.006) 
+
+Sweep steps: 31000
+Total walltime: 160871 s
+Propagation time:  73912.1 s
+Energy evaluation time:  78167.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74043043,    -0.00268842)   (2.02e-03   (2.76e-04))   (-0.789, 0.006) 
+
+Sweep steps: 31100
+Total walltime: 161383 s
+Propagation time:  74152.4 s
+Energy evaluation time:  78418 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74057037,    -0.00266131)   (2.02e-03   (2.80e-04))   (-0.789, 0.006) 
+
+Sweep steps: 31200
+Total walltime: 161902 s
+Propagation time:  74395.4 s
+Energy evaluation time:  78667.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74053985,    -0.00266079)   (2.01e-03   (2.80e-04))   (-0.789, 0.006) 
+
+Sweep steps: 31300
+Total walltime: 162420 s
+Propagation time:  74639.3 s
+Energy evaluation time:  78916.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74053007,    -0.00264708)   (2.01e-03   (2.83e-04))   (-0.789, 0.006) 
+
+Sweep steps: 31400
+Total walltime: 162942 s
+Propagation time:  74884.4 s
+Energy evaluation time:  79170 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74063986,    -0.00258303)   (2.01e-03   (2.85e-04))   (-0.789, 0.006) 
+
+Sweep steps: 31500
+Total walltime: 163460 s
+Propagation time:  75126.8 s
+Energy evaluation time:  79425.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74031876,    -0.00254368)   (2.01e-03   (2.85e-04))   (-0.789, 0.005) 
+
+Sweep steps: 31600
+Total walltime: 163975 s
+Propagation time:  75368.8 s
+Energy evaluation time:  79676 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74027818,    -0.00271378)   (2.02e-03   (2.87e-04))   (-0.789, 0.006) 
+
+Sweep steps: 31700
+Total walltime: 164492 s
+Propagation time:  75614 s
+Energy evaluation time:  79925.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74029245,    -0.00264592)   (2.02e-03   (2.86e-04))   (-0.789, 0.006) 
+
+Sweep steps: 31800
+Total walltime: 165006 s
+Propagation time:  75857.2 s
+Energy evaluation time:  80175.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74024124,    -0.00267717)   (2.02e-03   (2.86e-04))   (-0.789, 0.005) 
+
+Sweep steps: 31900
+Total walltime: 165522 s
+Propagation time:  76098.8 s
+Energy evaluation time:  80424.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74019290,    -0.00264343)   (2.02e-03   (2.83e-04))   (-0.789, 0.005) 
+
+Sweep steps: 32000
+Total walltime: 166044 s
+Propagation time:  76338.3 s
+Energy evaluation time:  80680.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74011198,    -0.00255113)   (2.02e-03   (2.83e-04))   (-0.789, 0.005) 
+
+Sweep steps: 32100
+Total walltime: 166561 s
+Propagation time:  76578.9 s
+Energy evaluation time:  80934.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74001940,    -0.00269063)   (2.02e-03   (2.85e-04))   (-0.789, 0.005) 
+
+Sweep steps: 32200
+Total walltime: 167077 s
+Propagation time:  76821.8 s
+Energy evaluation time:  81185.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74021034,    -0.00275538)   (2.02e-03   (2.83e-04))   (-0.789, 0.005) 
+
+Sweep steps: 32300
+Total walltime: 167593 s
+Propagation time:  77064.4 s
+Energy evaluation time:  81435.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74033478,    -0.00263572)   (2.01e-03   (2.80e-04))   (-0.789, 0.005) 
+
+Sweep steps: 32400
+Total walltime: 168110 s
+Propagation time:  77307 s
+Energy evaluation time:  81685.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74041090,    -0.00255579)   (2.01e-03   (2.83e-04))   (-0.789, 0.005) 
+
+Sweep steps: 32500
+Total walltime: 168629 s
+Propagation time:  77552.3 s
+Energy evaluation time:  81934.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74054475,    -0.00252597)   (2.01e-03   (2.80e-04))   (-0.789, 0.005) 
+
+Sweep steps: 32600
+Total walltime: 169145 s
+Propagation time:  77792.3 s
+Energy evaluation time:  82190.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74050603,    -0.00242912)   (1.99e-03   (2.71e-04))   (-0.789, 0.004) 
+
+Sweep steps: 32700
+Total walltime: 169660 s
+Propagation time:  78037.7 s
+Energy evaluation time:  82440 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74036607,    -0.00235430)   (1.99e-03   (2.68e-04))   (-0.789, 0.004) 
+
+Sweep steps: 32800
+Total walltime: 170177 s
+Propagation time:  78282.4 s
+Energy evaluation time:  82689.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74026189,    -0.00240575)   (1.99e-03   (2.65e-04))   (-0.789, 0.004) 
+
+Sweep steps: 32900
+Total walltime: 170695 s
+Propagation time:  78526.7 s
+Energy evaluation time:  82938.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74037641,    -0.00246896)   (2.00e-03   (2.67e-04))   (-0.789, 0.004) 
+
+Sweep steps: 33000
+Total walltime: 171213 s
+Propagation time:  78771.5 s
+Energy evaluation time:  83187.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74043526,    -0.00251749)   (1.99e-03   (2.67e-04))   (-0.789, 0.004) 
+
+Sweep steps: 33100
+Total walltime: 171726 s
+Propagation time:  79013 s
+Energy evaluation time:  83437 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74045864,    -0.00251963)   (1.97e-03   (2.62e-04))   (-0.789, 0.004) 
+
+Sweep steps: 33200
+Total walltime: 172249 s
+Propagation time:  79255.5 s
+Energy evaluation time:  83691.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74052624,    -0.00254436)   (1.98e-03   (2.64e-04))   (-0.789, 0.004) 
+
+Sweep steps: 33300
+Total walltime: 172766 s
+Propagation time:  79498.3 s
+Energy evaluation time:  83946.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74045938,    -0.00249359)   (1.97e-03   (2.61e-04))   (-0.789, 0.004) 
+
+Sweep steps: 33400
+Total walltime: 173279 s
+Propagation time:  79742.7 s
+Energy evaluation time:  84196.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74054970,    -0.00238380)   (1.96e-03   (2.61e-04))   (-0.789, 0.004) 
+
+Sweep steps: 33500
+Total walltime: 173795 s
+Propagation time:  79985.3 s
+Energy evaluation time:  84446.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74057569,    -0.00241936)   (1.96e-03   (2.59e-04))   (-0.789, 0.004) 
+
+Sweep steps: 33600
+Total walltime: 174317 s
+Propagation time:  80233.3 s
+Energy evaluation time:  84696 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74068879,    -0.00239257)   (1.96e-03   (2.59e-04))   (-0.789, 0.004) 
+
+Sweep steps: 33700
+Total walltime: 174832 s
+Propagation time:  80480.5 s
+Energy evaluation time:  84944.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74066045,    -0.00236072)   (1.96e-03   (2.54e-04))   (-0.789, 0.004) 
+
+Sweep steps: 33800
+Total walltime: 175356 s
+Propagation time:  80736.5 s
+Energy evaluation time:  85192.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74065571,    -0.00232146)   (1.96e-03   (2.54e-04))   (-0.789, 0.004) 
+
+Sweep steps: 33900
+Total walltime: 175878 s
+Propagation time:  80989.6 s
+Energy evaluation time:  85440.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74076478,    -0.00232019)   (1.95e-03   (2.52e-04))   (-0.789, 0.003) 
+
+Sweep steps: 34000
+Total walltime: 176395 s
+Propagation time:  81232.3 s
+Energy evaluation time:  85690.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74050604,    -0.00215155)   (1.96e-03   (2.50e-04))   (-0.789, 0.003) 
+
+Sweep steps: 34100
+Total walltime: 176910 s
+Propagation time:  81471 s
+Energy evaluation time:  85941.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74056172,    -0.00215601)   (1.96e-03   (2.51e-04))   (-0.789, 0.003) 
+
+Sweep steps: 34200
+Total walltime: 177429 s
+Propagation time:  81712.7 s
+Energy evaluation time:  86193.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74060317,    -0.00212913)   (1.95e-03   (2.52e-04))   (-0.789, 0.003) 
+
+Sweep steps: 34300
+Total walltime: 177947 s
+Propagation time:  81958.6 s
+Energy evaluation time:  86441.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74060577,    -0.00209368)   (1.95e-03   (2.52e-04))   (-0.789, 0.003) 
+
+Sweep steps: 34400
+Total walltime: 178460 s
+Propagation time:  82198.8 s
+Energy evaluation time:  86691.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74065136,    -0.00212505)   (1.96e-03   (2.53e-04))   (-0.789, 0.003) 
+
+Sweep steps: 34500
+Total walltime: 178977 s
+Propagation time:  82441 s
+Energy evaluation time:  86940.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74076743,    -0.00210105)   (1.96e-03   (2.54e-04))   (-0.789, 0.003) 
+
+Sweep steps: 34600
+Total walltime: 179496 s
+Propagation time:  82684.8 s
+Energy evaluation time:  87189.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74084797,    -0.00207182)   (1.96e-03   (2.54e-04))   (-0.789, 0.003) 
+
+Sweep steps: 34700
+Total walltime: 180011 s
+Propagation time:  82928.6 s
+Energy evaluation time:  87438.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74086732,    -0.00206015)   (1.96e-03   (2.53e-04))   (-0.789, 0.002) 
+
+Sweep steps: 34800
+Total walltime: 180524 s
+Propagation time:  83169.1 s
+Energy evaluation time:  87688.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74078379,    -0.00207253)   (1.96e-03   (2.53e-04))   (-0.789, 0.002) 
+
+Sweep steps: 34900
+Total walltime: 181044 s
+Propagation time:  83413.6 s
+Energy evaluation time:  87937.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74075328,    -0.00210691)   (1.95e-03   (2.52e-04))   (-0.789, 0.003) 
+
+Sweep steps: 35000
+Total walltime: 181561 s
+Propagation time:  83656.4 s
+Energy evaluation time:  88186.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74078576,    -0.00204300)   (1.95e-03   (2.51e-04))   (-0.789, 0.002) 
+
+Sweep steps: 35100
+Total walltime: 182079 s
+Propagation time:  83901.9 s
+Energy evaluation time:  88436.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74088926,    -0.00206616)   (1.95e-03   (2.50e-04))   (-0.789, 0.003) 
+
+Sweep steps: 35200
+Total walltime: 182591 s
+Propagation time:  84142.8 s
+Energy evaluation time:  88686.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74090046,    -0.00212728)   (1.94e-03   (2.48e-04))   (-0.789, 0.003) 
+
+Sweep steps: 35300
+Total walltime: 183113 s
+Propagation time:  84388.6 s
+Energy evaluation time:  88936.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74096521,    -0.00188986)   (1.94e-03   (2.51e-04))   (-0.789, 0.002) 
+
+Sweep steps: 35400
+Total walltime: 183638 s
+Propagation time:  84639.6 s
+Energy evaluation time:  89185.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74092938,    -0.00193362)   (1.94e-03   (2.44e-04))   (-0.789, 0.002) 
+
+Sweep steps: 35500
+Total walltime: 184147 s
+Propagation time:  84885 s
+Energy evaluation time:  89434.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74103342,    -0.00191046)   (1.94e-03   (2.43e-04))   (-0.789, 0.002) 
+
+Sweep steps: 35600
+Total walltime: 184665 s
+Propagation time:  85132 s
+Energy evaluation time:  89684.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74115645,    -0.00185334)   (1.94e-03   (2.45e-04))   (-0.789, 0.002) 
+
+Sweep steps: 35700
+Total walltime: 185182 s
+Propagation time:  85380.6 s
+Energy evaluation time:  89932.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74132767,    -0.00162397)   (1.95e-03   (2.71e-04))   (-0.788, 0.003) 
+
+Sweep steps: 35800
+Total walltime: 185696 s
+Propagation time:  85628.6 s
+Energy evaluation time:  90182.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74129056,    -0.00163446)   (1.95e-03   (2.72e-04))   (-0.789, 0.003) 
+
+Sweep steps: 35900
+Total walltime: 186208 s
+Propagation time:  85872.6 s
+Energy evaluation time:  90431.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74133632,    -0.00167512)   (1.95e-03   (2.67e-04))   (-0.788, 0.003) 
+
+Sweep steps: 36000
+Total walltime: 186723 s
+Propagation time:  86116 s
+Energy evaluation time:  90681 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74133362,    -0.00167923)   (1.94e-03   (2.70e-04))   (-0.788, 0.003) 
+
+Sweep steps: 36100
+Total walltime: 187239 s
+Propagation time:  86358.8 s
+Energy evaluation time:  90930.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74099738,    -0.00168458)   (1.94e-03   (2.65e-04))   (-0.789, 0.003) 
+
+Sweep steps: 36200
+Total walltime: 187754 s
+Propagation time:  86601.4 s
+Energy evaluation time:  91180.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74097710,    -0.00168194)   (1.94e-03   (2.65e-04))   (-0.789, 0.003) 
+
+Sweep steps: 36300
+Total walltime: 188276 s
+Propagation time:  86850.6 s
+Energy evaluation time:  91430.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74113748,    -0.00172989)   (1.94e-03   (2.69e-04))   (-0.788, 0.003) 
+
+Sweep steps: 36400
+Total walltime: 188792 s
+Propagation time:  87098.8 s
+Energy evaluation time:  91678.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74131817,    -0.00166112)   (1.94e-03   (2.68e-04))   (-0.789, 0.003) 
+
+Sweep steps: 36500
+Total walltime: 189304 s
+Propagation time:  87339.5 s
+Energy evaluation time:  91929.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74126462,    -0.00164896)   (1.94e-03   (2.69e-04))   (-0.789, 0.003) 
+
+Sweep steps: 36600
+Total walltime: 189824 s
+Propagation time:  87583.9 s
+Energy evaluation time:  92179.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74132946,    -0.00160888)   (1.93e-03   (2.67e-04))   (-0.788, 0.003) 
+
+Sweep steps: 36700
+Total walltime: 190339 s
+Propagation time:  87830.8 s
+Energy evaluation time:  92427.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74134436,    -0.00161385)   (1.93e-03   (2.67e-04))   (-0.788, 0.003) 
+
+Sweep steps: 36800
+Total walltime: 190861 s
+Propagation time:  88080.5 s
+Energy evaluation time:  92676.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74134768,    -0.00165252)   (1.93e-03   (2.67e-04))   (-0.788, 0.003) 
+
+Sweep steps: 36900
+Total walltime: 191380 s
+Propagation time:  88332.4 s
+Energy evaluation time:  92926.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74143587,    -0.00158460)   (1.92e-03   (2.61e-04))   (-0.788, 0.003) 
+
+Sweep steps: 37000
+Total walltime: 191898 s
+Propagation time:  88578.9 s
+Energy evaluation time:  93177.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74140840,    -0.00153289)   (1.94e-03   (2.62e-04))   (-0.788, 0.003) 
+
+Sweep steps: 37100
+Total walltime: 192417 s
+Propagation time:  88828.9 s
+Energy evaluation time:  93427 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74148401,    -0.00152415)   (1.93e-03   (2.65e-04))   (-0.789, 0.003) 
+
+Sweep steps: 37200
+Total walltime: 192934 s
+Propagation time:  89079.8 s
+Energy evaluation time:  93675.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74171776,    -0.00159827)   (1.92e-03   (2.66e-04))   (-0.789, 0.003) 
+
+Sweep steps: 37300
+Total walltime: 193451 s
+Propagation time:  89325.9 s
+Energy evaluation time:  93925.5 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74165869,    -0.00155696)   (1.92e-03   (2.66e-04))   (-0.789, 0.004) 
+
+Sweep steps: 37400
+Total walltime: 193962 s
+Propagation time:  89567.6 s
+Energy evaluation time:  94174.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74167861,    -0.00154893)   (1.90e-03   (2.62e-04))   (-0.789, 0.004) 
+
+Sweep steps: 37500
+Total walltime: 194479 s
+Propagation time:  89809.9 s
+Energy evaluation time:  94424.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74161227,    -0.00157774)   (1.89e-03   (2.56e-04))   (-0.789, 0.004) 
+
+Sweep steps: 37600
+Total walltime: 194998 s
+Propagation time:  90051.5 s
+Energy evaluation time:  94677.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74167020,    -0.00155809)   (1.89e-03   (2.54e-04))   (-0.788, 0.003) 
+
+Sweep steps: 37700
+Total walltime: 195512 s
+Propagation time:  90296.5 s
+Energy evaluation time:  94926.6 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74170608,    -0.00151421)   (1.89e-03   (2.53e-04))   (-0.788, 0.003) 
+
+Sweep steps: 37800
+Total walltime: 196030 s
+Propagation time:  90543 s
+Energy evaluation time:  95175.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74176731,    -0.00150466)   (1.88e-03   (2.57e-04))   (-0.788, 0.003) 
+
+Sweep steps: 37900
+Total walltime: 196557 s
+Propagation time:  90800.3 s
+Energy evaluation time:  95424.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74182518,    -0.00154793)   (1.88e-03   (2.56e-04))   (-0.788, 0.003) 
+
+Sweep steps: 38000
+Total walltime: 197065 s
+Propagation time:  91044.3 s
+Energy evaluation time:  95674.7 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74167385,    -0.00130635)   (1.88e-03   (2.57e-04))   (-0.788, 0.003) 
+
+Sweep steps: 38100
+Total walltime: 197574 s
+Propagation time:  91284.9 s
+Energy evaluation time:  95924.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74165967,    -0.00124691)   (1.89e-03   (2.57e-04))   (-0.788, 0.003) 
+
+Sweep steps: 38200
+Total walltime: 198092 s
+Propagation time:  91529.5 s
+Energy evaluation time:  96173.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74172894,    -0.00120265)   (1.87e-03   (2.53e-04))   (-0.788, 0.003) 
+
+Sweep steps: 38300
+Total walltime: 198609 s
+Propagation time:  91774.5 s
+Energy evaluation time:  96422.9 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74156619,    -0.00119000)   (1.87e-03   (2.51e-04))   (-0.788, 0.003) 
+
+Sweep steps: 38400
+Total walltime: 199124 s
+Propagation time:  92017.9 s
+Energy evaluation time:  96672.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74166926,    -0.00122737)   (1.87e-03   (2.56e-04))   (-0.788, 0.003) 
+
+Sweep steps: 38500
+Total walltime: 199641 s
+Propagation time:  92261.8 s
+Energy evaluation time:  96921.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74159073,    -0.00122105)   (1.86e-03   (2.54e-04))   (-0.788, 0.003) 
+
+Sweep steps: 38600
+Total walltime: 200160 s
+Propagation time:  92508.7 s
+Energy evaluation time:  97170.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74118437,    -0.00120360)   (1.85e-03   (2.25e-04))   (-0.789, 0.003) 
+
+Sweep steps: 38700
+Total walltime: 200674 s
+Propagation time:  92752.6 s
+Energy evaluation time:  97421.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74115153,    -0.00117104)   (1.85e-03   (2.25e-04))   (-0.789, 0.002) 
+
+Sweep steps: 38800
+Total walltime: 201190 s
+Propagation time:  92995.5 s
+Energy evaluation time:  97671 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74108249,    -0.00104472)   (1.85e-03   (2.24e-04))   (-0.789, 0.002) 
+
+Sweep steps: 38900
+Total walltime: 201714 s
+Propagation time:  93247.6 s
+Energy evaluation time:  97920 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74100703,    -0.00093102)   (1.85e-03   (2.34e-04))   (-0.789, 0.002) 
+
+Sweep steps: 39000
+Total walltime: 202224 s
+Propagation time:  93490.3 s
+Energy evaluation time:  98169.3 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74102421,    -0.00097825)   (1.85e-03   (2.33e-04))   (-0.789, 0.002) 
+
+Sweep steps: 39100
+Total walltime: 202739 s
+Propagation time:  93732.3 s
+Energy evaluation time:  98418.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74110634,    -0.00098131)   (1.84e-03   (2.34e-04))   (-0.789, 0.002) 
+
+Sweep steps: 39200
+Total walltime: 203257 s
+Propagation time:  93977.6 s
+Energy evaluation time:  98667.4 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74103696,    -0.00093147)   (1.85e-03   (2.36e-04))   (-0.789, 0.002) 
+
+Sweep steps: 39300
+Total walltime: 203769 s
+Propagation time:  94217.5 s
+Energy evaluation time:  98917.1 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74106372,    -0.00095335)   (1.85e-03   (2.36e-04))   (-0.789, 0.002) 
+
+Sweep steps: 39400
+Total walltime: 204291 s
+Propagation time:  94462.5 s
+Energy evaluation time:  99166.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74115036,    -0.00111337)   (1.85e-03   (2.36e-04))   (-0.788, 0.003) 
+
+Sweep steps: 39500
+Total walltime: 204803 s
+Propagation time:  94702.5 s
+Energy evaluation time:  99416 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74106255,    -0.00107728)   (1.86e-03   (2.35e-04))   (-0.788, 0.003) 
+
+Sweep steps: 39600
+Total walltime: 205317 s
+Propagation time:  94942.1 s
+Energy evaluation time:  99664.8 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74088393,    -0.00065493)   (1.86e-03   (2.35e-04))   (-0.788, 0.001) 
+
+Sweep steps: 39700
+Total walltime: 205840 s
+Propagation time:  95187.5 s
+Energy evaluation time:  99915.2 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74082204,    -0.00062483)   (1.86e-03   (2.64e-04))   (-0.788, 0.001) 
+
+Sweep steps: 39800
+Total walltime: 206361 s
+Propagation time:  95434.6 s
+Energy evaluation time:  100166 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74075197,    -0.00064088)   (1.87e-03   (2.64e-04))   (-0.788, 0.001) 
+
+Sweep steps: 39900
+Total walltime: 206869 s
+Propagation time:  95673.2 s
+Energy evaluation time:  100420 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74077837,    -0.00064820)   (1.88e-03   (2.60e-04))   (-0.788, 0.001) 
+
+Sweep steps: 40000
+Total walltime: 207383 s
+Propagation time:  95912.5 s
+Energy evaluation time:  100671 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74075516,    -0.00077988)   (1.87e-03   (2.62e-04))   (-0.788, 0.001) 
+
+Sweep steps: 40100
+Total walltime: 207900 s
+Propagation time:  96155 s
+Energy evaluation time:  100922 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74086157,    -0.00072687)   (1.88e-03   (2.65e-04))   (-0.788, 0.001) 
+
+Sweep steps: 40200
+Total walltime: 208414 s
+Propagation time:  96395.7 s
+Energy evaluation time:  101172 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74080847,    -0.00094375)   (1.87e-03   (2.64e-04))   (-0.788, 0.001) 
+
+Sweep steps: 40300
+Total walltime: 208934 s
+Propagation time:  96636.1 s
+Energy evaluation time:  101424 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74086176,    -0.00099687)   (1.87e-03   (2.63e-04))   (-0.788, 0.001) 
+
+Sweep steps: 40400
+Total walltime: 209447 s
+Propagation time:  96876 s
+Energy evaluation time:  101674 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74073105,    -0.00104505)   (1.87e-03   (2.59e-04))   (-0.788, 0.001) 
+
+Sweep steps: 40500
+Total walltime: 209964 s
+Propagation time:  97116.3 s
+Energy evaluation time:  101924 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74073065,    -0.00103661)   (1.86e-03   (2.59e-04))   (-0.788, 0.001) 
+
+Sweep steps: 40600
+Total walltime: 210486 s
+Propagation time:  97362.7 s
+Energy evaluation time:  102173 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74074983,    -0.00110532)   (1.86e-03   (2.58e-04))   (-0.788, 0.002) 
+
+Sweep steps: 40700
+Total walltime: 210999 s
+Propagation time:  97607.3 s
+Energy evaluation time:  102423 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74080784,    -0.00109221)   (1.86e-03   (2.59e-04))   (-0.788, 0.002) 
+
+Sweep steps: 40800
+Total walltime: 211518 s
+Propagation time:  97852.5 s
+Energy evaluation time:  102675 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74076660,    -0.00115279)   (1.86e-03   (2.62e-04))   (-0.788, 0.002) 
+
+Sweep steps: 40900
+Total walltime: 212031 s
+Propagation time:  98096.3 s
+Energy evaluation time:  102925 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74073876,    -0.00119945)   (1.86e-03   (2.64e-04))   (-0.788, 0.002) 
+
+Sweep steps: 41000
+Total walltime: 212548 s
+Propagation time:  98339.9 s
+Energy evaluation time:  103174 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74086969,    -0.00122529)   (1.85e-03   (2.58e-04))   (-0.788, 0.001) 
+
+Sweep steps: 41100
+Total walltime: 213067 s
+Propagation time:  98584.2 s
+Energy evaluation time:  103424 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74071138,    -0.00116815)   (1.85e-03   (2.54e-04))   (-0.788, 0.001) 
+
+Sweep steps: 41200
+Total walltime: 213583 s
+Propagation time:  98828 s
+Energy evaluation time:  103673 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74067235,    -0.00117643)   (1.86e-03   (2.58e-04))   (-0.788, 0.001) 
+
+Sweep steps: 41300
+Total walltime: 214094 s
+Propagation time:  99068.5 s
+Energy evaluation time:  103923 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74063336,    -0.00125228)   (1.86e-03   (2.51e-04))   (-0.788, 0.001) 
+
+Sweep steps: 41400
+Total walltime: 214615 s
+Propagation time:  99312.5 s
+Energy evaluation time:  104174 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74095705,    -0.00130636)   (1.88e-03   (2.57e-04))   (-0.788, 0.001) 
+
+Sweep steps: 41500
+Total walltime: 215128 s
+Propagation time:  99553.5 s
+Energy evaluation time:  104424 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74090171,    -0.00134195)   (1.87e-03   (2.59e-04))   (-0.789, 0.001) 
+
+Sweep steps: 41600
+Total walltime: 215648 s
+Propagation time:  99795.1 s
+Energy evaluation time:  104676 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74075293,    -0.00139545)   (1.87e-03   (2.59e-04))   (-0.789, 0.001) 
+
+Sweep steps: 41700
+Total walltime: 216159 s
+Propagation time:  100036 s
+Energy evaluation time:  104926 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74072596,    -0.00126954)   (1.87e-03   (2.62e-04))   (-0.789, 0.001) 
+
+Sweep steps: 41800
+Total walltime: 216677 s
+Propagation time:  100277 s
+Energy evaluation time:  105175 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74072902,    -0.00127711)   (1.87e-03   (2.63e-04))   (-0.789, 0.001) 
+
+Sweep steps: 41900
+Total walltime: 217192 s
+Propagation time:  100518 s
+Energy evaluation time:  105426 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74065309,    -0.00120101)   (1.87e-03   (2.61e-04))   (-0.789, 0.001) 
+
+Sweep steps: 42000
+Total walltime: 217715 s
+Propagation time:  100766 s
+Energy evaluation time:  105674 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74050065,    -0.00134645)   (1.87e-03   (2.61e-04))   (-0.789, 0.001) 
+
+Sweep steps: 42100
+Total walltime: 218229 s
+Propagation time:  101011 s
+Energy evaluation time:  105923 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74046068,    -0.00135148)   (1.88e-03   (2.62e-04))   (-0.789, 0.001) 
+
+Sweep steps: 42200
+Total walltime: 218744 s
+Propagation time:  101253 s
+Energy evaluation time:  106173 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74048737,    -0.00130869)   (1.87e-03   (2.61e-04))   (-0.789, 0.001) 
+
+Sweep steps: 42300
+Total walltime: 219258 s
+Propagation time:  101493 s
+Energy evaluation time:  106422 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74053917,    -0.00129100)   (1.88e-03   (2.62e-04))   (-0.789, 0.001) 
+
+Sweep steps: 42400
+Total walltime: 219777 s
+Propagation time:  101732 s
+Energy evaluation time:  106673 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74042775,    -0.00126726)   (1.88e-03   (2.60e-04))   (-0.789, 0.001) 
+
+Sweep steps: 42500
+Total walltime: 220294 s
+Propagation time:  101973 s
+Energy evaluation time:  106923 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74023434,    -0.00128826)   (1.88e-03   (2.60e-04))   (-0.789, 0.001) 
+
+Sweep steps: 42600
+Total walltime: 220808 s
+Propagation time:  102211 s
+Energy evaluation time:  107173 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74029129,    -0.00124345)   (1.87e-03   (2.61e-04))   (-0.789, 0.001) 
+
+Sweep steps: 42700
+Total walltime: 221322 s
+Propagation time:  102450 s
+Energy evaluation time:  107423 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74035056,    -0.00125595)   (1.87e-03   (2.63e-04))   (-0.789, 0.001) 
+
+Sweep steps: 42800
+Total walltime: 221845 s
+Propagation time:  102694 s
+Energy evaluation time:  107672 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74025343,    -0.00125838)   (1.86e-03   (2.60e-04))   (-0.789, 0.001) 
+
+Sweep steps: 42900
+Total walltime: 222366 s
+Propagation time:  102943 s
+Energy evaluation time:  107921 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74030577,    -0.00122044)   (1.84e-03   (2.39e-04))   (-0.789, 0.001) 
+
+Sweep steps: 43000
+Total walltime: 222878 s
+Propagation time:  103185 s
+Energy evaluation time:  108171 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74031172,    -0.00128325)   (1.84e-03   (2.39e-04))   (-0.789, 0.001) 
+
+Sweep steps: 43100
+Total walltime: 223393 s
+Propagation time:  103427 s
+Energy evaluation time:  108421 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74035157,    -0.00126956)   (1.83e-03   (2.40e-04))   (-0.789, 0.001) 
+
+Sweep steps: 43200
+Total walltime: 223912 s
+Propagation time:  103671 s
+Energy evaluation time:  108670 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74028495,    -0.00116190)   (1.83e-03   (2.42e-04))   (-0.789, 0.001) 
+
+Sweep steps: 43300
+Total walltime: 224428 s
+Propagation time:  103912 s
+Energy evaluation time:  108923 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74032857,    -0.00110659)   (1.82e-03   (2.37e-04))   (-0.789, 0.001) 
+
+Sweep steps: 43400
+Total walltime: 224945 s
+Propagation time:  104154 s
+Energy evaluation time:  109177 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74032317,    -0.00118312)   (1.83e-03   (2.37e-04))   (-0.789, 0.001) 
+
+Sweep steps: 43500
+Total walltime: 225460 s
+Propagation time:  104397 s
+Energy evaluation time:  109427 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74037142,    -0.00118774)   (1.83e-03   (2.38e-04))   (-0.789, 0.001) 
+
+Sweep steps: 43600
+Total walltime: 225978 s
+Propagation time:  104641 s
+Energy evaluation time:  109676 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74039469,    -0.00119515)   (1.82e-03   (2.38e-04))   (-0.789, 0.001) 
+
+Sweep steps: 43700
+Total walltime: 226496 s
+Propagation time:  104887 s
+Energy evaluation time:  109926 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.74040489,    -0.00118059)   (1.82e-03   (2.35e-04))   (-0.789, 0.001) 
+
+Sweep steps: 43800
+Total walltime: 227017 s
+Propagation time:  105132 s
+Energy evaluation time:  110177 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73966067,    -0.00155323)   (1.84e-03   (2.54e-04))   (-0.789, 0.001) 
+
+Sweep steps: 43900
+Total walltime: 227530 s
+Propagation time:  105372 s
+Energy evaluation time:  110433 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73952752,    -0.00154408)   (1.84e-03   (2.53e-04))   (-0.789, 0.001) 
+
+Sweep steps: 44000
+Total walltime: 228045 s
+Propagation time:  105615 s
+Energy evaluation time:  110682 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73941361,    -0.00158427)   (1.84e-03   (2.55e-04))   (-0.789, 0.001) 
+
+Sweep steps: 44100
+Total walltime: 228556 s
+Propagation time:  105854 s
+Energy evaluation time:  110932 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73934195,    -0.00157415)   (1.84e-03   (2.54e-04))   (-0.789, 0.001) 
+
+Sweep steps: 44200
+Total walltime: 229075 s
+Propagation time:  106095 s
+Energy evaluation time:  111182 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73939520,    -0.00157521)   (1.84e-03   (2.54e-04))   (-0.789, 0.001) 
+
+Sweep steps: 44300
+Total walltime: 229592 s
+Propagation time:  106336 s
+Energy evaluation time:  111432 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73948637,    -0.00161497)   (1.84e-03   (2.53e-04))   (-0.789, 0.001) 
+
+Sweep steps: 44400
+Total walltime: 230112 s
+Propagation time:  106577 s
+Energy evaluation time:  111685 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73957012,    -0.00160068)   (1.84e-03   (2.53e-04))   (-0.789, 0.001) 
+
+Sweep steps: 44500
+Total walltime: 230628 s
+Propagation time:  106820 s
+Energy evaluation time:  111935 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73941913,    -0.00164928)   (1.84e-03   (2.54e-04))   (-0.789, 0.001) 
+
+Sweep steps: 44600
+Total walltime: 231142 s
+Propagation time:  107061 s
+Energy evaluation time:  112185 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73892956,    -0.00163497)   (1.84e-03   (2.56e-04))   (-0.789, 0.001) 
+
+Sweep steps: 44700
+Total walltime: 231658 s
+Propagation time:  107304 s
+Energy evaluation time:  112435 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73898458,    -0.00169519)   (1.86e-03   (2.88e-04))   (-0.789, 0.001) 
+
+Sweep steps: 44800
+Total walltime: 232179 s
+Propagation time:  107550 s
+Energy evaluation time:  112684 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73904505,    -0.00165937)   (1.85e-03   (2.84e-04))   (-0.789, 0.001) 
+
+Sweep steps: 44900
+Total walltime: 232690 s
+Propagation time:  107790 s
+Energy evaluation time:  112935 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73903222,    -0.00163010)   (1.85e-03   (2.82e-04))   (-0.789, 0.001) 
+
+Sweep steps: 45000
+Total walltime: 233209 s
+Propagation time:  108034 s
+Energy evaluation time:  113185 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73912440,    -0.00164598)   (1.84e-03   (2.84e-04))   (-0.789, 0.001) 
+
+Sweep steps: 45100
+Total walltime: 233725 s
+Propagation time:  108278 s
+Energy evaluation time:  113435 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73908687,    -0.00163002)   (1.84e-03   (2.81e-04))   (-0.789, 0.001) 
+
+Sweep steps: 45200
+Total walltime: 234244 s
+Propagation time:  108525 s
+Energy evaluation time:  113684 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73906533,    -0.00162402)   (1.84e-03   (2.78e-04))   (-0.789, 0.001) 
+
+Sweep steps: 45300
+Total walltime: 234759 s
+Propagation time:  108772 s
+Energy evaluation time:  113933 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73907422,    -0.00159993)   (1.83e-03   (2.78e-04))   (-0.789, 0.001) 
+
+Sweep steps: 45400
+Total walltime: 235276 s
+Propagation time:  109017 s
+Energy evaluation time:  114183 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73892238,    -0.00214808)   (1.83e-03   (2.82e-04))   (-0.789, 0.002) 
+
+Sweep steps: 45500
+Total walltime: 235793 s
+Propagation time:  109261 s
+Energy evaluation time:  114437 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73897650,    -0.00216674)   (1.83e-03   (2.79e-04))   (-0.789, 0.002) 
+
+Sweep steps: 45600
+Total walltime: 236307 s
+Propagation time:  109504 s
+Energy evaluation time:  114688 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73901808,    -0.00214254)   (1.83e-03   (2.79e-04))   (-0.789, 0.002) 
+
+Sweep steps: 45700
+Total walltime: 236822 s
+Propagation time:  109748 s
+Energy evaluation time:  114937 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73902663,    -0.00217284)   (1.83e-03   (2.78e-04))   (-0.789, 0.002) 
+
+Sweep steps: 45800
+Total walltime: 237336 s
+Propagation time:  109989 s
+Energy evaluation time:  115186 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73912620,    -0.00222025)   (1.83e-03   (2.78e-04))   (-0.789, 0.002) 
+
+Sweep steps: 45900
+Total walltime: 237854 s
+Propagation time:  110233 s
+Energy evaluation time:  115437 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73907016,    -0.00223146)   (1.83e-03   (2.77e-04))   (-0.789, 0.002) 
+
+Sweep steps: 46000
+Total walltime: 238379 s
+Propagation time:  110483 s
+Energy evaluation time:  115689 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73912116,    -0.00227635)   (1.83e-03   (2.75e-04))   (-0.789, 0.002) 
+
+Sweep steps: 46100
+Total walltime: 238892 s
+Propagation time:  110725 s
+Energy evaluation time:  115942 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73895911,    -0.00214436)   (1.83e-03   (2.71e-04))   (-0.789, 0.002) 
+
+Sweep steps: 46200
+Total walltime: 239406 s
+Propagation time:  110969 s
+Energy evaluation time:  116192 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73905062,    -0.00213319)   (1.82e-03   (2.71e-04))   (-0.789, 0.001) 
+
+Sweep steps: 46300
+Total walltime: 239918 s
+Propagation time:  111211 s
+Energy evaluation time:  116441 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73896982,    -0.00213828)   (1.82e-03   (2.69e-04))   (-0.789, 0.002) 
+
+Sweep steps: 46400
+Total walltime: 240436 s
+Propagation time:  111456 s
+Energy evaluation time:  116690 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73890671,    -0.00220421)   (1.82e-03   (2.68e-04))   (-0.789, 0.002) 
+
+Sweep steps: 46500
+Total walltime: 240946 s
+Propagation time:  111696 s
+Energy evaluation time:  116940 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73896344,    -0.00212316)   (1.82e-03   (2.70e-04))   (-0.789, 0.002) 
+
+Sweep steps: 46600
+Total walltime: 241466 s
+Propagation time:  111939 s
+Energy evaluation time:  117192 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73899522,    -0.00214204)   (1.82e-03   (2.68e-04))   (-0.789, 0.002) 
+
+Sweep steps: 46700
+Total walltime: 241981 s
+Propagation time:  112179 s
+Energy evaluation time:  117446 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73905228,    -0.00208245)   (1.82e-03   (2.71e-04))   (-0.789, 0.002) 
+
+Sweep steps: 46800
+Total walltime: 242498 s
+Propagation time:  112421 s
+Energy evaluation time:  117697 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73905763,    -0.00212931)   (1.82e-03   (2.72e-04))   (-0.789, 0.002) 
+
+Sweep steps: 46900
+Total walltime: 243012 s
+Propagation time:  112663 s
+Energy evaluation time:  117947 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73896705,    -0.00213978)   (1.81e-03   (2.73e-04))   (-0.789, 0.002) 
+
+Sweep steps: 47000
+Total walltime: 243534 s
+Propagation time:  112913 s
+Energy evaluation time:  118196 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73897643,    -0.00201061)   (1.81e-03   (2.74e-04))   (-0.790, 0.002) 
+
+Sweep steps: 47100
+Total walltime: 244051 s
+Propagation time:  113159 s
+Energy evaluation time:  118445 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73908027,    -0.00192373)   (1.81e-03   (2.72e-04))   (-0.789, 0.001) 
+
+Sweep steps: 47200
+Total walltime: 244562 s
+Propagation time:  113400 s
+Energy evaluation time:  118694 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73912354,    -0.00204250)   (1.81e-03   (2.73e-04))   (-0.789, 0.001) 
+
+Sweep steps: 47300
+Total walltime: 245084 s
+Propagation time:  113648 s
+Energy evaluation time:  118944 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73910730,    -0.00199407)   (1.81e-03   (2.72e-04))   (-0.789, 0.001) 
+
+Sweep steps: 47400
+Total walltime: 245592 s
+Propagation time:  113888 s
+Energy evaluation time:  119194 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73912382,    -0.00198617)   (1.80e-03   (2.72e-04))   (-0.789, 0.002) 
+
+Sweep steps: 47500
+Total walltime: 246112 s
+Propagation time:  114133 s
+Energy evaluation time:  119444 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73913502,    -0.00200252)   (1.81e-03   (2.73e-04))   (-0.789, 0.002) 
+
+Sweep steps: 47600
+Total walltime: 246630 s
+Propagation time:  114381 s
+Energy evaluation time:  119692 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73919778,    -0.00195785)   (1.81e-03   (2.73e-04))   (-0.789, 0.001) 
+
+Sweep steps: 47700
+Total walltime: 247143 s
+Propagation time:  114624 s
+Energy evaluation time:  119941 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73928403,    -0.00196152)   (1.80e-03   (2.76e-04))   (-0.789, 0.002) 
+
+Sweep steps: 47800
+Total walltime: 247659 s
+Propagation time:  114867 s
+Energy evaluation time:  120189 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73927790,    -0.00195226)   (1.80e-03   (2.75e-04))   (-0.789, 0.002) 
+
+Sweep steps: 47900
+Total walltime: 248177 s
+Propagation time:  115111 s
+Energy evaluation time:  120440 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73936687,    -0.00192145)   (1.80e-03   (2.76e-04))   (-0.789, 0.002) 
+
+Sweep steps: 48000
+Total walltime: 248690 s
+Propagation time:  115353 s
+Energy evaluation time:  120690 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73941264,    -0.00191981)   (1.80e-03   (2.79e-04))   (-0.789, 0.002) 
+
+Sweep steps: 48100
+Total walltime: 249208 s
+Propagation time:  115597 s
+Energy evaluation time:  120939 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73938758,    -0.00179762)   (1.79e-03   (2.69e-04))   (-0.789, 0.002) 
+
+Sweep steps: 48200
+Total walltime: 249728 s
+Propagation time:  115847 s
+Energy evaluation time:  121189 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73941558,    -0.00178445)   (1.79e-03   (2.69e-04))   (-0.789, 0.002) 
+
+Sweep steps: 48300
+Total walltime: 250239 s
+Propagation time:  116091 s
+Energy evaluation time:  121438 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73941199,    -0.00195405)   (1.78e-03   (2.53e-04))   (-0.789, 0.002) 
+
+Sweep steps: 48400
+Total walltime: 250754 s
+Propagation time:  116333 s
+Energy evaluation time:  121688 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73935950,    -0.00212704)   (1.78e-03   (2.51e-04))   (-0.789, 0.003) 
+
+Sweep steps: 48500
+Total walltime: 251271 s
+Propagation time:  116577 s
+Energy evaluation time:  121938 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73933827,    -0.00213963)   (1.77e-03   (2.51e-04))   (-0.789, 0.003) 
+
+Sweep steps: 48600
+Total walltime: 251788 s
+Propagation time:  116821 s
+Energy evaluation time:  122188 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73932221,    -0.00213267)   (1.78e-03   (2.55e-04))   (-0.789, 0.003) 
+
+Sweep steps: 48700
+Total walltime: 252303 s
+Propagation time:  117066 s
+Energy evaluation time:  122437 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73928475,    -0.00211955)   (1.77e-03   (2.55e-04))   (-0.789, 0.003) 
+
+Sweep steps: 48800
+Total walltime: 252821 s
+Propagation time:  117311 s
+Energy evaluation time:  122686 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73939114,    -0.00211892)   (1.77e-03   (2.54e-04))   (-0.789, 0.003) 
+
+Sweep steps: 48900
+Total walltime: 253339 s
+Propagation time:  117556 s
+Energy evaluation time:  122938 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73938718,    -0.00209791)   (1.76e-03   (2.55e-04))   (-0.789, 0.003) 
+
+Sweep steps: 49000
+Total walltime: 253856 s
+Propagation time:  117799 s
+Energy evaluation time:  123191 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73936589,    -0.00206887)   (1.76e-03   (2.54e-04))   (-0.789, 0.002) 
+
+Sweep steps: 49100
+Total walltime: 254370 s
+Propagation time:  118042 s
+Energy evaluation time:  123441 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73933105,    -0.00203900)   (1.76e-03   (2.56e-04))   (-0.789, 0.002) 
+
+Sweep steps: 49200
+Total walltime: 254885 s
+Propagation time:  118286 s
+Energy evaluation time:  123690 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73938315,    -0.00196624)   (1.76e-03   (2.55e-04))   (-0.789, 0.002) 
+
+Sweep steps: 49300
+Total walltime: 255402 s
+Propagation time:  118532 s
+Energy evaluation time:  123938 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73933052,    -0.00192333)   (1.76e-03   (2.56e-04))   (-0.789, 0.003) 
+
+Sweep steps: 49400
+Total walltime: 255923 s
+Propagation time:  118780 s
+Energy evaluation time:  124190 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73918493,    -0.00192729)   (1.76e-03   (2.57e-04))   (-0.790, 0.003) 
+
+Sweep steps: 49500
+Total walltime: 256433 s
+Propagation time:  119023 s
+Energy evaluation time:  124440 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73925440,    -0.00191224)   (1.75e-03   (2.56e-04))   (-0.790, 0.003) 
+
+Sweep steps: 49600
+Total walltime: 256947 s
+Propagation time:  119265 s
+Energy evaluation time:  124689 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73920066,    -0.00187337)   (1.74e-03   (2.54e-04))   (-0.790, 0.002) 
+
+Sweep steps: 49700
+Total walltime: 257471 s
+Propagation time:  119516 s
+Energy evaluation time:  124938 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73931244,    -0.00186183)   (1.75e-03   (2.53e-04))   (-0.790, 0.002) 
+
+Sweep steps: 49800
+Total walltime: 257983 s
+Propagation time:  119764 s
+Energy evaluation time:  125187 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73935726,    -0.00186248)   (1.75e-03   (2.52e-04))   (-0.790, 0.002) 
+
+Sweep steps: 49900
+Total walltime: 258501 s
+Propagation time:  120011 s
+Energy evaluation time:  125436 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73942158,    -0.00188117)   (1.75e-03   (2.52e-04))   (-0.790, 0.002) 
+
+Sweep steps: 50000
+Total walltime: 259014 s
+Propagation time:  120255 s
+Energy evaluation time:  125685 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73946906,    -0.00189786)   (1.74e-03   (2.52e-04))   (-0.790, 0.002) 
+
+Sweep steps: 50100
+Total walltime: 259534 s
+Propagation time:  120503 s
+Energy evaluation time:  125933 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73953358,    -0.00190224)   (1.74e-03   (2.53e-04))   (-0.790, 0.002) 
+
+Sweep steps: 50200
+Total walltime: 260054 s
+Propagation time:  120755 s
+Energy evaluation time:  126182 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73940712,    -0.00201970)   (1.74e-03   (2.53e-04))   (-0.790, 0.003) 
+
+Sweep steps: 50300
+Total walltime: 260573 s
+Propagation time:  121008 s
+Energy evaluation time:  126430 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73944227,    -0.00204468)   (1.75e-03   (2.57e-04))   (-0.790, 0.003) 
+
+Sweep steps: 50400
+Total walltime: 261089 s
+Propagation time:  121256 s
+Energy evaluation time:  126678 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73944311,    -0.00207079)   (1.75e-03   (2.52e-04))   (-0.790, 0.003) 
+
+Sweep steps: 50500
+Total walltime: 261610 s
+Propagation time:  121508 s
+Energy evaluation time:  126926 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73945980,    -0.00206873)   (1.74e-03   (2.51e-04))   (-0.790, 0.003) 
+
+Sweep steps: 50600
+Total walltime: 262129 s
+Propagation time:  121761 s
+Energy evaluation time:  127174 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73958529,    -0.00202745)   (1.75e-03   (2.52e-04))   (-0.789, 0.002) 
+
+Sweep steps: 50700
+Total walltime: 262642 s
+Propagation time:  122008 s
+Energy evaluation time:  127423 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73955034,    -0.00199566)   (1.74e-03   (2.52e-04))   (-0.789, 0.002) 
+
+Sweep steps: 50800
+Total walltime: 263159 s
+Propagation time:  122253 s
+Energy evaluation time:  127673 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73946935,    -0.00194148)   (1.74e-03   (2.51e-04))   (-0.789, 0.002) 
+
+Sweep steps: 50900
+Total walltime: 263674 s
+Propagation time:  122495 s
+Energy evaluation time:  127923 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73944447,    -0.00202232)   (1.75e-03   (2.50e-04))   (-0.789, 0.002) 
+
+Sweep steps: 51000
+Total walltime: 264196 s
+Propagation time:  122739 s
+Energy evaluation time:  128173 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73948699,    -0.00195951)   (1.76e-03   (2.65e-04))   (-0.789, 0.002) 
+
+Sweep steps: 51100
+Total walltime: 264716 s
+Propagation time:  122983 s
+Energy evaluation time:  128424 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73944383,    -0.00194250)   (1.75e-03   (2.67e-04))   (-0.789, 0.002) 
+
+Sweep steps: 51200
+Total walltime: 265237 s
+Propagation time:  123225 s
+Energy evaluation time:  128678 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73951385,    -0.00188794)   (1.75e-03   (2.68e-04))   (-0.789, 0.002) 
+
+Sweep steps: 51300
+Total walltime: 265757 s
+Propagation time:  123468 s
+Energy evaluation time:  128932 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73960773,    -0.00191668)   (1.75e-03   (2.66e-04))   (-0.789, 0.002) 
+
+Sweep steps: 51400
+Total walltime: 266272 s
+Propagation time:  123708 s
+Energy evaluation time:  129181 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73954621,    -0.00188053)   (1.76e-03   (2.70e-04))   (-0.789, 0.002) 
+
+Sweep steps: 51500
+Total walltime: 266791 s
+Propagation time:  123945 s
+Energy evaluation time:  129432 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73956592,    -0.00189181)   (1.75e-03   (2.72e-04))   (-0.789, 0.002) 
+
+Sweep steps: 51600
+Total walltime: 267316 s
+Propagation time:  124186 s
+Energy evaluation time:  129684 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73982675,    -0.00205086)   (1.76e-03   (2.73e-04))   (-0.790, 0.002) 
+
+Sweep steps: 51700
+Total walltime: 267835 s
+Propagation time:  124426 s
+Energy evaluation time:  129934 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73979669,    -0.00203688)   (1.76e-03   (2.73e-04))   (-0.790, 0.002) 
+
+Sweep steps: 51800
+Total walltime: 268358 s
+Propagation time:  124668 s
+Energy evaluation time:  130184 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73969013,    -0.00203415)   (1.76e-03   (2.71e-04))   (-0.790, 0.002) 
+
+Sweep steps: 51900
+Total walltime: 268877 s
+Propagation time:  124910 s
+Energy evaluation time:  130434 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73959278,    -0.00202142)   (1.75e-03   (2.71e-04))   (-0.790, 0.002) 
+
+Sweep steps: 52000
+Total walltime: 269394 s
+Propagation time:  125150 s
+Energy evaluation time:  130682 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73955899,    -0.00203262)   (1.76e-03   (2.68e-04))   (-0.790, 0.002) 
+
+Sweep steps: 52100
+Total walltime: 269916 s
+Propagation time:  125391 s
+Energy evaluation time:  130931 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73955609,    -0.00201199)   (1.75e-03   (2.67e-04))   (-0.790, 0.002) 
+
+Sweep steps: 52200
+Total walltime: 270440 s
+Propagation time:  125636 s
+Energy evaluation time:  131182 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73952694,    -0.00202630)   (1.75e-03   (2.68e-04))   (-0.790, 0.002) 
+
+Sweep steps: 52300
+Total walltime: 270956 s
+Propagation time:  125877 s
+Energy evaluation time:  131432 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73956367,    -0.00197862)   (1.75e-03   (2.70e-04))   (-0.790, 0.002) 
+
+Sweep steps: 52400
+Total walltime: 271476 s
+Propagation time:  126118 s
+Energy evaluation time:  131682 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73962745,    -0.00197347)   (1.75e-03   (2.68e-04))   (-0.790, 0.002) 
+
+Sweep steps: 52500
+Total walltime: 272004 s
+Propagation time:  126362 s
+Energy evaluation time:  131937 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73964197,    -0.00199279)   (1.76e-03   (2.69e-04))   (-0.790, 0.002) 
+
+Sweep steps: 52600
+Total walltime: 272525 s
+Propagation time:  126606 s
+Energy evaluation time:  132191 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73971636,    -0.00197776)   (1.75e-03   (2.64e-04))   (-0.790, 0.002) 
+
+Sweep steps: 52700
+Total walltime: 273042 s
+Propagation time:  126851 s
+Energy evaluation time:  132442 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73981385,    -0.00190317)   (1.75e-03   (2.65e-04))   (-0.790, 0.002) 
+
+Sweep steps: 52800
+Total walltime: 273566 s
+Propagation time:  127099 s
+Energy evaluation time:  132692 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73981433,    -0.00190865)   (1.74e-03   (2.64e-04))   (-0.790, 0.002) 
+
+Sweep steps: 52900
+Total walltime: 274080 s
+Propagation time:  127339 s
+Energy evaluation time:  132943 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73980357,    -0.00189749)   (1.75e-03   (2.62e-04))   (-0.790, 0.002) 
+
+Sweep steps: 53000
+Total walltime: 274605 s
+Propagation time:  127583 s
+Energy evaluation time:  133193 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73983299,    -0.00188814)   (1.74e-03   (2.62e-04))   (-0.790, 0.002) 
+
+Sweep steps: 53100
+Total walltime: 275125 s
+Propagation time:  127827 s
+Energy evaluation time:  133443 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73975696,    -0.00185374)   (1.74e-03   (2.59e-04))   (-0.790, 0.002) 
+
+Sweep steps: 53200
+Total walltime: 275642 s
+Propagation time:  128066 s
+Energy evaluation time:  133694 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73979957,    -0.00184046)   (1.74e-03   (2.58e-04))   (-0.790, 0.002) 
+
+Sweep steps: 53300
+Total walltime: 276168 s
+Propagation time:  128307 s
+Energy evaluation time:  133944 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73979125,    -0.00183139)   (1.74e-03   (2.57e-04))   (-0.790, 0.002) 
+
+Sweep steps: 53400
+Total walltime: 276690 s
+Propagation time:  128551 s
+Energy evaluation time:  134195 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73986093,    -0.00180877)   (1.73e-03   (2.56e-04))   (-0.790, 0.002) 
+
+Sweep steps: 53500
+Total walltime: 277209 s
+Propagation time:  128791 s
+Energy evaluation time:  134447 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73992421,    -0.00176290)   (1.72e-03   (2.47e-04))   (-0.790, 0.002) 
+
+Sweep steps: 53600
+Total walltime: 277730 s
+Propagation time:  129034 s
+Energy evaluation time:  134697 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73996611,    -0.00179464)   (1.72e-03   (2.47e-04))   (-0.790, 0.002) 
+
+Sweep steps: 53700
+Total walltime: 278253 s
+Propagation time:  129280 s
+Energy evaluation time:  134946 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73994265,    -0.00178885)   (1.71e-03   (2.47e-04))   (-0.790, 0.002) 
+
+Sweep steps: 53800
+Total walltime: 278768 s
+Propagation time:  129524 s
+Energy evaluation time:  135198 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73972341,    -0.00182762)   (1.71e-03   (2.45e-04))   (-0.790, 0.002) 
+
+Sweep steps: 53900
+Total walltime: 279286 s
+Propagation time:  129772 s
+Energy evaluation time:  135448 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73958342,    -0.00179509)   (1.71e-03   (2.45e-04))   (-0.790, 0.002) 
+
+Sweep steps: 54000
+Total walltime: 279794 s
+Propagation time:  130014 s
+Energy evaluation time:  135697 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73962679,    -0.00176546)   (1.72e-03   (2.47e-04))   (-0.790, 0.002) 
+
+Sweep steps: 54100
+Total walltime: 280315 s
+Propagation time:  130261 s
+Energy evaluation time:  135946 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73949396,    -0.00174679)   (1.71e-03   (2.45e-04))   (-0.790, 0.001) 
+
+Sweep steps: 54200
+Total walltime: 280833 s
+Propagation time:  130511 s
+Energy evaluation time:  136194 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73964865,    -0.00178053)   (1.71e-03   (2.42e-04))   (-0.790, 0.001) 
+
+Sweep steps: 54300
+Total walltime: 281347 s
+Propagation time:  130759 s
+Energy evaluation time:  136443 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73965316,    -0.00176760)   (1.71e-03   (2.42e-04))   (-0.790, 0.001) 
+
+Sweep steps: 54400
+Total walltime: 281861 s
+Propagation time:  131004 s
+Energy evaluation time:  136693 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73970987,    -0.00177437)   (1.71e-03   (2.44e-04))   (-0.790, 0.001) 
+
+Sweep steps: 54500
+Total walltime: 282379 s
+Propagation time:  131250 s
+Energy evaluation time:  136943 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73977291,    -0.00176655)   (1.70e-03   (2.45e-04))   (-0.790, 0.001) 
+
+Sweep steps: 54600
+Total walltime: 282889 s
+Propagation time:  131493 s
+Energy evaluation time:  137192 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73974722,    -0.00174859)   (1.71e-03   (2.45e-04))   (-0.790, 0.001) 
+
+Sweep steps: 54700
+Total walltime: 283407 s
+Propagation time:  131733 s
+Energy evaluation time:  137447 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73983192,    -0.00174801)   (1.71e-03   (2.52e-04))   (-0.790, 0.001) 
+
+Sweep steps: 54800
+Total walltime: 283924 s
+Propagation time:  131977 s
+Energy evaluation time:  137701 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73976493,    -0.00172190)   (1.71e-03   (2.52e-04))   (-0.790, 0.001) 
+
+Sweep steps: 54900
+Total walltime: 284434 s
+Propagation time:  132220 s
+Energy evaluation time:  137951 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73981895,    -0.00169956)   (1.71e-03   (2.52e-04))   (-0.790, 0.001) 
+
+Sweep steps: 55000
+Total walltime: 284945 s
+Propagation time:  132460 s
+Energy evaluation time:  138200 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73977042,    -0.00166151)   (1.72e-03   (2.51e-04))   (-0.790, 0.001) 
+
+Sweep steps: 55100
+Total walltime: 285466 s
+Propagation time:  132707 s
+Energy evaluation time:  138448 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73977906,    -0.00170321)   (1.72e-03   (2.52e-04))   (-0.790, 0.001) 
+
+Sweep steps: 55200
+Total walltime: 285985 s
+Propagation time:  132958 s
+Energy evaluation time:  138696 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73971150,    -0.00161443)   (1.71e-03   (2.36e-04))   (-0.790, 0.001) 
+
+Sweep steps: 55300
+Total walltime: 286496 s
+Propagation time:  133201 s
+Energy evaluation time:  138945 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73975344,    -0.00158019)   (1.70e-03   (2.36e-04))   (-0.790, 0.001) 
+
+Sweep steps: 55400
+Total walltime: 287007 s
+Propagation time:  133440 s
+Energy evaluation time:  139194 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73974456,    -0.00159242)   (1.70e-03   (2.35e-04))   (-0.790, 0.001) 
+
+Sweep steps: 55500
+Total walltime: 287524 s
+Propagation time:  133681 s
+Energy evaluation time:  139443 s
+
+          iTime                 Energy                     Energy error         Average phase
+           2.40   (-3456.73977355,    -0.00158049)   (1.70e-03   (2.36e-04))   (-0.790, 0.001) 

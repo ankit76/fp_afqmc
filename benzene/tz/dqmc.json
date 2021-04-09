@@ -1,0 +1,31 @@
+{
+  "system":
+  {
+    "integrals": "FCIDUMP_chol",
+    "numAct": 100,
+    "numCore": 0
+  },
+  "wavefunction":
+  {
+    "left": "multislater",
+    "determinants": "dets10k.bin",
+    "ciThreshold": 0.001,
+    "right": "ccsd"
+  },
+  "sampling":
+  {
+    "seed": 120832,
+    "dt": 0.07,
+    "nsteps": 33,
+    "eneSteps": [ 33 ],
+    "errorTargets": [ 1.0e-3 ],
+    "choleskyThreshold": 1.0e-2,
+    "orthoSteps": 4,
+    "ene0Guess": -231.811,
+    "stochasticIter": 100000
+  },
+  "optimizer":
+  {
+    "optimizeOrbs": false
+  }
+}

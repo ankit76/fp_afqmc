@@ -1,0 +1,1118 @@
+#INFO: **** input file is /projects/anma2640/pauxy/examples/generic/paper/cu2o2/32e/1.0/cu2o2.py ****
+import numpy
+import math, os, time, sys
+import h5py
+import scipy.sparse
+from pyscf import gto, scf, mcscf, fci, ao2mo, lib, tools, cc
+from pauxy.systems.generic import Generic
+import scipy.linalg as la
+from pauxy.utils.from_pyscf import generate_integrals
+from pyscf.shciscf import shci
+import prepVMC
+
+
+# Cu2O2^2+: bis f = 0., per f = 1.
+if len(sys.argv) == 2:
+    f = float(sys.argv[1])
+else:
+    f = 0.
+
+# bond lengths
+cu_cu = 2.8 + f * 0.8
+o_o = 2.3 - f * 0.9
+
+atomString = f'Cu {-cu_cu/2} 0. 0.; Cu {cu_cu/2} 0. 0.; O 0. {o_o/2} 0.; O 0. {-o_o/2} 0.'
+
+mol = gto.M(atom = atomString,
+    basis = {'O': gto.basis.parse('''
+O    S
+ 105374.95                   0.459000000E-04             -0.105000000E-04            0.900000000E-05             -0.109000000E-04
+  15679.240                  0.360700000E-03             -0.825000000E-04            0.705000000E-04             -0.822000000E-04
+   3534.5447                 0.191980000E-02             -0.441200000E-03            0.375700000E-03             -0.467500000E-03
+    987.36516                0.820670000E-02             -0.188640000E-02            0.161460000E-02             -0.184650000E-02
+    315.97875                0.297257000E-01             -0.695400000E-02            0.593400000E-02             -0.755850000E-02
+    111.65428                0.904558000E-01             -0.217208000E-01            0.187866000E-01             -0.210868000E-01
+     42.699451               0.217405400E+00             -0.568513000E-01            0.494683000E-01             -0.667511000E-01
+     17.395596               0.368765700E+00             -0.113963500E+00            0.103039900E+00             -0.109367300E+00
+      7.4383090              0.337279800E+00             -0.162020100E+00            0.162058600E+00             -0.273143100E+00
+      3.2228620              0.967505000E-01             -0.333800000E-01            0.936700000E-03             0.209713700E+00
+      1.2538770              0.256740000E-02             0.365506800E+00             -0.822425100E+00            0.120348070E+01
+       .49515500             0.137460000E-02             0.552003100E+00             -0.101790200E+00            -0.677469400E+00
+       .19166500             -0.141000000E-03            0.223639300E+00             0.425393900E+00             -0.142988400E+01
+       .06708300             0.683000000E-04             0.657450000E-02             0.687702800E+00             0.148910680E+01
+O    P
+    200.00000                0.893300000E-03            -0.838400000E-03            0.126180000E-02
+     46.533367               0.736900000E-02            -0.684910000E-02            0.111628000E-01
+     14.621809               0.349392000E-01            -0.328505000E-01            0.518316000E-01
+      5.3130640              0.115298500E+00            -0.110006000E+00            0.197884500E+00
+      2.1025250              0.258323100E+00            -0.313526300E+00            0.570765200E+00
+       .85022300             0.369623100E+00            -0.319601100E+00            -0.178929100E+00
+       .33759700             0.323878900E+00            0.221724300E+00             -0.898207700E+00
+       .12889200             0.146798900E+00            0.562261600E+00             0.266664300E+00
+       .04511200             0.336127000E-01            0.301325100E+00             0.625899400E+00
+O    D
+      3.7500000              0.12849340            -0.21820550
+      1.3125000              0.52118840            -0.48176950
+       .45937500             0.43457840             0.13575950
+       .16078100             0.14574090             0.82977340
+    '''),
+    'Cu': gto.basis.parse('''
+Cu    S
+     27.6963200              0.2311320              0.0000000              0.0000000              0.0000000              0.0000000              0.0000000
+     13.5053500             -0.6568110              0.0000000              0.0000000              0.0000000              0.0000000              0.0000000
+      8.8153550             -0.5458750              0.0000000              0.0000000              0.0000000              0.0000000              0.0000000
+      2.3808050              0.0000000              1.0000000              0.0000000              0.0000000              0.0000000              0.0000000
+      0.9526160              0.0000000              0.0000000              1.0000000              0.0000000              0.0000000              0.0000000
+      0.1126620              0.0000000              0.0000000              0.0000000              1.0000000              0.0000000              0.0000000
+      0.0404860              0.0000000              0.0000000              0.0000000              0.0000000              1.0000000              0.0000000
+      0.0100000              0.0000000              0.0000000              0.0000000              0.0000000              0.0000000              1.0000000
+Cu    P
+     93.5043270              0.0228290              0.0000000              0.0000000              0.0000000              0.0000000
+     16.2854640             -1.0095130              0.0000000              0.0000000              0.0000000              0.0000000
+      5.9942360              0.0000000              0.2464500              0.0000000              0.0000000              0.0000000
+      2.5368750              0.0000000              0.7920240              0.0000000              0.0000000              0.0000000
+      0.8979340              0.0000000              0.0000000              1.0000000              0.0000000              0.0000000
+      0.1317290              0.0000000              0.0000000              0.0000000              1.0000000              0.0000000
+      0.0308780              0.0000000              0.0000000              0.0000000              0.0000000              1.0000000
+Cu    D
+     41.2250060              0.0446940              0.0000000              0.0000000
+     12.3432500              0.2121060              0.0000000              0.0000000
+      4.2019200              0.4534230              0.0000000              0.0000000
+      1.3798250              0.5334650              0.0000000              0.0000000
+      0.3834530              0.0000000              1.0000000              0.0000000
+      0.1000000              0.0000000              0.0000000              1.0000000
+    ''')},
+    ecp = {'Cu': gto.basis.parse_ecp('''
+Cu nelec 10
+Cu ul
+2       1.000000000            0.000000000
+Cu S
+2      30.220000000          355.770158000
+2      13.190000000           70.865357000
+Cu P
+2      33.130000000          233.891976000
+2      13.220000000           53.947299000
+Cu D
+2      38.420000000          -31.272165000
+2      13.260000000           -2.741104000
+    ''')},
+    verbose = 4, unit = 'angstrom', symmetry = 1, spin = 0, charge = 2)
+mf = scf.RHF(mol)
+#mf.chkfile = f'cu2o2_{f}_SHCISCF.chk'
+#mf.__dict__.update(lib.chkfile.load(chkfile, 'scf'))
+#mf.init_guess = '1e'
+mf.level_shift = 0.1
+mf.scf()
+print(f'mol.nao: {mol.nao}')
+print(f'mol.elec: {mol.nelec}')
+
+norbFrozen = 10
+ncore = 10
+
+mc1 = shci.SHCISCF(mf,  mol.nao - ncore, mol.nelectron - 2*ncore)
+#chkfile = f'cu2o2_{f}_SHCISCF.chk'
+#mc1.__dict__.update(lib.chkfile.load(chkfile, 'mcscf'))
+mc1.chkfile = f'cu2o2_{f}_SHCISCF.chk'
+mc1.frozen = norbFrozen
+mc1.fcisolver.sweep_iter = [ 0 ]
+mc1.fcisolver.sweep_epsilon = [ 1e-3 ]
+mc1.fcisolver.nPTiter = 0
+mc1.max_cycle_macro = 10
+mc1.internal_rotation = True
+mc1.fcisolver.nPTiter = 0  # Turns off PT calculation, i.e. no PTRDM.
+mc1.fcisolver.mpiprefix = "mpirun -np 36"
+mc1.fcisolver.scratchDirectory = "/rc_scratch/anma2640/cu2o2/"
+mc1.mc1step()
+
+
+mc0 = mcscf.CASSCF(mf, mol.nao - ncore, mol.nelectron - 2*ncore)
+mc0.mo_coeff = mc1.mo_coeff
+nelecAct = mol.nelectron - 2*ncore
+moCore = mc0.mo_coeff[:,:ncore]
+core_dm = 2 * moCore.dot(moCore.T)
+corevhf = mc0.get_veff(mol, core_dm)
+energy_core = mol.energy_nuc()
+energy_core += numpy.einsum('ij,ji', core_dm, mc0.get_hcore())
+energy_core += numpy.einsum('ij,ji', core_dm, corevhf) * .5
+moActDice = mc0.mo_coeff[:, ncore:]
+h1eff = moActDice.T.dot(mc0.get_hcore() + corevhf).dot(moActDice)
+#h1eff = moActDice.T.dot(mc0.get_hcore()).dot(moActDice)
+eri = ao2mo.kernel(mol, moActDice)
+tools.fcidump.from_integrals('FCIDUMP_can', h1eff, eri, mol.nao - ncore, mol.nelectron - 2*ncore, energy_core)
+
+norbAct = mol.nao - norbFrozen
+nelecAct = mol.nelectron - 2*norbFrozen
+mc = mcscf.CASSCF(mf, norbAct, nelecAct)
+mc.mo_coeff = mc1.mo_coeff
+moFrozen = mc.mo_coeff[:,:norbFrozen]
+moActive = mc0.mo_coeff[:,norbFrozen:]
+core_dm = 2 * moFrozen.dot(moFrozen.T)
+corevhf = mc.get_veff(mol, core_dm)
+energy_core = mol.energy_nuc()
+energy_core += numpy.einsum('ij,ji', core_dm, mc.get_hcore())
+energy_core += numpy.einsum('ij,ji', core_dm, corevhf) * .5
+
+rhfCoeffs = numpy.eye(norbAct)
+prepVMC.writeMat(rhfCoeffs, "rhf.txt")
+h1e, chol, nelec, enuc = generate_integrals(mol, mf.get_hcore(), mc0.mo_coeff, chol_cut=1e-5, verbose=True)
+
+nbasis = h1e.shape[-1]
+rotCorevhf = moActive.T.dot(corevhf).dot(moActive)
+h1e = h1e[norbFrozen:, norbFrozen:] + rotCorevhf
+chol = chol.reshape((-1, nbasis, nbasis))
+chol = chol[:, norbFrozen:, norbFrozen:]
+mol.nelec = (mol.nelec[0]-norbFrozen, mol.nelec[1]-norbFrozen)
+enuc = energy_core
+
+# after core averaging
+nbasis = h1e.shape[-1]
+print(f'nelec: {nelec}')
+print(f'nbasis: {nbasis}')
+print(f'chol.shape: {chol.shape}')
+chol = chol.reshape((-1, nbasis, nbasis))
+v0 = 0.5 * numpy.einsum('nik,njk->ij', chol, chol, optimize='optimal')
+h1e_mod = h1e - v0
+
+chol = chol.reshape((chol.shape[0], -1))
+prepVMC.write_dqmc(h1e, h1e_mod, chol, sum(mol.nelec), nbasis, enuc, filename='FCIDUMP_chol')
+
+# ccsd
+mycc = cc.CCSD(mf)
+mycc.frozen = norbFrozen
+mycc.verbose = 5
+mycc.kernel()
+overlap = mf.get_ovlp(mol)
+rotation = (mc0.mo_coeff[:, norbFrozen:].T).dot(overlap.dot(mf.mo_coeff[:, norbFrozen:]))
+prepVMC.write_ccsd(mycc.t1, mycc.t2, rotation=rotation)
+
+et = mycc.ccsd_t()
+print('CCSD(T) energy', mycc.e_tot + et)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Linux', node='bhpc-c7-u7-12.rc.int.colorado.edu', release='3.10.0-1160.15.2.el7.x86_64', version='#1 SMP Wed Feb 3 15:06:38 UTC 2021', machine='x86_64', processor='x86_64')  Threads 36
+Python 3.8.3 (default, May 19 2020, 18:47:26) 
+[GCC 7.3.0]
+numpy 1.19.1  scipy 1.5.2
+Date: Tue Feb 23 08:52:03 2021
+PySCF version 1.7.4
+PySCF path  /projects/anma2640/pyscf/pyscf
+GIT HEAD      ref: refs/heads/master
+GIT master branch  14142ec394cbdcffb8e214fba6b1d6cde9025e9a
+
+[CONFIG] conf_file None
+[INPUT] verbose = 4
+[INPUT] num. atoms = 4
+[INPUT] num. electrons = 52
+[INPUT] charge = 2
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry 1 subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT]  1 Cu    -1.800000000000   0.000000000000   0.000000000000 AA   -3.401507024217   0.000000000000   0.000000000000 Bohr
+[INPUT]  2 Cu     1.800000000000   0.000000000000   0.000000000000 AA    3.401507024217   0.000000000000   0.000000000000 Bohr
+[INPUT]  3 O      0.000000000000   0.700000000000   0.000000000000 AA    0.000000000000   1.322808287196   0.000000000000 Bohr
+[INPUT]  4 O      0.000000000000  -0.700000000000   0.000000000000 AA    0.000000000000  -1.322808287196   0.000000000000 Bohr
+
+nuclear repulsion = 243.846197781622
+point group symmetry = D2h
+num. orbitals of irrep Ag = 28
+num. orbitals of irrep B1g = 13
+num. orbitals of irrep B2g = 10
+num. orbitals of irrep B3g = 8
+num. orbitals of irrep Au = 5
+num. orbitals of irrep B1u = 13
+num. orbitals of irrep B2u = 19
+num. orbitals of irrep B3u = 22
+number of shells = 12
+number of NR pGTOs = 240
+number of NR cGTOs = 118
+basis = {'O': [[0, [105374.95, 4.59e-05, -1.05e-05, 9e-06, -1.09e-05], [15679.24, 0.0003607, -8.25e-05, 7.05e-05, -8.22e-05], [3534.5447, 0.0019198, -0.0004412, 0.0003757, -0.0004675], [987.36516, 0.0082067, -0.0018864, 0.0016146, -0.0018465], [315.97875, 0.0297257, -0.006954, 0.005934, -0.0075585], [111.65428, 0.0904558, -0.0217208, 0.0187866, -0.0210868], [42.699451, 0.2174054, -0.0568513, 0.0494683, -0.0667511], [17.395596, 0.3687657, -0.1139635, 0.1030399, -0.1093673], [7.438309, 0.3372798, -0.1620201, 0.1620586, -0.2731431], [3.222862, 0.0967505, -0.03338, 0.0009367, 0.2097137], [1.253877, 0.0025674, 0.3655068, -0.8224251, 1.2034807], [0.495155, 0.0013746, 0.5520031, -0.1017902, -0.6774694], [0.191665, -0.000141, 0.2236393, 0.4253939, -1.429884], [0.067083, 6.83e-05, 0.0065745, 0.6877028, 1.4891068]], [1, [200.0, 0.0008933, -0.0008384, 0.0012618], [46.533367, 0.007369, -0.0068491, 0.0111628], [14.621809, 0.0349392, -0.0328505, 0.0518316], [5.313064, 0.1152985, -0.110006, 0.1978845], [2.102525, 0.2583231, -0.3135263, 0.5707652], [0.850223, 0.3696231, -0.3196011, -0.1789291], [0.337597, 0.3238789, 0.2217243, -0.8982077], [0.128892, 0.1467989, 0.5622616, 0.2666643], [0.045112, 0.0336127, 0.3013251, 0.6258994]], [2, [3.75, 0.1284934, -0.2182055], [1.3125, 0.5211884, -0.4817695], [0.459375, 0.4345784, 0.1357595], [0.160781, 0.1457409, 0.8297734]]], 'Cu': [[0, [27.69632, 0.231132, 0.0, 0.0, 0.0, 0.0, 0.0], [13.50535, -0.656811, 0.0, 0.0, 0.0, 0.0, 0.0], [8.815355, -0.545875, 0.0, 0.0, 0.0, 0.0, 0.0], [2.380805, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0], [0.952616, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], [0.112662, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0], [0.040486, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0], [0.01, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]], [1, [93.504327, 0.022829, 0.0, 0.0, 0.0, 0.0], [16.285464, -1.009513, 0.0, 0.0, 0.0, 0.0], [5.994236, 0.0, 0.24645, 0.0, 0.0, 0.0], [2.536875, 0.0, 0.792024, 0.0, 0.0, 0.0], [0.897934, 0.0, 0.0, 1.0, 0.0, 0.0], [0.131729, 0.0, 0.0, 0.0, 1.0, 0.0], [0.030878, 0.0, 0.0, 0.0, 0.0, 1.0]], [2, [41.225006, 0.044694, 0.0, 0.0], [12.34325, 0.212106, 0.0, 0.0], [4.20192, 0.453423, 0.0, 0.0], [1.379825, 0.533465, 0.0, 0.0], [0.383453, 0.0, 1.0, 0.0], [0.1, 0.0, 0.0, 1.0]]]}
+ecp = {'Cu': [10, [[-1, [[], [], [[1.0, 0.0]], [], [], [], []]], [0, [[], [], [[30.22, 355.770158], [13.19, 70.865357]], [], [], [], []]], [1, [[], [], [[33.13, 233.891976], [13.22, 53.947299]], [], [], [], []]], [2, [[], [], [[38.42, -31.272165], [13.26, -2.741104]], [], [], [], []]]]]}
+CPU time:         0.66
+
+
+******** <class 'pyscf.scf.hf_symm.SymAdaptedRHF'> ********
+method = SymAdaptedRHF-RHF
+initial guess = minao
+damping factor = 0
+level_shift factor = 0.1
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /rc_scratch/anma2640/tmp71dm7drp
+max_memory 4000 MB (current use 94 MB)
+Freeze 0 electrons in irreps []
+    52 free electrons in irreps Ag B1g B2g B3g Au B1u B2u B3u
+Set gradient conv threshold to 3.16228e-05
+init E= -475.770651147826
+HOMO (B3g) = -0.380012605119249  LUMO (B1g) = -0.365921548779602
+cycle= 1 E= -541.077022439808  delta_E= -65.3  |g|= 2.26  |ddm|= 4.07
+HOMO (B2u) = -0.889884460736836  LUMO (B1g) = -0.483128514417964
+cycle= 2 E= -541.163135379483  delta_E= -0.0861  |g|= 0.755  |ddm|= 0.794
+HOMO (B3g) = -0.915346846915228  LUMO (B1g) = -0.416693562196381
+cycle= 3 E= -541.1596376459  delta_E= 0.0035  |g|= 0.776  |ddm|= 0.607
+HOMO (B2u) = -0.916830942545474  LUMO (B1g) = -0.409703031000205
+cycle= 4 E= -541.216607953807  delta_E= -0.057  |g|= 0.0442  |ddm|= 0.305
+HOMO (B2u) = -0.924391895954211  LUMO (B1g) = -0.415426293740156
+cycle= 5 E= -541.217129150623  delta_E= -0.000521  |g|= 0.0162  |ddm|= 0.051
+HOMO (B2u) = -0.920379317392714  LUMO (B1g) = -0.410958529939172
+cycle= 6 E= -541.21727377297  delta_E= -0.000145  |g|= 0.00836  |ddm|= 0.0276
+HOMO (B2u) = -0.918510132310613  LUMO (B1g) = -0.410259410559306
+cycle= 7 E= -541.217326611212  delta_E= -5.28e-05  |g|= 0.00365  |ddm|= 0.0207
+HOMO (B2u) = -0.918004549859935  LUMO (B1g) = -0.410076185432202
+cycle= 8 E= -541.217336939866  delta_E= -1.03e-05  |g|= 0.00085  |ddm|= 0.0102
+HOMO (B2u) = -0.917839381997034  LUMO (B1g) = -0.410038501590565
+cycle= 9 E= -541.217337987463  delta_E= -1.05e-06  |g|= 0.00027  |ddm|= 0.0036
+HOMO (B2u) = -0.917788828888404  LUMO (B1g) = -0.410033683111327
+cycle= 10 E= -541.21733806437  delta_E= -7.69e-08  |g|= 7.1e-05  |ddm|= 0.00103
+HOMO (B2u) = -0.917785400125887  LUMO (B1g) = -0.410029995762849
+cycle= 11 E= -541.217338071481  delta_E= -7.11e-09  |g|= 2.14e-05  |ddm|= 0.00034
+HOMO (B2u) = -0.917786034698783  LUMO (B1g) = -0.410029307424151
+cycle= 12 E= -541.217338072036  delta_E= -5.55e-10  |g|= 7.08e-06  |ddm|= 9.2e-05
+HOMO (B2u) = -0.917786507056895  LUMO (B1g) = -0.510029352992072
+Extra cycle  E= -541.217338072078  delta_E= -4.21e-11  |g|= 3.83e-06  |ddm|= 1.37e-05
+converged SCF energy = -541.217338072078
+mol.nao: 118
+mol.elec: (26, 26)
+
+******** <class 'pyscf.mcscf.mc1step_symm.SymAdaptedCASSCF'> ********
+CAS (16e+16e, 108o), ncore = 10, nvir = 0
+frozen orbitals 10
+max_cycle_macro = 10
+max_cycle_micro = 4
+conv_tol = 1e-07
+conv_tol_grad = None
+orbital rotation max_stepsize = 0.02
+augmented hessian ah_max_cycle = 30
+augmented hessian ah_conv_tol = 1e-12
+augmented hessian ah_linear dependence = 1e-14
+augmented hessian ah_level shift = 0
+augmented hessian ah_start_tol = 2.5
+augmented hessian ah_start_cycle = 3
+augmented hessian ah_grad_trust_region = 3
+kf_trust_region = 3
+kf_interval = 4
+ci_response_space = 4
+ci_grad_trust_region = 3
+with_dep4 0
+natorb = False
+canonicalization = True
+sorting_mo_energy = False
+ao2mo_level = 2
+chkfile = cu2o2_1.0_SHCISCF.chk
+max_memory 4000 MB (current use 314 MB)
+internal_rotation = True
+
+******** SHCI flags ********
+executable             = /projects/anma2640/newDice/Dice/Dice
+mpiprefix              = mpirun -np 36
+scratchDirectory       = /rc_scratch/anma2640/cu2o2/
+integralFile           = ./FCIDUMP
+configFile             = ./input.dat
+outputFile             = ./output.dat
+maxIter                = 6
+sweep_iter             = [    0]
+sweep_epsilon          = [0.001]
+nPTiter                = 0
+Stochastic             = True
+restart                = False
+fullrestart            = False
+num_thrds              = 1
+memory                 = None
+
+Active space CI wfn symmetry = Ag
+CASCI E = -541.939648632759  S^2 = 0.0000000
+Set conv_tol_grad to 0.000316228
+macro iter 1 (14 JK  4 micro), CASSCF E = -541.958651726371  dE = -0.019003094  S^2 = 0.0000000
+               |grad[o]|=0.104  |grad[c]|= None  |ddm|=0.116
+macro iter 2 (14 JK  4 micro), CASSCF E = -541.967768918899  dE = -0.0091171925  S^2 = 0.0000000
+               |grad[o]|=0.0305  |grad[c]|= None  |ddm|=0.0631
+macro iter 3 (16 JK  4 micro), CASSCF E = -541.975749359852  dE = -0.007980441  S^2 = 0.0000000
+               |grad[o]|=0.0291  |grad[c]|= None  |ddm|=0.0343
+macro iter 4 (19 JK  4 micro), CASSCF E = -541.981780251108  dE = -0.0060308913  S^2 = 0.0000000
+               |grad[o]|=0.0229  |grad[c]|= None  |ddm|=0.0191
+macro iter 5 (19 JK  4 micro), CASSCF E = -541.98631211643  dE = -0.0045318653  S^2 = 0.0000000
+               |grad[o]|=0.0179  |grad[c]|= None  |ddm|=0.0133
+macro iter 6 (16 JK  4 micro), CASSCF E = -541.990123653654  dE = -0.0038115372  S^2 = 0.0000000
+               |grad[o]|=0.0189  |grad[c]|= None  |ddm|=0.0125
+macro iter 7 (16 JK  4 micro), CASSCF E = -541.993428651286  dE = -0.0033049976  S^2 = 0.0000000
+               |grad[o]|=0.0146  |grad[c]|= None  |ddm|=0.0115
+macro iter 8 (16 JK  4 micro), CASSCF E = -541.99710637818  dE = -0.0036777269  S^2 = 0.0000000
+               |grad[o]|=0.0174  |grad[c]|= None  |ddm|=0.0116
+macro iter 9 (16 JK  4 micro), CASSCF E = -542.000127189755  dE = -0.0030208116  S^2 = 0.0000000
+               |grad[o]|=0.014  |grad[c]|= None  |ddm|=0.0128
+macro iter 10 (18 JK  4 micro), CASSCF E = -542.002694987874  dE = -0.0025677981  S^2 = 0.0000000
+               |grad[o]|=0.014  |grad[c]|= None  |ddm|=0.0106
+1-step CASSCF not converged, 10 macro (164 JK 40 micro) steps
+CASSCF canonicalization
+Density matrix diagonal elements [1.98876701e+00 1.98338499e+00 1.98172025e+00 1.94776478e+00
+ 1.93322527e+00 1.98946742e+00 1.98952366e+00 1.98972943e+00
+ 1.98958838e+00 1.98917632e+00 1.98915034e+00 1.94462301e+00
+ 1.98941918e+00 1.98962556e+00 1.97441237e+00 1.83340476e+00
+ 2.28053964e-01 7.05309720e-03 6.13321154e-05 1.27512867e-03
+ 1.93208763e-07 0.00000000e+00 0.00000000e+00 5.70973850e-08
+ 6.28941240e-02 0.00000000e+00 0.00000000e+00 5.27525740e-07
+ 8.11885102e-06 9.86137925e-05 8.69755399e-05 6.53409781e-08
+ 5.88749607e-05 5.36500682e-07 5.73232307e-05 7.32784846e-04
+ 2.83855364e-05 7.55541568e-05 7.28686469e-05 6.56105382e-04
+ 1.07763325e-05 3.08394149e-04 5.33292360e-05 9.99034589e-05
+ 5.23703143e-05 2.73287855e-05 4.12599788e-04 5.82134394e-04
+ 2.83942055e-04 1.44534946e-02 4.32832083e-05 3.32818255e-03
+ 2.60400858e-03 1.53207135e-04 3.17852313e-03 8.59037107e-04
+ 3.11751336e-03 2.69257633e-03 9.55430697e-03 1.01677663e-02
+ 9.20884703e-03 8.78414062e-03 9.19687949e-03 9.56920631e-03
+ 2.69976751e-03 1.42831180e-04 9.56390983e-03 7.17665267e-03
+ 4.65337610e-03 3.07198680e-03 9.02743156e-03 5.16465157e-04
+ 1.51450089e-03 3.41754055e-04 1.47150495e-02 3.44568165e-03
+ 9.24843641e-03 2.65039231e-03 5.30703289e-03 1.02557462e-03
+ 1.45291912e-03 1.46379611e-03 1.42114797e-03 2.96562204e-03
+ 1.68976425e-03 1.11491751e-03 1.09543378e-03 9.36129168e-04
+ 2.18008203e-03 4.30390797e-04 3.03041222e-03 7.85795296e-04
+ 2.43908579e-03 1.51712118e-03 2.44180211e-03 1.79264335e-03
+ 8.92451095e-04 1.91498050e-03 1.64024755e-03 7.44533263e-04
+ 1.81838109e-06 1.75987852e-06 1.72163949e-06 1.62807644e-06
+ 1.74208488e-06 1.66923271e-06 1.72036921e-07 1.81309224e-07]
+CASSCF energy = -542.002694987874
+CASCI E = -542.002694987874  E(CI) = -236.294430337919  S^2 = 0.0000000
+ # Transforming hcore and eri to ortho AO basis.
+ # Performing modified Cholesky decomposition on ERI tensor.
+# Generating Cholesky decomposition of ERIs.
+# max number of cholesky vectors = 1180
+# iteration     0: delta_max = 4.741419
+# iteration     1: delta_max = 4.71128597e+00: time = 7.99819903e-03
+# iteration     2: delta_max = 3.66535023e+00: time = 9.22579900e-03
+# iteration     3: delta_max = 3.66157494e+00: time = 9.42163204e-03
+# iteration     4: delta_max = 8.57981058e-01: time = 9.00409999e-03
+# iteration     5: delta_max = 8.57977145e-01: time = 9.01836803e-03
+# iteration     6: delta_max = 7.78504779e-01: time = 5.58317400e-03
+# iteration     7: delta_max = 7.78504772e-01: time = 5.53978601e-03
+# iteration     8: delta_max = 7.78497076e-01: time = 5.55488700e-03
+# iteration     9: delta_max = 7.78497071e-01: time = 5.55868004e-03
+# iteration    10: delta_max = 7.78459636e-01: time = 5.61435503e-03
+# iteration    11: delta_max = 7.78459623e-01: time = 5.59130899e-03
+# iteration    12: delta_max = 6.71114658e-01: time = 8.99405597e-03
+# iteration    13: delta_max = 6.71114237e-01: time = 9.56472097e-03
+# iteration    14: delta_max = 5.60174882e-01: time = 9.04052699e-03
+# iteration    15: delta_max = 5.59101703e-01: time = 9.04261199e-03
+# iteration    16: delta_max = 4.85574069e-01: time = 1.97321760e-02
+# iteration    17: delta_max = 4.35882446e-01: time = 1.30263230e-02
+# iteration    18: delta_max = 2.91377445e-01: time = 9.52978799e-03
+# iteration    19: delta_max = 2.91314212e-01: time = 9.67052899e-03
+# iteration    20: delta_max = 2.28792063e-01: time = 9.10191803e-03
+# iteration    21: delta_max = 2.28792063e-01: time = 9.15787305e-03
+# iteration    22: delta_max = 2.28792063e-01: time = 9.06649197e-03
+# iteration    23: delta_max = 2.28792063e-01: time = 9.10893100e-03
+# iteration    24: delta_max = 2.28791724e-01: time = 9.05471802e-03
+# iteration    25: delta_max = 2.28791724e-01: time = 9.09393100e-03
+# iteration    26: delta_max = 2.20488172e-01: time = 9.06527200e-03
+# iteration    27: delta_max = 2.20488169e-01: time = 9.13520198e-03
+# iteration    28: delta_max = 2.04369201e-01: time = 1.27418890e-02
+# iteration    29: delta_max = 2.04368954e-01: time = 1.27875200e-02
+# iteration    30: delta_max = 1.82906942e-01: time = 5.68174402e-03
+# iteration    31: delta_max = 1.82906939e-01: time = 5.73493500e-03
+# iteration    32: delta_max = 1.82557965e-01: time = 5.67080302e-03
+# iteration    33: delta_max = 1.82557923e-01: time = 5.85793500e-03
+# iteration    34: delta_max = 1.66004138e-01: time = 2.01219270e-02
+# iteration    35: delta_max = 1.65850790e-01: time = 2.04753270e-02
+# iteration    36: delta_max = 1.55325338e-01: time = 1.67945130e-02
+# iteration    37: delta_max = 1.52381628e-01: time = 9.72626999e-03
+# iteration    38: delta_max = 1.46184154e-01: time = 9.15743300e-03
+# iteration    39: delta_max = 1.44339646e-01: time = 1.07430860e-02
+# iteration    40: delta_max = 1.43726204e-01: time = 9.13909200e-03
+# iteration    41: delta_max = 1.43021749e-01: time = 9.23422904e-03
+# iteration    42: delta_max = 1.35163849e-01: time = 1.29646900e-02
+# iteration    43: delta_max = 1.31228758e-01: time = 9.18297400e-03
+# iteration    44: delta_max = 1.22291187e-01: time = 9.44684300e-03
+# iteration    45: delta_max = 1.22291185e-01: time = 9.78292496e-03
+# iteration    46: delta_max = 1.15904807e-01: time = 1.33679670e-02
+# iteration    47: delta_max = 1.15904806e-01: time = 1.38450850e-02
+# iteration    48: delta_max = 1.00210321e-01: time = 1.38680600e-02
+# iteration    49: delta_max = 9.11189112e-02: time = 1.28353830e-02
+# iteration    50: delta_max = 9.11189112e-02: time = 1.28912410e-02
+# iteration    51: delta_max = 9.01215107e-02: time = 7.41906604e-03
+# iteration    52: delta_max = 9.01215107e-02: time = 7.36518303e-03
+# iteration    53: delta_max = 9.00894832e-02: time = 7.32109504e-03
+# iteration    54: delta_max = 9.00894814e-02: time = 7.35543401e-03
+# iteration    55: delta_max = 8.99330192e-02: time = 7.36702402e-03
+# iteration    56: delta_max = 8.99330191e-02: time = 7.35130301e-03
+# iteration    57: delta_max = 8.76685928e-02: time = 2.02448860e-02
+# iteration    58: delta_max = 8.31614594e-02: time = 2.08400920e-02
+# iteration    59: delta_max = 6.85529422e-02: time = 9.37421399e-03
+# iteration    60: delta_max = 6.85529419e-02: time = 9.40492703e-03
+# iteration    61: delta_max = 6.63140721e-02: time = 1.49383140e-02
+# iteration    62: delta_max = 6.61016127e-02: time = 9.94788698e-03
+# iteration    63: delta_max = 6.61015404e-02: time = 9.88372299e-03
+# iteration    64: delta_max = 6.60732325e-02: time = 8.24958197e-03
+# iteration    65: delta_max = 6.49717244e-02: time = 8.20488902e-03
+# iteration    66: delta_max = 6.39231803e-02: time = 8.28539900e-03
+# iteration    67: delta_max = 6.28865153e-02: time = 8.17753101e-03
+# iteration    68: delta_max = 6.21671626e-02: time = 8.13621795e-03
+# iteration    69: delta_max = 6.00314447e-02: time = 8.11862998e-03
+# iteration    70: delta_max = 5.96630667e-02: time = 1.62965430e-02
+# iteration    71: delta_max = 5.96128245e-02: time = 1.37119170e-02
+# iteration    72: delta_max = 5.52009665e-02: time = 5.97883598e-03
+# iteration    73: delta_max = 5.51322299e-02: time = 5.94297302e-03
+# iteration    74: delta_max = 5.42096329e-02: time = 1.06911710e-02
+# iteration    75: delta_max = 5.17851513e-02: time = 1.35979140e-02
+# iteration    76: delta_max = 5.17851513e-02: time = 1.35487180e-02
+# iteration    77: delta_max = 5.14904157e-02: time = 1.31045820e-02
+# iteration    78: delta_max = 5.14904155e-02: time = 1.32208620e-02
+# iteration    79: delta_max = 5.11662999e-02: time = 2.10575200e-02
+# iteration    80: delta_max = 5.07284190e-02: time = 1.35695360e-02
+# iteration    81: delta_max = 4.96239031e-02: time = 1.35106470e-02
+# iteration    82: delta_max = 4.96239005e-02: time = 1.75402430e-02
+# iteration    83: delta_max = 4.92124660e-02: time = 1.32735390e-02
+# iteration    84: delta_max = 4.92124652e-02: time = 1.49643280e-02
+# iteration    85: delta_max = 4.84852841e-02: time = 2.08558920e-02
+# iteration    86: delta_max = 4.84850930e-02: time = 2.06740240e-02
+# iteration    87: delta_max = 4.34384137e-02: time = 2.10337640e-02
+# iteration    88: delta_max = 4.34383982e-02: time = 2.06715040e-02
+# iteration    89: delta_max = 4.24991094e-02: time = 1.45305620e-02
+# iteration    90: delta_max = 4.24944841e-02: time = 9.96561098e-03
+# iteration    91: delta_max = 4.21264001e-02: time = 1.27650820e-02
+# iteration    92: delta_max = 4.21239898e-02: time = 9.51041898e-03
+# iteration    93: delta_max = 4.19280193e-02: time = 6.23520103e-03
+# iteration    94: delta_max = 4.19271631e-02: time = 6.53905905e-03
+# iteration    95: delta_max = 4.17857461e-02: time = 9.45036398e-03
+# iteration    96: delta_max = 4.17470683e-02: time = 9.53980302e-03
+# iteration    97: delta_max = 3.76597791e-02: time = 2.09913370e-02
+# iteration    98: delta_max = 3.76486918e-02: time = 2.39771280e-02
+# iteration    99: delta_max = 3.47342165e-02: time = 2.08958390e-02
+# iteration   100: delta_max = 3.47297101e-02: time = 2.09445900e-02
+# iteration   101: delta_max = 3.37604030e-02: time = 1.39098870e-02
+# iteration   102: delta_max = 3.31697219e-02: time = 8.00278300e-03
+# iteration   103: delta_max = 3.31669113e-02: time = 8.31011700e-03
+# iteration   104: delta_max = 3.19587104e-02: time = 1.32586470e-02
+# iteration   105: delta_max = 3.19585304e-02: time = 1.37463020e-02
+# iteration   106: delta_max = 3.16113697e-02: time = 1.91301910e-02
+# iteration   107: delta_max = 3.13342898e-02: time = 8.13842897e-03
+# iteration   108: delta_max = 3.13216762e-02: time = 8.38795304e-03
+# iteration   109: delta_max = 3.11554771e-02: time = 1.38851860e-02
+# iteration   110: delta_max = 3.11554771e-02: time = 1.39389010e-02
+# iteration   111: delta_max = 3.02249571e-02: time = 1.69403370e-02
+# iteration   112: delta_max = 2.98606136e-02: time = 1.20965580e-02
+# iteration   113: delta_max = 2.97742354e-02: time = 2.10101240e-02
+# iteration   114: delta_max = 2.97742354e-02: time = 2.14203020e-02
+# iteration   115: delta_max = 2.94176968e-02: time = 2.10048900e-02
+# iteration   116: delta_max = 2.94176967e-02: time = 2.08869500e-02
+# iteration   117: delta_max = 2.93281685e-02: time = 2.08007700e-02
+# iteration   118: delta_max = 2.93281679e-02: time = 2.09195160e-02
+# iteration   119: delta_max = 2.88842035e-02: time = 1.37070720e-02
+# iteration   120: delta_max = 2.88132405e-02: time = 1.34769200e-02
+# iteration   121: delta_max = 2.87412681e-02: time = 1.34475720e-02
+# iteration   122: delta_max = 2.87368818e-02: time = 1.34643330e-02
+# iteration   123: delta_max = 2.85417121e-02: time = 2.08105660e-02
+# iteration   124: delta_max = 2.85417110e-02: time = 2.10491190e-02
+# iteration   125: delta_max = 2.74625544e-02: time = 1.96937610e-02
+# iteration   126: delta_max = 2.72924578e-02: time = 1.23226280e-02
+# iteration   127: delta_max = 2.72659336e-02: time = 1.13640480e-02
+# iteration   128: delta_max = 2.56306241e-02: time = 8.16410303e-03
+# iteration   129: delta_max = 2.53603378e-02: time = 9.98482201e-03
+# iteration   130: delta_max = 2.53529640e-02: time = 7.90869200e-03
+# iteration   131: delta_max = 2.52678233e-02: time = 2.08706270e-02
+# iteration   132: delta_max = 2.52678233e-02: time = 2.14427700e-02
+# iteration   133: delta_max = 2.52672583e-02: time = 2.09304660e-02
+# iteration   134: delta_max = 2.52672583e-02: time = 2.09566860e-02
+# iteration   135: delta_max = 2.51872515e-02: time = 9.94578999e-03
+# iteration   136: delta_max = 2.41706717e-02: time = 1.78389630e-02
+# iteration   137: delta_max = 2.36970323e-02: time = 1.20812050e-02
+# iteration   138: delta_max = 2.33780463e-02: time = 1.22869220e-02
+# iteration   139: delta_max = 2.33760444e-02: time = 1.19914640e-02
+# iteration   140: delta_max = 2.32311714e-02: time = 1.17641260e-02
+# iteration   141: delta_max = 2.23535894e-02: time = 5.15291002e-03
+# iteration   142: delta_max = 2.23535894e-02: time = 5.16703498e-03
+# iteration   143: delta_max = 2.17927612e-02: time = 1.17783380e-02
+# iteration   144: delta_max = 2.17685332e-02: time = 1.17592450e-02
+# iteration   145: delta_max = 2.14261155e-02: time = 6.27199304e-03
+# iteration   146: delta_max = 2.14259808e-02: time = 6.21476199e-03
+# iteration   147: delta_max = 2.13182313e-02: time = 1.18600440e-02
+# iteration   148: delta_max = 2.11976905e-02: time = 1.17919010e-02
+# iteration   149: delta_max = 2.11475937e-02: time = 2.15372520e-02
+# iteration   150: delta_max = 2.11327730e-02: time = 2.15522900e-02
+# iteration   151: delta_max = 2.05326933e-02: time = 1.77746530e-02
+# iteration   152: delta_max = 2.05141143e-02: time = 1.27604030e-02
+# iteration   153: delta_max = 2.02564123e-02: time = 1.20495850e-02
+# iteration   154: delta_max = 1.87049308e-02: time = 1.19190160e-02
+# iteration   155: delta_max = 1.85950984e-02: time = 1.40629730e-02
+# iteration   156: delta_max = 1.85894631e-02: time = 1.42473630e-02
+# iteration   157: delta_max = 1.84131732e-02: time = 1.02584630e-02
+# iteration   158: delta_max = 1.82009955e-02: time = 1.37806980e-02
+# iteration   159: delta_max = 1.81228584e-02: time = 1.65521410e-02
+# iteration   160: delta_max = 1.80381694e-02: time = 1.42229440e-02
+# iteration   161: delta_max = 1.77689980e-02: time = 1.42710030e-02
+# iteration   162: delta_max = 1.77689977e-02: time = 1.39895630e-02
+# iteration   163: delta_max = 1.74460590e-02: time = 1.14608600e-02
+# iteration   164: delta_max = 1.71774053e-02: time = 1.14252990e-02
+# iteration   165: delta_max = 1.69585668e-02: time = 2.09957690e-02
+# iteration   166: delta_max = 1.69585668e-02: time = 2.12122710e-02
+# iteration   167: delta_max = 1.69474928e-02: time = 1.38870770e-02
+# iteration   168: delta_max = 1.69474925e-02: time = 1.37803000e-02
+# iteration   169: delta_max = 1.62240444e-02: time = 1.38510390e-02
+# iteration   170: delta_max = 1.62240444e-02: time = 1.37911410e-02
+# iteration   171: delta_max = 1.61107269e-02: time = 1.02172770e-02
+# iteration   172: delta_max = 1.60519925e-02: time = 1.21792220e-02
+# iteration   173: delta_max = 1.59897012e-02: time = 1.14126180e-02
+# iteration   174: delta_max = 1.55306461e-02: time = 1.38786660e-02
+# iteration   175: delta_max = 1.55306449e-02: time = 1.38822400e-02
+# iteration   176: delta_max = 1.54136155e-02: time = 1.15385400e-02
+# iteration   177: delta_max = 1.54030631e-02: time = 1.38411830e-02
+# iteration   178: delta_max = 1.54030586e-02: time = 1.39475880e-02
+# iteration   179: delta_max = 1.52657424e-02: time = 1.16028530e-02
+# iteration   180: delta_max = 1.51156723e-02: time = 1.38399170e-02
+# iteration   181: delta_max = 1.50892203e-02: time = 1.39240100e-02
+# iteration   182: delta_max = 1.50226091e-02: time = 1.15333790e-02
+# iteration   183: delta_max = 1.49122161e-02: time = 2.13020260e-02
+# iteration   184: delta_max = 1.49122161e-02: time = 2.12354350e-02
+# iteration   185: delta_max = 1.49106110e-02: time = 2.93004930e-02
+# iteration   186: delta_max = 1.49106110e-02: time = 2.16729620e-02
+# iteration   187: delta_max = 1.42251313e-02: time = 1.17061680e-02
+# iteration   188: delta_max = 1.42142905e-02: time = 1.17096070e-02
+# iteration   189: delta_max = 1.40986223e-02: time = 1.22798790e-02
+# iteration   190: delta_max = 1.39957245e-02: time = 1.40326550e-02
+# iteration   191: delta_max = 1.39877796e-02: time = 1.40649501e-02
+# iteration   192: delta_max = 1.39295756e-02: time = 2.13973350e-02
+# iteration   193: delta_max = 1.39179554e-02: time = 2.14998520e-02
+# iteration   194: delta_max = 1.39009871e-02: time = 1.18349670e-02
+# iteration   195: delta_max = 1.36957569e-02: time = 1.16676120e-02
+# iteration   196: delta_max = 1.36789684e-02: time = 1.23236920e-02
+# iteration   197: delta_max = 1.36713687e-02: time = 2.14567210e-02
+# iteration   198: delta_max = 1.36442095e-02: time = 2.14945400e-02
+# iteration   199: delta_max = 1.35527000e-02: time = 1.24913700e-02
+# iteration   200: delta_max = 1.29790318e-02: time = 1.40580290e-02
+# iteration   201: delta_max = 1.29790316e-02: time = 1.40697170e-02
+# iteration   202: delta_max = 1.25321608e-02: time = 1.41490930e-02
+# iteration   203: delta_max = 1.25276314e-02: time = 1.41485150e-02
+# iteration   204: delta_max = 1.24142913e-02: time = 2.12695960e-02
+# iteration   205: delta_max = 1.23179656e-02: time = 2.20677540e-02
+# iteration   206: delta_max = 1.23147796e-02: time = 2.18027730e-02
+# iteration   207: delta_max = 1.21710580e-02: time = 1.18096310e-02
+# iteration   208: delta_max = 1.19557774e-02: time = 1.25618520e-02
+# iteration   209: delta_max = 1.19501107e-02: time = 1.43529400e-02
+# iteration   210: delta_max = 1.18413136e-02: time = 2.16376380e-02
+# iteration   211: delta_max = 1.18410005e-02: time = 2.19094190e-02
+# iteration   212: delta_max = 1.17640102e-02: time = 1.41994370e-02
+# iteration   213: delta_max = 1.17640102e-02: time = 1.42251570e-02
+# iteration   214: delta_max = 1.15143162e-02: time = 1.05860660e-02
+# iteration   215: delta_max = 1.15121607e-02: time = 1.05808980e-02
+# iteration   216: delta_max = 1.11040379e-02: time = 8.55261699e-03
+# iteration   217: delta_max = 1.11039322e-02: time = 8.51283100e-03
+# iteration   218: delta_max = 1.09784211e-02: time = 2.17429050e-02
+# iteration   219: delta_max = 1.09739998e-02: time = 2.20383560e-02
+# iteration   220: delta_max = 1.09438438e-02: time = 1.70726250e-02
+# iteration   221: delta_max = 1.08738894e-02: time = 1.21610551e-02
+# iteration   222: delta_max = 1.04970204e-02: time = 2.20633580e-02
+# iteration   223: delta_max = 1.04260883e-02: time = 2.24844000e-02
+# iteration   224: delta_max = 1.02775659e-02: time = 1.98132320e-02
+# iteration   225: delta_max = 1.02774875e-02: time = 7.49818201e-03
+# iteration   226: delta_max = 1.02237234e-02: time = 1.44214230e-02
+# iteration   227: delta_max = 1.02122896e-02: time = 1.44058460e-02
+# iteration   228: delta_max = 1.00184057e-02: time = 1.47291360e-02
+# iteration   229: delta_max = 9.99488563e-03: time = 2.21691700e-02
+# iteration   230: delta_max = 9.99339680e-03: time = 2.23820880e-02
+# iteration   231: delta_max = 9.75591654e-03: time = 1.28206750e-02
+# iteration   232: delta_max = 9.69528793e-03: time = 1.46497550e-02
+# iteration   233: delta_max = 9.60267243e-03: time = 1.18988590e-02
+# iteration   234: delta_max = 9.51224412e-03: time = 1.44268700e-02
+# iteration   235: delta_max = 9.45889111e-03: time = 1.25988571e-02
+# iteration   236: delta_max = 9.33595485e-03: time = 1.43912290e-02
+# iteration   237: delta_max = 9.22222779e-03: time = 1.19694490e-02
+# iteration   238: delta_max = 9.20266489e-03: time = 1.45192550e-02
+# iteration   239: delta_max = 9.19782002e-03: time = 1.47453210e-02
+# iteration   240: delta_max = 8.75915023e-03: time = 8.09340802e-03
+# iteration   241: delta_max = 8.66356739e-03: time = 1.19861470e-02
+# iteration   242: delta_max = 8.51547190e-03: time = 1.47193390e-02
+# iteration   243: delta_max = 8.51547190e-03: time = 1.47246700e-02
+# iteration   244: delta_max = 8.32144384e-03: time = 1.28193750e-02
+# iteration   245: delta_max = 8.00840555e-03: time = 1.20307490e-02
+# iteration   246: delta_max = 8.00116228e-03: time = 1.26931100e-02
+# iteration   247: delta_max = 7.83317056e-03: time = 1.19594740e-02
+# iteration   248: delta_max = 7.83296060e-03: time = 1.29109280e-02
+# iteration   249: delta_max = 7.76288971e-03: time = 1.19334540e-02
+# iteration   250: delta_max = 7.73880286e-03: time = 1.45680170e-02
+# iteration   251: delta_max = 7.69901782e-03: time = 1.48489550e-02
+# iteration   252: delta_max = 7.66583059e-03: time = 1.77850410e-02
+# iteration   253: delta_max = 7.46879411e-03: time = 2.24502120e-02
+# iteration   254: delta_max = 7.46744617e-03: time = 2.22945030e-02
+# iteration   255: delta_max = 7.43923562e-03: time = 1.46448610e-02
+# iteration   256: delta_max = 7.43923010e-03: time = 1.45957700e-02
+# iteration   257: delta_max = 7.21883649e-03: time = 1.09325970e-02
+# iteration   258: delta_max = 7.21866160e-03: time = 1.29009690e-02
+# iteration   259: delta_max = 7.19600315e-03: time = 1.08843550e-02
+# iteration   260: delta_max = 7.19420307e-03: time = 1.09026960e-02
+# iteration   261: delta_max = 7.03571297e-03: time = 1.09036510e-02
+# iteration   262: delta_max = 7.03504091e-03: time = 1.09076430e-02
+# iteration   263: delta_max = 6.90226250e-03: time = 1.95715790e-02
+# iteration   264: delta_max = 6.81859382e-03: time = 2.21604320e-02
+# iteration   265: delta_max = 6.81752505e-03: time = 2.24550410e-02
+# iteration   266: delta_max = 6.80701147e-03: time = 1.22939080e-02
+# iteration   267: delta_max = 6.80564401e-03: time = 1.10032450e-02
+# iteration   268: delta_max = 6.80560662e-03: time = 1.12776170e-02
+# iteration   269: delta_max = 6.67803919e-03: time = 1.47299340e-02
+# iteration   270: delta_max = 6.67802680e-03: time = 1.79378300e-02
+# iteration   271: delta_max = 6.67591348e-03: time = 1.13024520e-02
+# iteration   272: delta_max = 6.45882683e-03: time = 1.49613910e-02
+# iteration   273: delta_max = 6.45876699e-03: time = 1.48635910e-02
+# iteration   274: delta_max = 6.41380727e-03: time = 2.24375280e-02
+# iteration   275: delta_max = 6.41117226e-03: time = 2.20184310e-02
+# iteration   276: delta_max = 6.37617288e-03: time = 1.23878820e-02
+# iteration   277: delta_max = 6.33704629e-03: time = 1.29790620e-02
+# iteration   278: delta_max = 6.28374420e-03: time = 1.47645980e-02
+# iteration   279: delta_max = 6.27363971e-03: time = 1.48741310e-02
+# iteration   280: delta_max = 6.27264506e-03: time = 1.11008669e-02
+# iteration   281: delta_max = 6.27264499e-03: time = 1.11498240e-02
+# iteration   282: delta_max = 6.12328626e-03: time = 9.17722698e-03
+# iteration   283: delta_max = 6.10940166e-03: time = 9.12999501e-03
+# iteration   284: delta_max = 5.72338094e-03: time = 1.29365970e-02
+# iteration   285: delta_max = 5.72296397e-03: time = 1.29543360e-02
+# iteration   286: delta_max = 5.54310172e-03: time = 1.48070010e-02
+# iteration   287: delta_max = 5.53622855e-03: time = 1.50356810e-02
+# iteration   288: delta_max = 5.49243450e-03: time = 1.56775160e-02
+# iteration   289: delta_max = 5.35213448e-03: time = 1.32915750e-02
+# iteration   290: delta_max = 5.27747922e-03: time = 1.17546670e-02
+# iteration   291: delta_max = 5.27747816e-03: time = 1.18309610e-02
+# iteration   292: delta_max = 5.16204587e-03: time = 2.22713960e-02
+# iteration   293: delta_max = 5.05104629e-03: time = 1.49414760e-02
+# iteration   294: delta_max = 5.05095761e-03: time = 1.49117870e-02
+# iteration   295: delta_max = 5.03747237e-03: time = 2.21752340e-02
+# iteration   296: delta_max = 4.89151288e-03: time = 1.52967320e-02
+# iteration   297: delta_max = 4.88930435e-03: time = 1.83985390e-02
+# iteration   298: delta_max = 4.86883734e-03: time = 1.32325700e-02
+# iteration   299: delta_max = 4.85486813e-03: time = 1.31400360e-02
+# iteration   300: delta_max = 4.85427268e-03: time = 1.31349360e-02
+# iteration   301: delta_max = 4.82652941e-03: time = 1.12204630e-02
+# iteration   302: delta_max = 4.82652604e-03: time = 1.12081170e-02
+# iteration   303: delta_max = 4.80042269e-03: time = 1.24942580e-02
+# iteration   304: delta_max = 4.66159902e-03: time = 2.23133930e-02
+# iteration   305: delta_max = 4.64519407e-03: time = 2.13845850e-02
+# iteration   306: delta_max = 4.64461731e-03: time = 2.28579900e-02
+# iteration   307: delta_max = 4.50112185e-03: time = 1.29348240e-02
+# iteration   308: delta_max = 4.48931557e-03: time = 1.32589440e-02
+# iteration   309: delta_max = 4.46977809e-03: time = 1.24417960e-02
+# iteration   310: delta_max = 4.41615773e-03: time = 1.24615520e-02
+# iteration   311: delta_max = 4.26597351e-03: time = 1.31599000e-02
+# iteration   312: delta_max = 4.12546159e-03: time = 1.25089100e-02
+# iteration   313: delta_max = 4.07658905e-03: time = 1.31804870e-02
+# iteration   314: delta_max = 4.04199157e-03: time = 1.50035610e-02
+# iteration   315: delta_max = 4.01776085e-03: time = 1.54385590e-02
+# iteration   316: delta_max = 4.01771133e-03: time = 1.50250310e-02
+# iteration   317: delta_max = 3.95174730e-03: time = 1.50710430e-02
+# iteration   318: delta_max = 3.81995679e-03: time = 1.50315450e-02
+# iteration   319: delta_max = 3.81536654e-03: time = 1.50972480e-02
+# iteration   320: delta_max = 3.60704525e-03: time = 1.26287080e-02
+# iteration   321: delta_max = 3.56901473e-03: time = 1.50691480e-02
+# iteration   322: delta_max = 3.56791070e-03: time = 1.51797680e-02
+# iteration   323: delta_max = 3.51880222e-03: time = 1.26604350e-02
+# iteration   324: delta_max = 3.48409400e-03: time = 1.25312740e-02
+# iteration   325: delta_max = 3.48402317e-03: time = 2.24351720e-02
+# iteration   326: delta_max = 3.48382664e-03: time = 2.28433530e-02
+# iteration   327: delta_max = 3.46413332e-03: time = 1.80627630e-02
+# iteration   328: delta_max = 3.41217243e-03: time = 8.26273602e-03
+# iteration   329: delta_max = 3.35887603e-03: time = 1.97750900e-02
+# iteration   330: delta_max = 3.28011004e-03: time = 1.53899940e-02
+# iteration   331: delta_max = 3.21279162e-03: time = 1.33095240e-02
+# iteration   332: delta_max = 3.20176331e-03: time = 2.26918560e-02
+# iteration   333: delta_max = 3.17276391e-03: time = 1.35297850e-02
+# iteration   334: delta_max = 3.15790868e-03: time = 1.54601340e-02
+# iteration   335: delta_max = 3.13454708e-03: time = 2.24319780e-02
+# iteration   336: delta_max = 3.06277002e-03: time = 1.53206760e-02
+# iteration   337: delta_max = 3.06136247e-03: time = 1.51982350e-02
+# iteration   338: delta_max = 3.04729720e-03: time = 2.25910070e-02
+# iteration   339: delta_max = 3.04688828e-03: time = 2.30451440e-02
+# iteration   340: delta_max = 3.04085202e-03: time = 1.28706520e-02
+# iteration   341: delta_max = 3.00862188e-03: time = 2.05338350e-02
+# iteration   342: delta_max = 2.94049993e-03: time = 1.30526880e-02
+# iteration   343: delta_max = 2.88338427e-03: time = 1.14750620e-02
+# iteration   344: delta_max = 2.81605136e-03: time = 1.55394410e-02
+# iteration   345: delta_max = 2.81602420e-03: time = 1.56225510e-02
+# iteration   346: delta_max = 2.75945759e-03: time = 1.15692470e-02
+# iteration   347: delta_max = 2.74411063e-03: time = 1.15677050e-02
+# iteration   348: delta_max = 2.73210938e-03: time = 1.14233590e-02
+# iteration   349: delta_max = 2.70206211e-03: time = 1.27322010e-02
+# iteration   350: delta_max = 2.69679745e-03: time = 1.27705460e-02
+# iteration   351: delta_max = 2.65989841e-03: time = 7.98953697e-03
+# iteration   352: delta_max = 2.65446904e-03: time = 1.34979370e-02
+# iteration   353: delta_max = 2.65193664e-03: time = 1.53468610e-02
+# iteration   354: delta_max = 2.63045981e-03: time = 1.35054550e-02
+# iteration   355: delta_max = 2.61470334e-03: time = 1.34359000e-02
+# iteration   356: delta_max = 2.55885260e-03: time = 1.28281270e-02
+# iteration   357: delta_max = 2.54839247e-03: time = 1.35399040e-02
+# iteration   358: delta_max = 2.52590026e-03: time = 1.54459810e-02
+# iteration   359: delta_max = 2.47388625e-03: time = 1.53433960e-02
+# iteration   360: delta_max = 2.36489437e-03: time = 1.29154080e-02
+# iteration   361: delta_max = 2.31618732e-03: time = 1.28398350e-02
+# iteration   362: delta_max = 2.31590127e-03: time = 1.28870420e-02
+# iteration   363: delta_max = 2.31113029e-03: time = 1.28800760e-02
+# iteration   364: delta_max = 2.25262598e-03: time = 1.29000710e-02
+# iteration   365: delta_max = 2.22721929e-03: time = 9.71022702e-03
+# iteration   366: delta_max = 2.22721617e-03: time = 9.65900195e-03
+# iteration   367: delta_max = 2.22197985e-03: time = 1.35982820e-02
+# iteration   368: delta_max = 2.20758812e-03: time = 9.70169099e-03
+# iteration   369: delta_max = 2.20758645e-03: time = 9.72511101e-03
+# iteration   370: delta_max = 2.20617076e-03: time = 2.27451260e-02
+# iteration   371: delta_max = 2.20143947e-03: time = 2.31225510e-02
+# iteration   372: delta_max = 2.17231886e-03: time = 1.52018550e-02
+# iteration   373: delta_max = 2.17214689e-03: time = 1.02019310e-02
+# iteration   374: delta_max = 2.10676329e-03: time = 1.31637290e-02
+# iteration   375: delta_max = 2.09860122e-03: time = 1.37336940e-02
+# iteration   376: delta_max = 2.06643004e-03: time = 1.36310810e-02
+# iteration   377: delta_max = 2.03239748e-03: time = 1.30150930e-02
+# iteration   378: delta_max = 2.00569523e-03: time = 1.36340280e-02
+# iteration   379: delta_max = 1.93876875e-03: time = 2.28307160e-02
+# iteration   380: delta_max = 1.93866617e-03: time = 2.31703280e-02
+# iteration   381: delta_max = 1.93131498e-03: time = 1.57262460e-02
+# iteration   382: delta_max = 1.93087409e-03: time = 1.68580990e-02
+# iteration   383: delta_max = 1.89757145e-03: time = 1.94838100e-02
+# iteration   384: delta_max = 1.83108377e-03: time = 1.37778150e-02
+# iteration   385: delta_max = 1.82590417e-03: time = 1.18645280e-02
+# iteration   386: delta_max = 1.80279349e-03: time = 1.57236570e-02
+# iteration   387: delta_max = 1.80056035e-03: time = 1.55292910e-02
+# iteration   388: delta_max = 1.76224725e-03: time = 1.19321680e-02
+# iteration   389: delta_max = 1.75086019e-03: time = 1.55697690e-02
+# iteration   390: delta_max = 1.75056840e-03: time = 1.55868550e-02
+# iteration   391: delta_max = 1.73253836e-03: time = 1.88139630e-02
+# iteration   392: delta_max = 1.68401765e-03: time = 1.35982680e-02
+# iteration   393: delta_max = 1.67063720e-03: time = 2.33813300e-02
+# iteration   394: delta_max = 1.66577765e-03: time = 2.34797150e-02
+# iteration   395: delta_max = 1.63392362e-03: time = 1.73918730e-02
+# iteration   396: delta_max = 1.59734862e-03: time = 1.35061170e-02
+# iteration   397: delta_max = 1.56386621e-03: time = 1.34560990e-02
+# iteration   398: delta_max = 1.52641680e-03: time = 1.08581480e-02
+# iteration   399: delta_max = 1.49299618e-03: time = 1.06402340e-02
+# iteration   400: delta_max = 1.48892137e-03: time = 1.31238680e-02
+# iteration   401: delta_max = 1.44956624e-03: time = 1.32322350e-02
+# iteration   402: delta_max = 1.44211598e-03: time = 1.31709570e-02
+# iteration   403: delta_max = 1.43424107e-03: time = 1.32426240e-02
+# iteration   404: delta_max = 1.42498759e-03: time = 7.35509198e-03
+# iteration   405: delta_max = 1.39391791e-03: time = 1.39205530e-02
+# iteration   406: delta_max = 1.39121375e-03: time = 1.33144991e-02
+# iteration   407: delta_max = 1.34035274e-03: time = 1.36810100e-02
+# iteration   408: delta_max = 1.32904255e-03: time = 1.39914110e-02
+# iteration   409: delta_max = 1.26989970e-03: time = 1.40414740e-02
+# iteration   410: delta_max = 1.21182994e-03: time = 1.34181820e-02
+# iteration   411: delta_max = 1.17730014e-03: time = 1.08495700e-02
+# iteration   412: delta_max = 1.17715061e-03: time = 1.39675430e-02
+# iteration   413: delta_max = 1.17019751e-03: time = 1.08132900e-02
+# iteration   414: delta_max = 1.16323682e-03: time = 1.32385390e-02
+# iteration   415: delta_max = 1.14166803e-03: time = 1.23250780e-02
+# iteration   416: delta_max = 1.12653253e-03: time = 1.34091300e-02
+# iteration   417: delta_max = 1.08832537e-03: time = 1.59261520e-02
+# iteration   418: delta_max = 1.08832349e-03: time = 1.64508670e-02
+# iteration   419: delta_max = 1.07034681e-03: time = 1.22790600e-02
+# iteration   420: delta_max = 1.02049555e-03: time = 1.39111020e-02
+# iteration   421: delta_max = 1.01473965e-03: time = 1.41476090e-02
+# iteration   422: delta_max = 9.40931630e-04: time = 1.46793110e-02
+# iteration   423: delta_max = 9.38183815e-04: time = 1.62385590e-02
+# iteration   424: delta_max = 9.38180188e-04: time = 1.62652500e-02
+# iteration   425: delta_max = 9.34947024e-04: time = 1.23107680e-02
+# iteration   426: delta_max = 9.03748035e-04: time = 1.59405770e-02
+# iteration   427: delta_max = 9.03733278e-04: time = 1.59364290e-02
+# iteration   428: delta_max = 8.77207950e-04: time = 1.58933730e-02
+# iteration   429: delta_max = 8.73441419e-04: time = 2.07940240e-02
+# iteration   430: delta_max = 8.73400804e-04: time = 1.60436990e-02
+# iteration   431: delta_max = 8.62441286e-04: time = 1.60038320e-02
+# iteration   432: delta_max = 8.54408012e-04: time = 1.23173470e-02
+# iteration   433: delta_max = 8.43825950e-04: time = 1.60330820e-02
+# iteration   434: delta_max = 8.31906045e-04: time = 1.60409070e-02
+# iteration   435: delta_max = 8.19333329e-04: time = 1.23190170e-02
+# iteration   436: delta_max = 8.10276922e-04: time = 1.11308660e-02
+# iteration   437: delta_max = 7.64931624e-04: time = 2.32069710e-02
+# iteration   438: delta_max = 7.64930605e-04: time = 2.33343470e-02
+# iteration   439: delta_max = 7.40855532e-04: time = 2.33563310e-02
+# iteration   440: delta_max = 7.40813519e-04: time = 2.33493580e-02
+# iteration   441: delta_max = 7.02744019e-04: time = 2.33583510e-02
+# iteration   442: delta_max = 7.02725472e-04: time = 2.34395440e-02
+# iteration   443: delta_max = 6.95620516e-04: time = 1.12502040e-02
+# iteration   444: delta_max = 6.81879557e-04: time = 1.11548640e-02
+# iteration   445: delta_max = 6.66220791e-04: time = 1.10831760e-02
+# iteration   446: delta_max = 6.61915085e-04: time = 1.42676740e-02
+# iteration   447: delta_max = 6.60851573e-04: time = 1.42372810e-02
+# iteration   448: delta_max = 6.52120955e-04: time = 1.61062130e-02
+# iteration   449: delta_max = 6.49148133e-04: time = 1.64416200e-02
+# iteration   450: delta_max = 6.47977221e-04: time = 1.61176350e-02
+# iteration   451: delta_max = 6.37708481e-04: time = 1.24532920e-02
+# iteration   452: delta_max = 6.31217033e-04: time = 1.60470850e-02
+# iteration   453: delta_max = 6.11126793e-04: time = 1.68778960e-02
+# iteration   454: delta_max = 6.03475552e-04: time = 1.45920040e-02
+# iteration   455: delta_max = 6.01617697e-04: time = 2.38323360e-02
+# iteration   456: delta_max = 6.01308937e-04: time = 2.37469840e-02
+# iteration   457: delta_max = 5.78944386e-04: time = 3.99876580e-02
+# iteration   458: delta_max = 5.78936987e-04: time = 2.56808220e-02
+# iteration   459: delta_max = 5.64212076e-04: time = 1.62463930e-02
+# iteration   460: delta_max = 5.61835844e-04: time = 1.45305010e-02
+# iteration   461: delta_max = 5.61448883e-04: time = 1.61235170e-02
+# iteration   462: delta_max = 5.52601967e-04: time = 1.25727550e-02
+# iteration   463: delta_max = 5.52601366e-04: time = 1.27491550e-02
+# iteration   464: delta_max = 5.43148288e-04: time = 2.35408591e-02
+# iteration   465: delta_max = 5.43071403e-04: time = 2.36247210e-02
+# iteration   466: delta_max = 5.37369371e-04: time = 1.26154600e-02
+# iteration   467: delta_max = 5.16214284e-04: time = 1.63811160e-02
+# iteration   468: delta_max = 5.00795904e-04: time = 1.32219060e-02
+# iteration   469: delta_max = 5.00795669e-04: time = 1.30352650e-02
+# iteration   470: delta_max = 4.84877601e-04: time = 1.26869030e-02
+# iteration   471: delta_max = 4.50671407e-04: time = 1.13894590e-02
+# iteration   472: delta_max = 4.38882298e-04: time = 1.64131010e-02
+# iteration   473: delta_max = 4.38381578e-04: time = 1.62888530e-02
+# iteration   474: delta_max = 4.21716776e-04: time = 1.14580860e-02
+# iteration   475: delta_max = 4.15808006e-04: time = 1.26282820e-02
+# iteration   476: delta_max = 4.15530458e-04: time = 1.26176560e-02
+# iteration   477: delta_max = 4.08088017e-04: time = 1.63970500e-02
+# iteration   478: delta_max = 3.96182887e-04: time = 1.62409960e-02
+# iteration   479: delta_max = 3.74925846e-04: time = 2.35990889e-02
+# iteration   480: delta_max = 3.74901927e-04: time = 2.36417810e-02
+# iteration   481: delta_max = 3.71212301e-04: time = 1.64206011e-02
+# iteration   482: delta_max = 3.70631116e-04: time = 1.63603180e-02
+# iteration   483: delta_max = 3.50281422e-04: time = 2.37117020e-02
+# iteration   484: delta_max = 3.50275238e-04: time = 2.38220960e-02
+# iteration   485: delta_max = 3.49810820e-04: time = 2.38118170e-02
+# iteration   486: delta_max = 3.49810507e-04: time = 2.37293120e-02
+# iteration   487: delta_max = 3.31905312e-04: time = 1.64814790e-02
+# iteration   488: delta_max = 3.29374820e-04: time = 1.64106760e-02
+# iteration   489: delta_max = 3.04330804e-04: time = 1.47949640e-02
+# iteration   490: delta_max = 3.04060594e-04: time = 1.47113520e-02
+# iteration   491: delta_max = 2.84148882e-04: time = 1.39043501e-02
+# iteration   492: delta_max = 2.73151570e-04: time = 1.46634830e-02
+# iteration   493: delta_max = 2.70046745e-04: time = 1.39771280e-02
+# iteration   494: delta_max = 2.49671157e-04: time = 1.45705390e-02
+# iteration   495: delta_max = 2.20831868e-04: time = 1.27874800e-02
+# iteration   496: delta_max = 2.20307189e-04: time = 1.30038290e-02
+# iteration   497: delta_max = 2.03666414e-04: time = 1.28284970e-02
+# iteration   498: delta_max = 2.03652030e-04: time = 1.28087600e-02
+# iteration   499: delta_max = 1.90720554e-04: time = 1.28874410e-02
+# iteration   500: delta_max = 1.90305645e-04: time = 1.28211131e-02
+# iteration   501: delta_max = 1.88187522e-04: time = 1.28877781e-02
+# iteration   502: delta_max = 1.88074818e-04: time = 1.28661540e-02
+# iteration   503: delta_max = 1.77524333e-04: time = 1.41389160e-02
+# iteration   504: delta_max = 1.74564620e-04: time = 1.47805900e-02
+# iteration   505: delta_max = 1.67169887e-04: time = 2.37964820e-02
+# iteration   506: delta_max = 1.67169717e-04: time = 2.43043170e-02
+# iteration   507: delta_max = 1.56992048e-04: time = 1.65616910e-02
+# iteration   508: delta_max = 1.56989522e-04: time = 1.65216850e-02
+# iteration   509: delta_max = 1.54716559e-04: time = 1.56207360e-02
+# iteration   510: delta_max = 1.54716532e-04: time = 9.65266401e-03
+# iteration   511: delta_max = 1.49600797e-04: time = 2.43120300e-02
+# iteration   512: delta_max = 1.49429754e-04: time = 2.44476630e-02
+# iteration   513: delta_max = 1.47768073e-04: time = 1.67237870e-02
+# iteration   514: delta_max = 1.47089125e-04: time = 1.66546260e-02
+# iteration   515: delta_max = 1.27650062e-04: time = 2.39310450e-02
+# iteration   516: delta_max = 1.27242084e-04: time = 2.39702089e-02
+# iteration   517: delta_max = 1.20413690e-04: time = 1.57096360e-02
+# iteration   518: delta_max = 1.17779868e-04: time = 1.45137640e-02
+# iteration   519: delta_max = 1.17554630e-04: time = 9.47826501e-03
+# iteration   520: delta_max = 1.17554258e-04: time = 9.50294500e-03
+# iteration   521: delta_max = 1.17251249e-04: time = 9.43582103e-03
+# iteration   522: delta_max = 1.17235790e-04: time = 9.44767299e-03
+# iteration   523: delta_max = 1.15091142e-04: time = 2.43491930e-02
+# iteration   524: delta_max = 1.15034521e-04: time = 2.45769850e-02
+# iteration   525: delta_max = 1.12963135e-04: time = 1.31580600e-02
+# iteration   526: delta_max = 1.12870164e-04: time = 1.36244410e-02
+# iteration   527: delta_max = 1.10427241e-04: time = 2.02329280e-02
+# iteration   528: delta_max = 1.08694358e-04: time = 1.70977250e-02
+# iteration   529: delta_max = 1.07406856e-04: time = 1.72517660e-02
+# iteration   530: delta_max = 1.04162810e-04: time = 2.38281310e-02
+# iteration   531: delta_max = 1.02809988e-04: time = 1.78515280e-02
+# iteration   532: delta_max = 1.02772061e-04: time = 1.79079050e-02
+# iteration   533: delta_max = 1.00921241e-04: time = 2.45793940e-02
+# iteration   534: delta_max = 9.89637628e-05: time = 2.41487050e-02
+# iteration   535: delta_max = 9.73170924e-05: time = 1.76967490e-02
+# iteration   536: delta_max = 9.68942103e-05: time = 1.75779610e-02
+# iteration   537: delta_max = 9.23632080e-05: time = 2.41490680e-02
+# iteration   538: delta_max = 9.16044179e-05: time = 2.44789990e-02
+# iteration   539: delta_max = 8.61527290e-05: time = 1.90462020e-02
+# iteration   540: delta_max = 8.54012725e-05: time = 2.46095540e-02
+# iteration   541: delta_max = 8.46717631e-05: time = 1.73587810e-02
+# iteration   542: delta_max = 8.45710561e-05: time = 2.42378790e-02
+# iteration   543: delta_max = 8.19795852e-05: time = 1.45211720e-02
+# iteration   544: delta_max = 8.13099005e-05: time = 1.67847060e-02
+# iteration   545: delta_max = 7.96461963e-05: time = 1.76446660e-02
+# iteration   546: delta_max = 7.78332647e-05: time = 1.44367040e-02
+# iteration   547: delta_max = 7.72630016e-05: time = 1.76371670e-02
+# iteration   548: delta_max = 7.37107461e-05: time = 1.51549540e-02
+# iteration   549: delta_max = 7.29739059e-05: time = 2.29865870e-02
+# iteration   550: delta_max = 7.15209346e-05: time = 1.47221830e-02
+# iteration   551: delta_max = 6.75813021e-05: time = 1.45147430e-02
+# iteration   552: delta_max = 6.74286847e-05: time = 1.74620930e-02
+# iteration   553: delta_max = 6.72131542e-05: time = 1.74913900e-02
+# iteration   554: delta_max = 6.18003020e-05: time = 2.42243110e-02
+# iteration   555: delta_max = 6.17917892e-05: time = 2.41827430e-02
+# iteration   556: delta_max = 6.08991424e-05: time = 2.37810950e-02
+# iteration   557: delta_max = 6.03609737e-05: time = 1.82104100e-02
+# iteration   558: delta_max = 5.96892356e-05: time = 2.46687470e-02
+# iteration   559: delta_max = 5.96619573e-05: time = 2.41909850e-02
+# iteration   560: delta_max = 5.88399625e-05: time = 1.78060650e-02
+# iteration   561: delta_max = 5.82726816e-05: time = 1.77503280e-02
+# iteration   562: delta_max = 5.55444581e-05: time = 1.69524360e-02
+# iteration   563: delta_max = 5.53114542e-05: time = 1.78786000e-02
+# iteration   564: delta_max = 5.52756128e-05: time = 1.78018700e-02
+# iteration   565: delta_max = 5.30512594e-05: time = 1.53206710e-02
+# iteration   566: delta_max = 5.30129197e-05: time = 1.70460540e-02
+# iteration   567: delta_max = 5.25752615e-05: time = 1.79063070e-02
+# iteration   568: delta_max = 5.19534392e-05: time = 2.43934760e-02
+# iteration   569: delta_max = 5.15903028e-05: time = 2.44377310e-02
+# iteration   570: delta_max = 5.03440799e-05: time = 1.77800960e-02
+# iteration   571: delta_max = 4.82359188e-05: time = 1.78978030e-02
+# iteration   572: delta_max = 4.56150631e-05: time = 1.78174060e-02
+# iteration   573: delta_max = 4.55390839e-05: time = 1.46953350e-02
+# iteration   574: delta_max = 4.54217747e-05: time = 1.79033050e-02
+# iteration   575: delta_max = 4.34307232e-05: time = 1.78578070e-02
+# iteration   576: delta_max = 4.27736480e-05: time = 1.34601520e-02
+# iteration   577: delta_max = 4.27731256e-05: time = 1.34498990e-02
+# iteration   578: delta_max = 4.27547161e-05: time = 1.35074800e-02
+# iteration   579: delta_max = 4.27533170e-05: time = 1.34757850e-02
+# iteration   580: delta_max = 4.23555613e-05: time = 1.35606180e-02
+# iteration   581: delta_max = 4.23548661e-05: time = 1.34969330e-02
+# iteration   582: delta_max = 4.20158935e-05: time = 1.79895760e-02
+# iteration   583: delta_max = 4.17604457e-05: time = 1.79870880e-02
+# iteration   584: delta_max = 4.11307844e-05: time = 1.79021210e-02
+# iteration   585: delta_max = 4.08482890e-05: time = 1.47720220e-02
+# iteration   586: delta_max = 4.07346245e-05: time = 1.79874200e-02
+# iteration   587: delta_max = 3.91867966e-05: time = 1.47697680e-02
+# iteration   588: delta_max = 3.88776305e-05: time = 1.79728300e-02
+# iteration   589: delta_max = 3.84778141e-05: time = 1.71856430e-02
+# iteration   590: delta_max = 3.84099127e-05: time = 1.72481790e-02
+# iteration   591: delta_max = 3.74666420e-05: time = 1.73658050e-02
+# iteration   592: delta_max = 3.74658437e-05: time = 1.72569060e-02
+# iteration   593: delta_max = 3.66480187e-05: time = 1.73183080e-02
+# iteration   594: delta_max = 3.51194459e-05: time = 1.72718570e-02
+# iteration   595: delta_max = 3.46874165e-05: time = 1.13418110e-02
+# iteration   596: delta_max = 3.43476381e-05: time = 1.80794910e-02
+# iteration   597: delta_max = 3.33501151e-05: time = 1.79995620e-02
+# iteration   598: delta_max = 3.30107425e-05: time = 1.80325410e-02
+# iteration   599: delta_max = 3.28299174e-05: time = 1.79929820e-02
+# iteration   600: delta_max = 3.09724695e-05: time = 2.34189250e-02
+# iteration   601: delta_max = 3.05651799e-05: time = 1.56988750e-02
+# iteration   602: delta_max = 3.05131304e-05: time = 1.86962250e-02
+# iteration   603: delta_max = 2.94084006e-05: time = 1.53008540e-02
+# iteration   604: delta_max = 2.87410310e-05: time = 2.46600060e-02
+# iteration   605: delta_max = 2.86992934e-05: time = 2.48285620e-02
+# iteration   606: delta_max = 2.85462395e-05: time = 1.81583880e-02
+# iteration   607: delta_max = 2.79160845e-05: time = 1.81965040e-02
+# iteration   608: delta_max = 2.71465836e-05: time = 2.49788480e-02
+# iteration   609: delta_max = 2.71320684e-05: time = 2.46142750e-02
+# iteration   610: delta_max = 2.68526375e-05: time = 1.73681290e-02
+# iteration   611: delta_max = 2.67683362e-05: time = 1.81698840e-02
+# iteration   612: delta_max = 2.67052902e-05: time = 1.74130281e-02
+# iteration   613: delta_max = 2.56587241e-05: time = 1.18248060e-02
+# iteration   614: delta_max = 2.56585118e-05: time = 1.17627360e-02
+# iteration   615: delta_max = 2.53970938e-05: time = 1.81472210e-02
+# iteration   616: delta_max = 2.52178682e-05: time = 1.82540410e-02
+# iteration   617: delta_max = 2.39053014e-05: time = 1.57671370e-02
+# iteration   618: delta_max = 2.37506340e-05: time = 1.56913170e-02
+# iteration   619: delta_max = 2.31559899e-05: time = 1.01414000e-02
+# iteration   620: delta_max = 2.30017631e-05: time = 1.49805630e-02
+# iteration   621: delta_max = 2.29404219e-05: time = 1.81448120e-02
+# iteration   622: delta_max = 2.29090883e-05: time = 1.82292600e-02
+# iteration   623: delta_max = 2.29030601e-05: time = 1.82280380e-02
+# iteration   624: delta_max = 2.20284727e-05: time = 1.86977880e-02
+# iteration   625: delta_max = 2.11963601e-05: time = 1.25921160e-02
+# iteration   626: delta_max = 2.09562253e-05: time = 1.86481050e-02
+# iteration   627: delta_max = 2.08039476e-05: time = 1.86226390e-02
+# iteration   628: delta_max = 2.00909745e-05: time = 1.58592220e-02
+# iteration   629: delta_max = 1.98263188e-05: time = 1.18780870e-02
+# iteration   630: delta_max = 1.98263173e-05: time = 1.19162870e-02
+# iteration   631: delta_max = 1.88987329e-05: time = 1.57466130e-02
+# iteration   632: delta_max = 1.84055028e-05: time = 1.84168030e-02
+# iteration   633: delta_max = 1.83145323e-05: time = 1.83902200e-02
+# iteration   634: delta_max = 1.76961925e-05: time = 1.85314370e-02
+# iteration   635: delta_max = 1.67150522e-05: time = 1.84651760e-02
+# iteration   636: delta_max = 1.66556115e-05: time = 1.83500850e-02
+# iteration   637: delta_max = 1.63714250e-05: time = 1.04284300e-02
+# iteration   638: delta_max = 1.62995847e-05: time = 1.16902660e-02
+# iteration   639: delta_max = 1.62962019e-05: time = 1.04542430e-02
+# iteration   640: delta_max = 1.49798530e-05: time = 1.84834140e-02
+# iteration   641: delta_max = 1.48454376e-05: time = 1.85811590e-02
+# iteration   642: delta_max = 1.47175926e-05: time = 1.84444260e-02
+# iteration   643: delta_max = 1.46395464e-05: time = 1.84449630e-02
+# iteration   644: delta_max = 1.43254528e-05: time = 2.51950960e-02
+# iteration   645: delta_max = 1.40650412e-05: time = 2.51388130e-02
+# iteration   646: delta_max = 1.40260611e-05: time = 1.60046230e-02
+# iteration   647: delta_max = 1.39935316e-05: time = 1.86461080e-02
+# iteration   648: delta_max = 1.39177269e-05: time = 1.87953320e-02
+# iteration   649: delta_max = 1.37019162e-05: time = 1.87788450e-02
+# iteration   650: delta_max = 1.36055625e-05: time = 1.85642590e-02
+# iteration   651: delta_max = 1.35920871e-05: time = 1.85834280e-02
+# iteration   652: delta_max = 1.31231846e-05: time = 1.85531500e-02
+# iteration   653: delta_max = 1.31230815e-05: time = 1.84668520e-02
+# iteration   654: delta_max = 1.28326695e-05: time = 1.85178590e-02
+# iteration   655: delta_max = 1.26921653e-05: time = 1.85803010e-02
+# iteration   656: delta_max = 1.26846539e-05: time = 1.85705340e-02
+# iteration   657: delta_max = 1.26548962e-05: time = 1.85397390e-02
+# iteration   658: delta_max = 1.18397425e-05: time = 1.64712750e-02
+# iteration   659: delta_max = 1.16391702e-05: time = 1.85820330e-02
+# iteration   660: delta_max = 1.15013260e-05: time = 1.61109240e-02
+# iteration   661: delta_max = 1.13320486e-05: time = 1.78290610e-02
+# iteration   662: delta_max = 1.12246057e-05: time = 1.28326540e-02
+# iteration   663: delta_max = 1.11404082e-05: time = 2.50583439e-02
+# iteration   664: delta_max = 1.09547817e-05: time = 1.45409480e-02
+# iteration   665: delta_max = 1.09274214e-05: time = 2.50890760e-02
+# iteration   666: delta_max = 1.07931032e-05: time = 1.44229740e-02
+# iteration   667: delta_max = 1.04415674e-05: time = 1.87038430e-02
+# iteration   668: delta_max = 1.03749057e-05: time = 1.86375230e-02
+# iteration   669: delta_max = 1.03385197e-05: time = 1.54493780e-02
+# iteration   670: delta_max = 9.99128332e-06: time = 2.51170040e-02
+ # Orthogonalising Cholesky vectors.
+ # Time to orthogonalise: 0.087123
+nelec: (26, 26)
+nbasis: 108
+chol.shape: (670, 108, 108)
+
+******** <class 'pyscf.cc.ccsd.CCSD'> ********
+CC2 = 0
+CCSD nocc = 16, nmo = 108
+frozen orbitals 10
+max_cycle = 50
+direct = 0
+conv_tol = 1e-07
+conv_tol_normt = 1e-05
+diis_space = 6
+diis_start_cycle = 0
+diis_start_energy_diff = 1e+09
+max_memory 4000 MB (current use 827 MB)
+    CPU time for CCSD integral transformation     27.56 sec, wall time      0.77 sec
+Init t2, MP2 energy = -542.176745616781  E_corr(MP2) -0.95940754470333
+    CPU time for init mp2      1.23 sec, wall time      0.03 sec
+Init E_corr(CCSD) = -0.959407544711181
+cycle = 1  E_corr(CCSD) = -0.730700586644648  dE = 0.228706958  norm(t1,t2) = 0.282153
+    CPU time for CCSD iter     49.59 sec, wall time      1.55 sec
+cycle = 2  E_corr(CCSD) = -0.912410602482995  dE = -0.181710016  norm(t1,t2) = 0.276117
+    CPU time for CCSD iter     51.39 sec, wall time      1.58 sec
+cycle = 3  E_corr(CCSD) = -0.850233064342791  dE = 0.0621775381  norm(t1,t2) = 0.313683
+    CPU time for CCSD iter     48.08 sec, wall time      1.53 sec
+cycle = 4  E_corr(CCSD) = -0.842242778951435  dE = 0.00799028539  norm(t1,t2) = 0.0262236
+    CPU time for CCSD iter     43.96 sec, wall time      1.39 sec
+cycle = 5  E_corr(CCSD) = -0.847068863004174  dE = -0.00482608405  norm(t1,t2) = 0.0167363
+    CPU time for CCSD iter     45.32 sec, wall time      1.42 sec
+cycle = 6  E_corr(CCSD) = -0.849031876942686  dE = -0.00196301394  norm(t1,t2) = 0.0071206
+    CPU time for CCSD iter     48.21 sec, wall time      1.52 sec
+cycle = 7  E_corr(CCSD) = -0.848796937013914  dE = 0.000234939929  norm(t1,t2) = 0.00359108
+    CPU time for CCSD iter     45.41 sec, wall time      1.42 sec
+cycle = 8  E_corr(CCSD) = -0.848735062297325  dE = 6.18747166e-05  norm(t1,t2) = 0.00151087
+    CPU time for CCSD iter     47.93 sec, wall time      1.49 sec
+cycle = 9  E_corr(CCSD) = -0.848879841988347  dE = -0.000144779691  norm(t1,t2) = 0.000723563
+    CPU time for CCSD iter     48.50 sec, wall time      1.54 sec
+cycle = 10  E_corr(CCSD) = -0.848827302088635  dE = 5.25398997e-05  norm(t1,t2) = 0.000235872
+    CPU time for CCSD iter     49.59 sec, wall time      1.57 sec
+cycle = 11  E_corr(CCSD) = -0.848845063567583  dE = -1.77614789e-05  norm(t1,t2) = 0.000132977
+    CPU time for CCSD iter     50.49 sec, wall time      1.56 sec
+cycle = 12  E_corr(CCSD) = -0.848857416136427  dE = -1.23525688e-05  norm(t1,t2) = 8.24536e-05
+    CPU time for CCSD iter     44.91 sec, wall time      1.42 sec
+cycle = 13  E_corr(CCSD) = -0.848852634578067  dE = 4.78155836e-06  norm(t1,t2) = 4.85717e-05
+    CPU time for CCSD iter     48.84 sec, wall time      1.56 sec
+cycle = 14  E_corr(CCSD) = -0.848859116245812  dE = -6.48166774e-06  norm(t1,t2) = 2.5861e-05
+    CPU time for CCSD iter     47.75 sec, wall time      1.60 sec
+cycle = 15  E_corr(CCSD) = -0.848859313888424  dE = -1.97642612e-07  norm(t1,t2) = 1.53927e-05
+    CPU time for CCSD iter     47.85 sec, wall time      1.51 sec
+cycle = 16  E_corr(CCSD) = -0.848859295128366  dE = 1.87600575e-08  norm(t1,t2) = 8.13069e-06
+    CPU time for CCSD iter     47.30 sec, wall time      1.60 sec
+    CPU time for CCSD    765.12 sec, wall time     24.25 sec
+CCSD converged
+E(CCSD) = -542.0661973672064  E_corr = -0.848859295128366
+    CPU time for CCSD integral transformation     25.66 sec, wall time      0.71 sec
+max_memory 2627 MB (1372 MB in use)
+    CPU time for CCSD(T)     58.21 sec, wall time      1.62 sec
+CCSD(T) correction = -0.0711356610711533
+CCSD(T) energy -542.1373330282776
